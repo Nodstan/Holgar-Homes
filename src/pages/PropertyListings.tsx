@@ -78,72 +78,81 @@ const PropertyListings: React.FC<PropertyListingsProps> = ({ onViewDetails }) =>
   return (
     <div className="w-full bg-[#fafafa] pt-20">
       {/* 1. STICKY FILTER BAR - Positioned to sit under the fixed Layout Nav */}
-      <section 
-              className={`sticky w-full bg-white/80 backdrop-blur-md border-b border-gray-100 py-4 z-40 shadow-sm transition-all duration-500 ${
-                isNavVisible ? 'top-20' : 'top-0'
-              }`}
-            >
-       <div className="max-w-[1440px] mx-auto px-6 grid grid-cols-1 md:grid-cols-12 gap-3 items-center">
-        {/* SEARCH INPUT */}
-       <div className="relative md:col-span-4">
-          <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" size={16} />
-          <input 
-            type="text" 
-            value={searchQuery}
-            placeholder="Search Lekki, Mansion..."
-            className="w-full pl-10 pr-4 py-2.5 bg-gray-50 border border-gray-100 rounded-xl text-sm focus:bg-white focus:border-[#C5A059] transition-all outline-none"
-            onChange={(e) => { setIsLoading(true); setSearchQuery(e.target.value); setCurrentPage(1); }}
-          />
-        </div>
+     <section 
+  className={`sticky w-full bg-white/80 backdrop-blur-md border-b border-gray-100 py-4 z-40 shadow-sm transition-all duration-500 ${
+    isNavVisible ? 'top-20' : 'top-0'
+  }`}
+>
+  <div className="max-w-[1440px] mx-auto px-4 md:px-6">
+    {/* Grid setup: 1 column on mobile, 12 on desktop */}
+    <div className="grid grid-cols-1 md:grid-cols-12 gap-3 items-center">
+      
+      {/* SEARCH INPUT - Full width on mobile, 4 cols on desktop */}
+      <div className="relative md:col-span-4">
+        <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" size={16} />
+        <input 
+          type="text" 
+          value={searchQuery}
+          placeholder="Search Lekki, Mansion..."
+          className="w-full pl-10 pr-4 py-2.5 bg-gray-50 border border-gray-100 rounded-xl text-sm focus:bg-white focus:border-[#C5A059] transition-all outline-none"
+          onChange={(e) => { setIsLoading(true); setSearchQuery(e.target.value); setCurrentPage(1); }}
+        />
+      </div>
 
-          <select 
-            value={propertyType}
-            className="col-span-2 px-4 py-2.5 bg-white border border-gray-100 rounded-xl text-xs font-bold text-slate-600 outline-none hover:border-[#C5A059] transition-all cursor-pointer"
-            onChange={(e) => { setIsLoading(true); setPropertyType(e.target.value); setCurrentPage(1); }}
-          >
-            <option value="All">All Types</option>
-            <option value="Duplex">Duplex</option>
-            <option value="Apartment">Apartment</option>
-            <option value="Mansion">Mansion</option>
-          </select>
+      {/* MOBILE SCROLL WRAPPER - This is the secret sauce */}
+      {/* On mobile, filters stay in one row that you can swipe left/right */}
+      <div className="flex md:grid md:grid-cols-8 md:col-span-8 gap-2 overflow-x-auto no-scrollbar pb-2 md:pb-0">
+        
+        <select 
+          value={propertyType}
+          className="min-w-[120px] md:col-span-2 px-4 py-2.5 bg-white border border-gray-100 rounded-xl text-xs font-bold text-slate-600 outline-none hover:border-[#C5A059] transition-all cursor-pointer"
+          onChange={(e) => { setIsLoading(true); setPropertyType(e.target.value); setCurrentPage(1); }}
+        >
+          <option value="All">All Types</option>
+          <option value="Duplex">Duplex</option>
+          <option value="Apartment">Apartment</option>
+          <option value="Mansion">Mansion</option>
+        </select>
 
-          <select 
-            value={beds}
-            className="col-span-2 px-4 py-2.5 bg-white border border-gray-100 rounded-xl text-xs font-bold text-slate-600 outline-none hover:border-[#C5A059] transition-all cursor-pointer"
-            onChange={(e) => { setIsLoading(true); setBeds(e.target.value); setCurrentPage(1); }}
-          >
-            <option value="All">Any Beds</option>
-            <option value="3">3+ Beds</option>
-            <option value="4">4+ Beds</option>
-            <option value="5">5+ Beds</option>
-          </select>
+        <select 
+          value={beds}
+          className="min-w-[120px] md:col-span-2 px-4 py-2.5 bg-white border border-gray-100 rounded-xl text-xs font-bold text-slate-600 outline-none hover:border-[#C5A059] transition-all cursor-pointer"
+          onChange={(e) => { setIsLoading(true); setBeds(e.target.value); setCurrentPage(1); }}
+        >
+          <option value="All">Any Beds</option>
+          <option value="3">3+ Beds</option>
+          <option value="4">4+ Beds</option>
+          <option value="5">5+ Beds</option>
+        </select>
 
-          <select 
-            value={minPrice}
-            className="col-span-2 px-4 py-2.5 bg-white border border-gray-100 rounded-xl text-xs font-bold text-slate-600 outline-none hover:border-[#C5A059] transition-all cursor-pointer"
-            onChange={(e) => { setIsLoading(true); setMinPrice(Number(e.target.value)); setCurrentPage(1); }}
-          >
-            <option value="0">Any Price</option>
-            <option value="100">Above ₦100M</option>
-            <option value="200">Above ₦200M</option>
-            <option value="400">Above ₦400M</option>
-          </select>
+        <select 
+          value={minPrice}
+          className="min-w-[120px] md:col-span-2 px-4 py-2.5 bg-white border border-gray-100 rounded-xl text-xs font-bold text-slate-600 outline-none hover:border-[#C5A059] transition-all cursor-pointer"
+          onChange={(e) => { setIsLoading(true); setMinPrice(Number(e.target.value)); setCurrentPage(1); }}
+        >
+          <option value="0">Any Price</option>
+          <option value="100">Above ₦100M</option>
+          <option value="200">Above ₦200M</option>
+          <option value="400">Above ₦400M</option>
+        </select>
 
-          <button 
-            onClick={handleClearFilters}
-            className="col-span-2 flex items-center justify-center gap-2 py-2.5 bg-slate-50 text-slate-500 rounded-xl text-xs font-bold hover:bg-slate-100 transition-all active:scale-95 group"
+        <button 
+          onClick={handleClearFilters}
+          className="min-w-[100px] md:col-span-2 flex items-center justify-center gap-2 py-2.5 bg-slate-50 text-slate-500 rounded-xl text-xs font-bold hover:bg-slate-100 transition-all active:scale-95 group"
+        >
+          <svg 
+            className="group-active:rotate-180 transition-transform duration-500" 
+            width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"
           >
-            <svg 
-              className="group-active:rotate-180 transition-transform duration-500" 
-              width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"
-            >
-              <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
-              <path d="M3 3v5h5" />
-            </svg>
-            Reset
-          </button>
-        </div>
-      </section>
+            <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
+            <path d="M3 3v5h5" />
+          </svg>
+          Reset
+        </button>
+      </div>
+    </div>
+  </div>
+    </section>
 
       {/* 2. MAIN CONTENT GRID */}
       <main className="max-w-[1440px] mx-auto px-6 py-10 pt-24">
