@@ -32,7 +32,6 @@ const PropertyListings: React.FC<PropertyListingsProps> = ({ onViewDetails }) =>
   const [isLoading, setIsLoading] = useState(true);
   const [minPrice, setMinPrice] = useState(0);
   const [beds, setBeds] = useState('All');
-  const [isNavVisible, setIsNavVisible] = useState(true);
 
   const filteredData = useMemo(() => {
     return MOCK_PROPERTIES.filter(p => {
@@ -67,21 +66,11 @@ const PropertyListings: React.FC<PropertyListingsProps> = ({ onViewDetails }) =>
     return () => clearTimeout(timer);
   }, [currentPage, searchQuery, propertyType]);
   
-  useEffect(() => {
-  const handleNavChange = (e: any) => {
-    setIsNavVisible(e.detail);
-  };
-  window.addEventListener('navChange', handleNavChange);
-  return () => window.removeEventListener('navChange', handleNavChange);
-}, []);
-
   return (
     <div className="w-full bg-[#fafafa] pt-20">
       {/* 1. STICKY FILTER BAR - Positioned to sit under the fixed Layout Nav */}
      <section 
-  className={`sticky w-full bg-white/80 backdrop-blur-md border-b border-gray-100 py-4 z-40 shadow-sm transition-all duration-500 ${
-    isNavVisible ? 'top-20' : 'top-0'
-  }`}
+  className="sticky w-full bg-white/80 backdrop-blur-md border-b border-gray-100 py-4 z-40 shadow-sm transition-all duration-500 top-20"
 >
   <div className="max-w-[1440px] mx-auto px-4 md:px-6">
     {/* Grid setup: 1 column on mobile, 12 on desktop */}
@@ -94,7 +83,7 @@ const PropertyListings: React.FC<PropertyListingsProps> = ({ onViewDetails }) =>
           type="text" 
           value={searchQuery}
           placeholder="Search Lekki, Mansion..."
-          className="w-full pl-10 pr-4 py-2.5 bg-gray-50 border border-gray-100 rounded-xl text-sm focus:bg-white focus:border-[#C5A059] transition-all outline-none"
+          className="w-full pl-10 pr-4 py-2.5 bg-gray-50 border border-gray-100 rounded-xl text-sm focus:bg-white focus:border-luxury-gold transition-all outline-none"
           onChange={(e) => { setIsLoading(true); setSearchQuery(e.target.value); setCurrentPage(1); }}
         />
       </div>
@@ -105,7 +94,7 @@ const PropertyListings: React.FC<PropertyListingsProps> = ({ onViewDetails }) =>
         
         <select 
           value={propertyType}
-          className="min-w-[120px] md:col-span-2 px-4 py-2.5 bg-white border border-gray-100 rounded-xl text-xs font-bold text-slate-600 outline-none hover:border-[#C5A059] transition-all cursor-pointer"
+          className="min-w-[120px] md:col-span-2 px-4 py-2.5 bg-white border border-gray-100 rounded-xl text-xs font-bold text-slate-600 outline-none hover:border-luxury-gold transition-all cursor-pointer"
           onChange={(e) => { setIsLoading(true); setPropertyType(e.target.value); setCurrentPage(1); }}
         >
           <option value="All">All Types</option>
@@ -116,7 +105,7 @@ const PropertyListings: React.FC<PropertyListingsProps> = ({ onViewDetails }) =>
 
         <select 
           value={beds}
-          className="min-w-[120px] md:col-span-2 px-4 py-2.5 bg-white border border-gray-100 rounded-xl text-xs font-bold text-slate-600 outline-none hover:border-[#C5A059] transition-all cursor-pointer"
+          className="min-w-[120px] md:col-span-2 px-4 py-2.5 bg-white border border-gray-100 rounded-xl text-xs font-bold text-slate-600 outline-none hover:border-luxury-gold transition-all cursor-pointer"
           onChange={(e) => { setIsLoading(true); setBeds(e.target.value); setCurrentPage(1); }}
         >
           <option value="All">Any Beds</option>
@@ -127,7 +116,7 @@ const PropertyListings: React.FC<PropertyListingsProps> = ({ onViewDetails }) =>
 
         <select 
           value={minPrice}
-          className="min-w-[120px] md:col-span-2 px-4 py-2.5 bg-white border border-gray-100 rounded-xl text-xs font-bold text-slate-600 outline-none hover:border-[#C5A059] transition-all cursor-pointer"
+          className="min-w-[120px] md:col-span-2 px-4 py-2.5 bg-white border border-gray-100 rounded-xl text-xs font-bold text-slate-600 outline-none hover:border-luxury-gold transition-all cursor-pointer"
           onChange={(e) => { setIsLoading(true); setMinPrice(Number(e.target.value)); setCurrentPage(1); }}
         >
           <option value="0">Any Price</option>
@@ -157,7 +146,7 @@ const PropertyListings: React.FC<PropertyListingsProps> = ({ onViewDetails }) =>
       {/* 2. MAIN CONTENT GRID */}
       <main className="max-w-[1440px] mx-auto px-6 py-10 pt-24">
         <div className="mb-12">
-          <h2 className="text-4xl font-bold text-slate-900 font-serif">Exclusive <span className="text-[#C5A059]">Listings</span></h2>
+          <h2 className="text-4xl font-bold text-slate-900 font-serif">Exclusive <span className="text-luxury-gold">Listings</span></h2>
           <p className="text-gray-500 text-sm mt-2 font-medium">Displaying {filteredData.length} premium properties in Nigeria</p>
         </div>
 
@@ -174,7 +163,7 @@ const PropertyListings: React.FC<PropertyListingsProps> = ({ onViewDetails }) =>
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000" 
                     alt={item.title} 
                   />
-                  <div className="absolute top-4 left-4 bg-[#C5A059] text-white text-[10px] font-bold px-4 py-1.5 rounded-full uppercase tracking-widest">
+                  <div className="absolute top-4 left-4 bg-luxury-gold text-white text-[10px] font-bold px-4 py-1.5 rounded-full uppercase tracking-widest">
                     {item.tag}
                   </div>
                   <div className="absolute bottom-4 left-4 bg-white/95 backdrop-blur-sm px-4 py-2 rounded-xl shadow-lg font-bold text-slate-900">
@@ -183,22 +172,22 @@ const PropertyListings: React.FC<PropertyListingsProps> = ({ onViewDetails }) =>
                 </div>
 
                 <div className="p-8">
-                  <div className="flex items-center gap-1 text-[#C5A059] text-[10px] font-bold mb-3 uppercase tracking-widest">
+                  <div className="flex items-center gap-1 text-luxury-gold text-[10px] font-bold mb-3 uppercase tracking-widest">
                     <MapPin size={14} /> {item.location}
                   </div>
-                  <h3 className="text-2xl font-bold mb-3 text-slate-900 group-hover:text-[#C5A059] transition-colors font-serif">{item.title}</h3>
+                  <h3 className="text-2xl font-bold mb-3 text-slate-900 group-hover:text-luxury-gold transition-colors font-serif">{item.title}</h3>
                   <p className="text-gray-500 text-sm leading-relaxed line-clamp-2 mb-8">{item.desc}</p>
                   
                   <div className="flex items-center justify-between pt-6 border-t border-gray-100">
                     <div className="flex gap-6 text-xs font-bold text-slate-600">
-                      <span className="flex items-center gap-2"><BedDouble size={18} className="text-[#C5A059]" /> {item.beds}</span>
-                      <span className="flex items-center gap-2"><Bath size={18} className="text-[#C5A059]" /> {item.baths}</span>
+                      <span className="flex items-center gap-2"><BedDouble size={18} className="text-luxury-gold" /> {item.beds}</span>
+                      <span className="flex items-center gap-2"><Bath size={18} className="text-luxury-gold" /> {item.baths}</span>
                     </div>
                     <Link
                       to={`/property/${item.id}`} 
                     > 
                       <button 
-                      className="text-slate-900 text-xs font-bold uppercase tracking-widest flex items-center gap-2 hover:text-[#C5A059] transition-all"
+                      className="text-slate-900 text-xs font-bold uppercase tracking-widest flex items-center gap-2 hover:text-luxury-gold transition-all"
                     >
                       View Suite <ArrowUpRight size={16} />
                     </button>
@@ -217,7 +206,7 @@ const PropertyListings: React.FC<PropertyListingsProps> = ({ onViewDetails }) =>
             <button 
               disabled={currentPage === 1}
               onClick={() => setCurrentPage(prev => prev - 1)}
-              className="p-4 border border-gray-200 rounded-full disabled:opacity-20 hover:border-[#C5A059] hover:text-[#C5A059] transition-all"
+              className="p-4 border border-gray-200 rounded-full disabled:opacity-20 hover:border-luxury-gold hover:text-luxury-gold transition-all"
             >
               <ChevronLeft size={20} />
             </button>
@@ -228,7 +217,7 @@ const PropertyListings: React.FC<PropertyListingsProps> = ({ onViewDetails }) =>
                 onClick={() => { setIsLoading(true); setCurrentPage(i + 1); }}
                 className={`w-14 h-14 rounded-full text-sm font-bold transition-all ${
                   currentPage === i + 1 
-                    ? 'bg-[#C5A059] text-white shadow-xl shadow-[#C5A059]/20' 
+                    ? 'bg-luxury-gold text-white shadow-xl shadow-luxury-gold/20' 
                     : 'text-slate-400 hover:bg-slate-50'
                 }`}
               >
@@ -239,7 +228,7 @@ const PropertyListings: React.FC<PropertyListingsProps> = ({ onViewDetails }) =>
             <button 
               disabled={currentPage === totalPages}
               onClick={() => setCurrentPage(prev => prev + 1)}
-              className="p-4 border border-gray-200 rounded-full disabled:opacity-20 hover:border-[#C5A059] hover:text-[#C5A059] transition-all"
+              className="p-4 border border-gray-200 rounded-full disabled:opacity-20 hover:border-luxury-gold hover:text-luxury-gold transition-all"
             >
               <ChevronRight size={20} />
             </button>

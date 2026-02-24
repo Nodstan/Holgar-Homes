@@ -1,14 +1,16 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import ScrollToTop from './components/ScrollToTop';
 import Layout from './components/Layout';
-import Home from './pages/Home';
-import Admin from './pages/Admin';
-import PropertyListings from './pages/PropertyListings';
-import PropertyDetails from './pages/PropertyDetails';
+import Home from './components/Home';
+import Admin from './components/Admin';
+import PropertyListings from './components/PropertyListings';
+import PropertyDetails from './components/PropertyDetails';
 
 export default function App() {
   return (
     <Router>
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />

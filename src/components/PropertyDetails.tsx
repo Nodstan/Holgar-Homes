@@ -25,7 +25,7 @@ const PropertyDetails: React.FC = () => {
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
           <h2 className="text-2xl font-bold">Property Not Found</h2>
-          <button onClick={() => navigate('/properties')} className="mt-4 text-[#C5A059]">
+          <button onClick={() => navigate('/properties')} className="mt-4 text-luxury-gold">
             Return to Listings
           </button>
         </div>
@@ -83,7 +83,7 @@ const PropertyDetails: React.FC = () => {
         {/* Left Side: Information */}
         <div className="col-span-12 lg:col-span-8">
           <div className="mb-6">
-            <span className="bg-[#C5A059]/10 text-[#C5A059] px-4 py-1.5 rounded-full text-[10px] font-black tracking-widest uppercase">
+            <span className="bg-luxury-gold/10 text-luxury-gold px-4 py-1.5 rounded-full text-[10px] font-black tracking-widest uppercase">
               {property.tag}
             </span>
           </div>
@@ -93,7 +93,7 @@ const PropertyDetails: React.FC = () => {
           </h1>
           
           <div className="flex items-center gap-2 text-slate-500 mb-10">
-            <MapPin size={20} className="text-[#C5A059]" />
+            <MapPin size={20} className="text-luxury-gold" />
             <span className="text-xl">{property.location}</span>
           </div>
 
@@ -102,19 +102,19 @@ const PropertyDetails: React.FC = () => {
             <div className="flex flex-col gap-1">
               <span className="text-slate-400 text-[10px] uppercase tracking-tighter font-black">Bedrooms</span>
               <div className="flex items-center gap-2 text-xl font-bold">
-                <BedDouble className="text-[#C5A059]" size={24} /> {property.beds}
+                <BedDouble className="text-luxury-gold" size={24} /> {property.beds}
               </div>
             </div>
             <div className="flex flex-col gap-1">
               <span className="text-slate-400 text-[10px] uppercase tracking-tighter font-black">Bathrooms</span>
               <div className="flex items-center gap-2 text-xl font-bold">
-                <Bath className="text-[#C5A059]" size={24} /> {property.baths}
+                <Bath className="text-luxury-gold" size={24} /> {property.baths}
               </div>
             </div>
             <div className="flex flex-col gap-1">
               <span className="text-slate-400 text-[10px] uppercase tracking-tighter font-black">Living Space</span>
               <div className="flex items-center gap-2 text-xl font-bold">
-                <Maximize className="text-[#C5A059]" size={24} /> 5,200 <span className="text-xs">SQFT</span>
+                <Maximize className="text-luxury-gold" size={24} /> 5,200 <span className="text-xs">SQFT</span>
               </div>
             </div>
           </div>
@@ -131,7 +131,7 @@ const PropertyDetails: React.FC = () => {
           <div className="grid grid-cols-2 md:grid-cols-3 gap-y-6 gap-x-8 bg-slate-50 p-8 rounded-3xl">
             {['Smart Home', 'Infinity Pool', 'Home Cinema', 'Elevator', '24/7 Security', 'Gym Room'].map((feat) => (
               <div key={feat} className="flex items-center gap-3 text-slate-700 font-semibold text-sm">
-                <CheckCircle2 size={20} className="text-[#C5A059]" /> {feat}
+                <CheckCircle2 size={20} className="text-luxury-gold" /> {feat}
               </div>
             ))}
           </div>
@@ -142,11 +142,11 @@ const PropertyDetails: React.FC = () => {
           <div className="sticky top-32 bg-slate-900 p-8 rounded-[2rem] text-white shadow-2xl border border-white/5">
             <div className="mb-8">
               <span className="text-slate-400 text-sm block mb-1 font-medium">Acquisition Price</span>
-              <h2 className="text-4xl font-bold text-[#C5A059] font-serif">{property.price}</h2>
+              <h2 className="text-4xl font-bold text-luxury-gold font-serif">{property.price}</h2>
             </div>
             
             <div className="space-y-4 mb-8">
-              <button className="w-full bg-[#C5A059] hover:bg-[#b38f4a] text-white py-5 rounded-2xl font-bold uppercase tracking-widest transition-all shadow-lg active:scale-95">
+              <button className="w-full bg-luxury-gold hover:bg-luxury-gold-hover text-white py-5 rounded-2xl font-bold uppercase tracking-widest transition-all shadow-lg active:scale-95">
                 Request Private Tour
               </button>
               <button className="w-full bg-white/5 hover:bg-white/10 text-white py-5 rounded-2xl font-bold uppercase tracking-widest transition-all flex items-center justify-center gap-2 border border-white/10">
@@ -155,7 +155,7 @@ const PropertyDetails: React.FC = () => {
             </div>
 
             <div className="pt-8 border-t border-white/10 flex items-center gap-4">
-              <div className="w-14 h-14 bg-gradient-to-tr from-[#C5A059] to-[#dfc085] rounded-full flex items-center justify-center font-bold text-white shadow-inner">
+              <div className="w-14 h-14 bg-gradient-to-tr from-luxury-gold to-[#dfc085] rounded-full flex items-center justify-center font-bold text-white shadow-inner">
                 VH
               </div>
               <div>

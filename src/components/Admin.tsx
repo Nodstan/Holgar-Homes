@@ -4,10 +4,10 @@ import {
   LayoutDashboard, Building, Users, Settings, LogOut, Plus, Edit, Trash2, 
   Search, Bell, Eye, MessageSquare, ToggleLeft, ToggleRight, Star, MoreVertical 
 } from 'lucide-react';
-import { properties as initialProperties } from '../data/data';
+import { MOCK_PROPERTIES } from '../data/properties';
 
-// Mock extended data for admin
-const mockAdminProperties = initialProperties.map((p, index) => ({
+// Mock extended data for admin using synchronized MOCK_PROPERTIES
+const mockAdminProperties = MOCK_PROPERTIES.map((p, index) => ({
   ...p,
   status: index % 4 === 0 ? 'Sold' : index % 3 === 0 ? 'Under Contract' : 'Active',
   views: Math.floor(Math.random() * 2000) + 200,
@@ -71,7 +71,7 @@ export default function Admin() {
         </div>
         <button 
           onClick={() => setActiveTab('properties')}
-          className="bg-[#C5A059] hover:bg-[#b38f4a] text-white px-5 py-2.5 text-sm font-medium rounded-md flex items-center gap-2 transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-0.5"
+          className="bg-luxury-gold hover:bg-luxury-gold-hover text-white px-5 py-2.5 text-sm font-medium rounded-md flex items-center gap-2 transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-0.5"
         >
           <Building size={16} /> Manage Properties
         </button>
@@ -84,7 +84,7 @@ export default function Admin() {
             <p className="text-sm text-gray-500 mb-1 font-medium">Total Properties</p>
             <p className="text-3xl font-serif text-slate-900">{adminProperties.length}</p>
           </div>
-          <div className="w-12 h-12 bg-[#C5A059]/10 rounded-full flex items-center justify-center text-[#C5A059]">
+          <div className="w-12 h-12 bg-luxury-gold/10 rounded-full flex items-center justify-center text-luxury-gold">
             <Building size={24} />
           </div>
         </div>
@@ -112,18 +112,18 @@ export default function Admin() {
       <div className="bg-white rounded-sm border border-gray-200 shadow-sm">
         <div className="px-6 py-5 border-b border-gray-200 flex justify-between items-center">
           <h2 className="text-lg font-medium text-slate-900">Recent Leads</h2>
-          <button onClick={() => setActiveTab('leads')} className="text-sm text-[#C5A059] hover:text-[#b38f4a] font-medium">View All</button>
+          <button onClick={() => setActiveTab('leads')} className="text-sm text-luxury-gold hover:text-luxury-gold-hover font-medium">View All</button>
         </div>
         <div className="p-0">
           {leads.map((lead, i) => (
             <div key={lead.id} className={`px-6 py-4 flex items-center justify-between ${i !== leads.length - 1 ? 'border-b border-gray-100' : ''}`}>
               <div>
                 <p className="font-medium text-slate-900">{lead.name}</p>
-                <p className="text-sm text-gray-500">Inquired about: <span className="text-[#C5A059]">{lead.interest}</span></p>
+                <p className="text-sm text-gray-500">Inquired about: <span className="text-luxury-gold">{lead.interest}</span></p>
               </div>
               <span className={`px-3 py-1 rounded-full text-xs font-medium ${
                 lead.status === 'Hot' ? 'bg-red-50 text-red-600' : 
-                lead.status === 'Warm' ? 'bg-orange-50 text-orange-600' : 'bg-[#C5A059]/10 text-[#C5A059]'
+                lead.status === 'Warm' ? 'bg-orange-50 text-orange-600' : 'bg-luxury-gold/10 text-luxury-gold'
               }`}>
                 {lead.status}
               </span>
@@ -149,10 +149,10 @@ export default function Admin() {
               placeholder="Search properties..." 
               value={propertySearch}
               onChange={(e) => setPropertySearch(e.target.value)}
-              className="w-full pl-9 pr-4 py-2 border border-gray-200 rounded-sm text-sm focus:outline-none focus:border-[#C5A059] focus:ring-1 focus:ring-[#C5A059]"
+              className="w-full pl-9 pr-4 py-2 border border-gray-200 rounded-sm text-sm focus:outline-none focus:border-luxury-gold focus:ring-1 focus:ring-luxury-gold"
             />
           </div>
-          <button className="bg-[#C5A059] hover:bg-[#b38f4a] text-white px-5 py-2.5 text-sm font-medium rounded-md flex items-center gap-2 transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-0.5 whitespace-nowrap">
+          <button className="bg-luxury-gold hover:bg-luxury-gold-hover text-white px-5 py-2.5 text-sm font-medium rounded-md flex items-center gap-2 transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-0.5 whitespace-nowrap">
             <Plus size={16} /> Add New
           </button>
         </div>
@@ -172,7 +172,7 @@ export default function Admin() {
                   {prop.status}
                 </span>
                 {prop.isFeatured && (
-                  <span className="px-2.5 py-1 bg-[#C5A059] text-white text-xs font-medium rounded-sm shadow-sm flex items-center gap-1">
+                  <span className="px-2.5 py-1 bg-luxury-gold text-white text-xs font-medium rounded-sm shadow-sm flex items-center gap-1">
                     <Star size={12} className="fill-current" /> Featured
                   </span>
                 )}
@@ -186,7 +186,7 @@ export default function Admin() {
                   <h3 className="font-serif text-lg text-slate-900 leading-tight mb-1">{prop.title}</h3>
                   <p className="text-sm text-gray-500">{prop.location}</p>
                 </div>
-                <p className="font-medium text-[#C5A059] whitespace-nowrap ml-4">{prop.price}</p>
+                <p className="font-medium text-luxury-gold whitespace-nowrap ml-4">{prop.price}</p>
               </div>
 
               {/* Quick Stats */}
@@ -208,7 +208,7 @@ export default function Admin() {
                   <select 
                     value={prop.status}
                     onChange={(e) => changeStatus(prop.id, e.target.value)}
-                    className="text-sm border border-gray-200 rounded-sm px-2 py-1 focus:outline-none focus:border-[#C5A059]"
+                    className="text-sm border border-gray-200 rounded-sm px-2 py-1 focus:outline-none focus:border-luxury-gold"
                   >
                     <option value="Active">Active</option>
                     <option value="Under Contract">Under Contract</option>
@@ -220,7 +220,7 @@ export default function Admin() {
                   <label className="text-sm text-gray-600 font-medium">Feature on Home</label>
                   <button 
                     onClick={() => toggleFeatured(prop.id)}
-                    className={`transition-colors ${prop.isFeatured ? 'text-[#C5A059]' : 'text-gray-300'}`}
+                    className={`transition-colors ${prop.isFeatured ? 'text-luxury-gold' : 'text-gray-300'}`}
                   >
                     {prop.isFeatured ? <ToggleRight size={28} /> : <ToggleLeft size={28} />}
                   </button>

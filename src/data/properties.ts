@@ -42,19 +42,6 @@ export const MOCK_PROPERTIES: Property[] = [
     type: 'Penthouse' 
   },
   { 
-    id: 3, 
-    tag: 'FOR SALE', 
-    price: '₦120M', 
-    priceNumeric: 120, 
-    location: 'Maitama, Abuja', 
-    title: 'Contemporary 4-Bedroom Terrace', 
-    desc: 'Nestled in a secure gated community, this terrace offers sleek finishes, a gourmet kitchen, and beautifully landscaped outdoor spaces.', 
-    beds: 4, 
-    baths: 4, 
-    image: 'https://images.unsplash.com/photo-1600566753190-17f0bb2a6c3e', 
-    type: 'Terrace' 
-  },
-  { 
     id: 4, 
     tag: 'FOR SALE', 
     price: '₦80M', 
@@ -157,6 +144,19 @@ export const MOCK_PROPERTIES: Property[] = [
     baths: 1, 
     image: 'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267', 
     type: 'Apartment' 
+  },
+  { 
+    id: 3, 
+    tag: 'FOR SALE', 
+    price: '₦120M', 
+    priceNumeric: 120, 
+    location: 'Maitama, Abuja', 
+    title: 'Contemporary 4-Bedroom Terrace', 
+    desc: 'Nestled in a secure gated community, this terrace offers sleek finishes, a gourmet kitchen, and beautifully landscaped outdoor spaces.', 
+    beds: 4, 
+    baths: 4, 
+    image: 'https://images.unsplash.com/photo-1600566753190-17f0bb2a6c3e', 
+    type: 'Terrace' 
   },
   { 
     id: 12, 

@@ -1,50 +1,43 @@
 import React, { useState, useEffect } from 'react';
 import { Link, Outlet, useLocation } from 'react-router-dom';
 import { motion } from 'motion/react';
-import { Menu, X, Phone, Mail, Instagram, Linkedin, MapPin, Moon } from 'lucide-react';
+import { Menu, X, Phone, Mail, Instagram, Linkedin, MapPin, Moon, ChevronUp } from 'lucide-react';
 
 export default function Layout() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [lastScrollY, setLastScrollY] = useState(0);
-  const [visible, setIsVisible] = useState(true);
+  const [showScrollTop, setShowScrollTop] = useState(false);
   const location = useLocation();
-  const isHome = location.pathname === '/';
-  const isPropertiesPage = location.pathname === '/properties';
 
-
-useEffect(() => {
-  const handleScroll = () => {
-    const currentScrollY = window.scrollY;
-    let isNavVisible = true;
-
-    if (isPropertiesPage) {
-      if (currentScrollY > lastScrollY && currentScrollY > 80) {
-        isNavVisible = false;
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 300) {
+        setShowScrollTop(true);
       } else {
-        isNavVisible = true;
+        setShowScrollTop(false);
       }
-    }
+    };
 
-    setIsVisible(isNavVisible);
-    setLastScrollY(currentScrollY);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
-    // DISPATCH CUSTOM EVENT 
-    window.dispatchEvent(new CustomEvent('navChange', { detail: isNavVisible }));
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
   };
 
-  window.addEventListener('scroll', handleScroll);
-  return () => window.removeEventListener('scroll', handleScroll);
-}, [lastScrollY, isPropertiesPage]);
-
+  const isDarkNav = true; // Global dark luxury header for consistency
 
   return (
     <div className="min-h-screen flex flex-col bg-white font-sans text-slate-900 selection:bg-[#C5A059]/30">
-      {/* Navigation - Preserving his fixed/transparent logic */}
-        <nav className={`fixed w-full z-50 transition-transform duration-500 ${
-            isHome 
+      {/* Navigation - Always Fixed */}
+        <nav className={`fixed w-full z-50 transition-all duration-500 ${
+            isDarkNav 
               ? 'bg-slate-900/95 backdrop-blur-md border-b border-white/10' 
               : 'bg-white border-b border-gray-100'
-          } ${visible ? 'translate-y-0' : '-translate-y-full'}`}>
+          }`}>
 
         <div className="max-w-[1440px] mx-auto px-6">
           <div className="flex justify-between items-center h-20">
@@ -59,23 +52,23 @@ useEffect(() => {
                   <div className="w-2 h-2 bg-white rounded-sm"></div>
                 </div>
               </div>
-              <h1 className={`text-xl font-bold tracking-tight font-serif ${isHome ? 'text-white' : 'text-slate-900'}`}>
+              <h1 className={`text-xl font-bold tracking-tight font-serif ${isDarkNav ? 'text-white' : 'text-slate-900'}`}>
                 Hogar<span className="text-[#C5A059]"> Homes</span>
               </h1>
             </Link>
             
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center space-x-8">
-              <Link to="/" className={`${isHome ? 'text-gray-300' : 'text-gray-600'} hover:text-[#C5A059] transition-colors text-sm uppercase tracking-widest font-medium`}>
+              <Link to="/" className={`${isDarkNav ? 'text-gray-300' : 'text-gray-600'} hover:text-[#C5A059] transition-colors text-sm uppercase tracking-widest font-medium`}>
                 Home
               </Link>
-              <Link to="/properties" className={`${isHome ? 'text-gray-300' : 'text-gray-600'} hover:text-[#C5A059] transition-colors text-sm uppercase tracking-widest font-medium`}>
+              <Link to="/properties" className={`${isDarkNav ? 'text-gray-300' : 'text-gray-600'} hover:text-[#C5A059] transition-colors text-sm uppercase tracking-widest font-medium`}>
                 Properties
               </Link>
-              <a href="#services" className={`${isHome ? 'text-gray-300' : 'text-gray-600'} hover:text-[#C5A059] transition-colors text-sm uppercase tracking-widest font-medium`}>
+              <a href="#services" className={`${isDarkNav ? 'text-gray-300' : 'text-gray-600'} hover:text-[#C5A059] transition-colors text-sm uppercase tracking-widest font-medium`}>
                 Services
               </a>
-              <a href="#about" className={`${isHome ? 'text-gray-300' : 'text-gray-600'} hover:text-[#C5A059] transition-colors text-sm uppercase tracking-widest font-medium`}>
+              <a href="#about" className={`${isDarkNav ? 'text-gray-300' : 'text-gray-600'} hover:text-[#C5A059] transition-colors text-sm uppercase tracking-widest font-medium`}>
                 About
               </a>
               
@@ -83,15 +76,15 @@ useEffect(() => {
                 <button className="bg-[#C5A059] hover:bg-[#b38f4a] text-white px-6 py-2.5 text-sm uppercase tracking-widest font-bold transition-all shadow-sm active:scale-95">
                   Book a Viewing
                 </button>
-                <button className={`p-2 rounded-full border ${isHome ? 'text-gray-400 border-white/10 hover:bg-white/5' : 'text-gray-400 border-gray-100 hover:bg-gray-50'}`}>
+                {/* <button className={`p-2 rounded-full border ${isDarkNav ? 'text-gray-400 border-white/10 hover:bg-white/5' : 'text-gray-400 border-gray-100 hover:bg-gray-50'}`}>
                   <Moon size={18} />
-                </button>
+                </button> */}
               </div>
             </div>
 
             {/* Mobile Toggle */}
             <div className="md:hidden flex items-center">
-              <button onClick={() => setIsMenuOpen(!isMenuOpen)} className={isHome ? 'text-white' : 'text-slate-900'}>
+              <button onClick={() => setIsMenuOpen(!isMenuOpen)} className={isDarkNav ? 'text-white' : 'text-slate-900'}>
                 {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
               </button>
             </div>
@@ -103,11 +96,11 @@ useEffect(() => {
           <motion.div 
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
-            className={`md:hidden ${isHome ? 'bg-slate-900 border-t border-white/10' : 'bg-white border-t border-gray-100'}`}
+            className={`md:hidden ${isDarkNav ? 'bg-slate-900 border-t border-white/10' : 'bg-white border-t border-gray-100'}`}
           >
             <div className="px-4 pt-2 pb-6 space-y-1">
-              <Link to="/" onClick={() => setIsMenuOpen(false)} className={`block px-3 py-3 text-base font-medium ${isHome ? 'text-gray-300 hover:bg-white/5' : 'text-gray-600 hover:bg-gray-50'}`}>Home</Link>
-              <Link to="/properties" onClick={() => setIsMenuOpen(false)} className={`block px-3 py-3 text-base font-medium ${isHome ? 'text-gray-300 hover:bg-white/5' : 'text-gray-600 hover:bg-gray-50'}`}>Properties</Link>
+              <Link to="/" onClick={() => setIsMenuOpen(false)} className={`block px-3 py-3 text-base font-medium ${isDarkNav ? 'text-gray-300 hover:bg-white/5' : 'text-gray-600 hover:bg-gray-50'}`}>Home</Link>
+              <Link to="/properties" onClick={() => setIsMenuOpen(false)} className={`block px-3 py-3 text-base font-medium ${isDarkNav ? 'text-gray-300 hover:bg-white/5' : 'text-gray-600 hover:bg-gray-50'}`}>Properties</Link>
               <button className="w-full mt-4 bg-[#C5A059] text-white py-3 uppercase tracking-widest font-bold">Book a Viewing</button>
             </div>
           </motion.div>
@@ -189,6 +182,17 @@ useEffect(() => {
           </div>
         </div>
       </footer>
+
+      {/* Scroll To Top Button */}
+      {showScrollTop && (
+        <button 
+          onClick={scrollToTop}
+          className="fixed bottom-8 right-8 z-50 bg-[#C5A059] hover:bg-[#b38f4a] text-white p-3 rounded-full shadow-lg transition-all active:scale-95"
+          aria-label="Scroll to top"
+        >
+          <ChevronUp size={24} />
+        </button>
+      )}
     </div>
   );
 }
