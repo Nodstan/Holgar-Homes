@@ -4,7 +4,7 @@ import {
   LayoutDashboard, Building, Users, Settings, LogOut, Plus, Edit, Trash2, 
   Search, Bell, Eye, MessageSquare, ToggleLeft, ToggleRight, Star, MoreVertical 
 } from 'lucide-react';
-import { properties as initialProperties } from '../data';
+import { properties as initialProperties } from '../data/data';
 
 // Mock extended data for admin
 const mockAdminProperties = initialProperties.map((p, index) => ({

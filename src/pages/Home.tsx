@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'motion/react';
 import { MapPin, Bed, Bath, Square, Search, ChevronDown } from 'lucide-react';
-import { properties } from '../data';
+import { properties } from '../data/data';
 
 const services = [
   {
