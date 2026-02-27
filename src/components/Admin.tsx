@@ -23,6 +23,7 @@ const initialLeads = [
 
 export default function Admin() {
   const [activeTab, setActiveTab] = useState('dashboard');
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [adminProperties, setAdminProperties] = useState(mockAdminProperties);
   const [propertySearch, setPropertySearch] = useState('');
   const [leads, setLeads] = useState(initialLeads);
@@ -63,22 +64,22 @@ export default function Admin() {
   );
 
   const renderDashboard = () => (
-    <div className="p-8">
-      <div className="flex justify-between items-end mb-8">
+    <div className="p-4 md:p-8">
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-8 gap-4">
         <div>
           <h1 className="text-2xl font-serif text-slate-900 mb-1">Dashboard Overview</h1>
           <p className="text-sm text-gray-500">Welcome back, here's what's happening today.</p>
         </div>
         <button 
           onClick={() => setActiveTab('properties')}
-          className="bg-luxury-gold hover:bg-luxury-gold-hover text-white px-5 py-2.5 text-sm font-medium rounded-md flex items-center gap-2 transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-0.5"
+          className="w-full md:w-auto bg-luxury-gold hover:bg-luxury-gold-hover text-white px-5 py-2.5 text-sm font-medium rounded-md flex items-center justify-center gap-2 transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-0.5"
         >
           <Building size={16} /> Manage Properties
         </button>
       </div>
 
       {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 mb-8">
         <div className="bg-white p-6 rounded-sm border border-gray-200 shadow-sm flex items-center justify-between">
           <div>
             <p className="text-sm text-gray-500 mb-1 font-medium">Total Properties</p>
@@ -135,14 +136,14 @@ export default function Admin() {
   );
 
   const renderProperties = () => (
-    <div className="p-8">
-      <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
+    <div className="p-4 md:p-8">
+      <div className="flex flex-col xl:flex-row justify-between items-start xl:items-center mb-8 gap-4">
         <div>
           <h1 className="text-2xl font-serif text-slate-900 mb-1">Properties Management</h1>
           <p className="text-sm text-gray-500">Manage your listings, update statuses, and track performance.</p>
         </div>
-        <div className="flex items-center gap-4 w-full md:w-auto">
-          <div className="relative flex-1 md:w-64">
+        <div className="flex flex-col sm:flex-row items-center gap-4 w-full xl:w-auto">
+          <div className="relative w-full sm:w-64">
             <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
             <input 
               type="text" 
@@ -152,13 +153,13 @@ export default function Admin() {
               className="w-full pl-9 pr-4 py-2 border border-gray-200 rounded-sm text-sm focus:outline-none focus:border-luxury-gold focus:ring-1 focus:ring-luxury-gold"
             />
           </div>
-          <button className="bg-luxury-gold hover:bg-luxury-gold-hover text-white px-5 py-2.5 text-sm font-medium rounded-md flex items-center gap-2 transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-0.5 whitespace-nowrap">
+          <button className="w-full sm:w-auto bg-luxury-gold hover:bg-luxury-gold-hover text-white px-5 py-2.5 text-sm font-medium rounded-md flex items-center justify-center gap-2 transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-0.5 whitespace-nowrap">
             <Plus size={16} /> Add New
           </button>
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 gap-6">
         {filteredProperties.map(prop => (
           <div key={prop.id} className="bg-white border border-gray-200 rounded-sm shadow-sm overflow-hidden flex flex-col">
             {/* Thumbnail */}
@@ -247,19 +248,19 @@ export default function Admin() {
   );
 
   const renderLeads = () => (
-    <div className="p-8">
-      <div className="flex justify-between items-end mb-8">
+    <div className="p-4 md:p-8">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end mb-8 gap-4">
         <div>
           <h1 className="text-2xl font-serif text-slate-900 mb-1">Leads & Clients</h1>
           <p className="text-sm text-gray-500">Manage inquiries and client relationships.</p>
         </div>
-        <button className="bg-[#C5A059] hover:bg-[#b38f4a] text-white px-4 py-2 text-sm font-medium rounded-sm flex items-center gap-2 transition-colors shadow-sm">
+        <button className="w-full sm:w-auto bg-[#C5A059] hover:bg-[#b38f4a] text-white px-4 py-2 text-sm font-medium rounded-sm flex items-center justify-center gap-2 transition-colors shadow-sm">
           <Plus size={16} /> Add Lead
         </button>
       </div>
 
-      <div className="bg-white rounded-sm border border-gray-200 shadow-sm overflow-hidden">
-        <table className="w-full text-left border-collapse">
+      <div className="bg-white rounded-sm border border-gray-200 shadow-sm overflow-x-auto">
+        <table className="w-full text-left border-collapse min-w-[800px]">
           <thead>
             <tr className="bg-gray-50 text-gray-500 text-xs uppercase tracking-wider border-b border-gray-200">
               <th className="px-6 py-4 font-medium">Client Name</th>
@@ -337,13 +338,13 @@ export default function Admin() {
   );
 
   const renderSettings = () => (
-    <div className="p-8 max-w-5xl">
+    <div className="p-4 md:p-8 max-w-5xl">
       <div className="mb-8">
         <h1 className="text-2xl font-serif text-slate-900 mb-1">Platform Settings</h1>
         <p className="text-sm text-gray-500">Configure your brand, profile, and system preferences.</p>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8">
         <div className="lg:col-span-2 space-y-6">
           {/* Profile Settings */}
           <div className="bg-white rounded-sm border border-gray-200 shadow-sm p-6">
@@ -459,10 +460,35 @@ export default function Admin() {
   );
 
   return (
-    <div className="min-h-screen bg-gray-50 flex font-sans text-slate-900">
+    <div className="min-h-screen bg-gray-50 flex flex-col md:flex-row font-sans text-slate-900">
+      {/* Mobile Header */}
+      <div className="md:hidden bg-slate-900 text-white p-4 flex justify-between items-center sticky top-0 z-30">
+        <div className="flex items-center gap-3">
+          <div className="w-8 h-8 bg-[#C5A059] flex items-center justify-center rounded-sm">
+            <span className="font-serif text-white font-bold text-xl leading-none">H</span>
+          </div>
+          <span className="font-serif text-xl tracking-wide">Hogar Admin</span>
+        </div>
+        <button onClick={() => setIsSidebarOpen(!isSidebarOpen)} className="p-2 hover:bg-white/10 rounded-sm">
+          {isSidebarOpen ? <X size={24} /> : <MoreVertical size={24} />}
+        </button>
+      </div>
+
+      {/* Sidebar Overlay */}
+      {isSidebarOpen && (
+        <div 
+          className="fixed inset-0 bg-black/50 z-20 md:hidden"
+          onClick={() => setIsSidebarOpen(false)}
+        />
+      )}
+
       {/* Sidebar */}
-      <aside className="w-64 bg-slate-900 text-white flex flex-col fixed h-full z-20">
-        <div className="p-6 flex items-center gap-3">
+      <aside className={`
+        fixed inset-y-0 left-0 w-64 bg-slate-900 text-white flex flex-col z-30 
+        transform transition-transform duration-300 ease-in-out md:translate-x-0
+        ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'}
+      `}>
+        <div className="p-6 hidden md:flex items-center gap-3">
           <div className="w-8 h-8 bg-[#C5A059] flex items-center justify-center rounded-sm">
             <span className="font-serif text-white font-bold text-xl leading-none">H</span>
           </div>
@@ -471,25 +497,25 @@ export default function Admin() {
         
         <nav className="flex-1 px-4 py-6 space-y-2">
           <button 
-            onClick={() => setActiveTab('dashboard')}
+            onClick={() => { setActiveTab('dashboard'); setIsSidebarOpen(false); }}
             className={`w-full flex items-center gap-3 px-4 py-3 rounded-sm text-sm font-medium transition-colors ${activeTab === 'dashboard' ? 'bg-[#C5A059] text-white' : 'text-gray-400 hover:text-white hover:bg-white/5'}`}
           >
             <LayoutDashboard size={18} /> Dashboard
           </button>
           <button 
-            onClick={() => setActiveTab('properties')}
+            onClick={() => { setActiveTab('properties'); setIsSidebarOpen(false); }}
             className={`w-full flex items-center gap-3 px-4 py-3 rounded-sm text-sm font-medium transition-colors ${activeTab === 'properties' ? 'bg-[#C5A059] text-white' : 'text-gray-400 hover:text-white hover:bg-white/5'}`}
           >
             <Building size={18} /> Properties
           </button>
           <button 
-            onClick={() => setActiveTab('leads')}
+            onClick={() => { setActiveTab('leads'); setIsSidebarOpen(false); }}
             className={`w-full flex items-center gap-3 px-4 py-3 rounded-sm text-sm font-medium transition-colors ${activeTab === 'leads' ? 'bg-[#C5A059] text-white' : 'text-gray-400 hover:text-white hover:bg-white/5'}`}
           >
             <Users size={18} /> Leads & Clients
           </button>
           <button 
-            onClick={() => setActiveTab('settings')}
+            onClick={() => { setActiveTab('settings'); setIsSidebarOpen(false); }}
             className={`w-full flex items-center gap-3 px-4 py-3 rounded-sm text-sm font-medium transition-colors ${activeTab === 'settings' ? 'bg-[#C5A059] text-white' : 'text-gray-400 hover:text-white hover:bg-white/5'}`}
           >
             <Settings size={18} /> Settings
@@ -504,10 +530,10 @@ export default function Admin() {
       </aside>
 
       {/* Main Content */}
-      <main className="flex-1 flex flex-col ml-64 min-h-screen">
+      <main className="flex-1 flex flex-col md:ml-64 min-h-screen">
         {/* Top Header */}
-        <header className="bg-white border-b border-gray-200 px-8 py-4 flex justify-between items-center sticky top-0 z-10">
-          <div className="flex items-center bg-gray-50 border border-gray-200 rounded-sm px-3 py-2 w-96">
+        <header className="bg-white border-b border-gray-200 px-4 md:px-8 py-4 flex flex-col sm:flex-row justify-between items-center sticky top-0 md:top-0 z-10 gap-4">
+          <div className="flex items-center bg-gray-50 border border-gray-200 rounded-sm px-3 py-2 w-full sm:w-96">
             <Search size={16} className="text-gray-400 mr-2" />
             <input 
               type="text" 
@@ -515,13 +541,13 @@ export default function Admin() {
               className="bg-transparent border-none outline-none text-sm w-full text-slate-900 placeholder-gray-400"
             />
           </div>
-          <div className="flex items-center gap-6">
+          <div className="flex items-center justify-between w-full sm:w-auto gap-4 sm:gap-6">
             <button className="text-gray-400 hover:text-[#C5A059] transition-colors relative">
               <Bell size={20} />
               <span className="absolute -top-1 -right-1 w-2 h-2 bg-red-500 rounded-full"></span>
             </button>
-            <div className="flex items-center gap-3 border-l border-gray-200 pl-6">
-              <div className="text-right hidden md:block">
+            <div className="flex items-center gap-3 sm:border-l sm:border-gray-200 sm:pl-6">
+              <div className="text-right">
                 <p className="text-sm font-medium text-slate-900">Voke Irekpita</p>
                 <p className="text-xs text-gray-500">Super Admin</p>
               </div>

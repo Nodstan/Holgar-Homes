@@ -1,32 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Link, Outlet, useLocation } from 'react-router-dom';
 import { motion } from 'motion/react';
-import { Menu, X, Phone, Mail, Instagram, Linkedin, MapPin, Moon, ChevronUp } from 'lucide-react';
+import { Menu, X, Phone, Mail, Instagram, Linkedin, MapPin, Moon } from 'lucide-react';
 
 export default function Layout() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [showScrollTop, setShowScrollTop] = useState(false);
   const location = useLocation();
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 300) {
-        setShowScrollTop(true);
-      } else {
-        setShowScrollTop(false);
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
-  };
 
   const isDarkNav = true; // Global dark luxury header for consistency
 
@@ -182,17 +161,6 @@ export default function Layout() {
           </div>
         </div>
       </footer>
-
-      {/* Scroll To Top Button */}
-      {showScrollTop && (
-        <button 
-          onClick={scrollToTop}
-          className="fixed bottom-8 right-8 z-50 bg-[#C5A059] hover:bg-[#b38f4a] text-white p-3 rounded-full shadow-lg transition-all active:scale-95"
-          aria-label="Scroll to top"
-        >
-          <ChevronUp size={24} />
-        </button>
-      )}
     </div>
   );
 }
