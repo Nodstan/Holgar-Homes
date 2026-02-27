@@ -63,10 +63,18 @@ const PropertyDetails: React.FC = () => {
           </div>
           <div className="hidden md:grid col-span-4 grid-rows-2 gap-4 h-full">
             <div className="bg-gray-100 rounded-3xl overflow-hidden">
-              <img src="https://images.unsplash.com/photo-1600566753190-17f0bb2a6c3e?q=80&w=800" className="w-full h-full object-cover" alt="Interior" />
+              <img 
+                src={property.gallery?.[0] || "https://images.unsplash.com/photo-1600566753190-17f0bb2a6c3e?q=80&w=800"} 
+                className="w-full h-full object-cover" 
+                alt="Interior" 
+              />
             </div>
             <div className="bg-gray-100 rounded-3xl overflow-hidden relative group">
-              <img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?q=80&w=800" className="w-full h-full object-cover" alt="Interior" />
+              <img 
+                src={property.gallery?.[1] || "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?q=80&w=800"} 
+                className="w-full h-full object-cover" 
+                alt="Interior" 
+              />
               <div className="absolute inset-0 bg-black/40 flex items-center justify-center text-white font-bold cursor-pointer">
                 View All
               </div>
@@ -77,85 +85,142 @@ const PropertyDetails: React.FC = () => {
 
       {/* 3. MAIN CONTENT */}
       <div className="w-full max-w-[1440px] mx-auto px-4 md:px-6">
-        <div className="flex flex-col lg:flex-row gap-10 lg:gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16">
           
-          {/* LEFT SIDE (70% width on desktop) */}
-          <div className="w-full lg:w-[65%]">
-            <div className="mb-4">
-              <span className="bg-[#C5A059]/10 text-[#C5A059] px-3 py-1 rounded-full text-[10px] font-black tracking-widest uppercase">
-                {property.tag}
-              </span>
-            </div>
-
-            <h1 className="text-3xl md:text-5xl font-bold text-slate-900 mb-4 font-serif leading-tight">
-              {property.title}
-            </h1>
-            
-            <div className="flex items-center gap-2 text-slate-500 mb-8">
-              <MapPin size={18} className="text-[#C5A059]" />
-              <span className="text-base md:text-lg">{property.location}</span>
-            </div>
-
-            {/* STATS - Using flex-wrap to prevent horizontal overflow */}
-            <div className="flex flex-wrap gap-6 py-6 border-y border-gray-100 mb-8">
-              <div className="flex flex-col min-w-[80px]">
-                <span className="text-slate-400 text-[9px] uppercase font-black">Beds</span>
-                <span className="text-lg font-bold flex items-center gap-2 mt-1">
-                  <BedDouble size={20} className="text-[#C5A059]" /> {property.beds}
+          {/* LEFT SIDE (Content) */}
+          <div className="lg:col-span-8 space-y-8 pt-4 md:pt-8">
+            <div>
+              <div className="mb-4">
+                <span className="bg-[#C5A059]/10 text-[#C5A059] px-3 py-1 rounded-full text-[10px] font-black tracking-widest uppercase">
+                  {property.tag}
                 </span>
               </div>
-              <div className="flex flex-col min-w-[80px]">
-                <span className="text-slate-400 text-[9px] uppercase font-black">Baths</span>
-                <span className="text-lg font-bold flex items-center gap-2 mt-1">
-                  <Bath size={20} className="text-[#C5A059]" /> {property.baths}
-                </span>
-              </div>
-              <div className="flex flex-col min-w-[80px]">
-                <span className="text-slate-400 text-[9px] uppercase font-black">Space</span>
-                <span className="text-lg font-bold flex items-center gap-1 mt-1">
-                  <Maximize size={20} className="text-[#C5A059]" /> 5.2k <small className="text-[10px]">sqft</small>
-                </span>
+
+              <h1 className="text-3xl md:text-5xl font-bold text-slate-900 mb-4 font-serif leading-tight">
+                {property.title}
+              </h1>
+              
+              <div className="flex items-center gap-2 text-slate-500">
+                <MapPin size={18} className="text-[#C5A059]" />
+                <span className="text-base md:text-lg">{property.location}</span>
               </div>
             </div>
 
-            <div className="mb-10">
-              <h3 className="text-xl font-bold mb-3 font-serif">Description</h3>
-              <p className="text-slate-600 leading-relaxed text-sm md:text-base">
+            {/* Mobile Price Card - Visible only on Mobile (below title) */}
+            <div className="lg:hidden">
+              <div className="bg-slate-900 p-6 rounded-3xl text-white shadow-xl">
+                <div className="flex justify-between items-end mb-6">
+                  <div>
+                    <p className="text-slate-400 text-xs mb-1">Asking Price</p>
+                    <h2 className="text-3xl font-bold text-[#C5A059] font-serif">{property.price}</h2>
+                  </div>
+                  <div className="flex items-center gap-2 text-[10px] text-slate-400 uppercase tracking-widest font-bold mb-1">
+                    <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span> Available
+                  </div>
+                </div>
+                <div className="grid grid-cols-2 gap-3">
+                  <button className="bg-[#C5A059] py-4 rounded-xl font-bold uppercase text-[10px] tracking-widest active:scale-95 transition-all">
+                    Book Tour
+                  </button>
+                  <button className="bg-white/10 py-4 rounded-xl font-bold uppercase text-[10px] tracking-widest flex items-center justify-center gap-2 border border-white/10">
+                    <MessageSquare size={16} /> WhatsApp
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            {/* STATS */}
+            <div className="flex flex-wrap gap-8 lg:gap-12 py-8 border-y border-gray-100">
+              <div className="flex items-center gap-3">
+                <div className="w-12 h-12 bg-slate-50 rounded-full flex items-center justify-center text-[#C5A059]">
+                  <BedDouble size={24} />
+                </div>
+                <div className="flex flex-col">
+                  <span className="text-slate-400 text-[10px] uppercase font-black tracking-widest">Bedrooms</span>
+                  <span className="text-xl font-bold text-slate-900">{property.beds}</span>
+                </div>
+              </div>
+              <div className="flex items-center gap-3">
+                <div className="w-12 h-12 bg-slate-50 rounded-full flex items-center justify-center text-[#C5A059]">
+                  <Bath size={24} />
+                </div>
+                <div className="flex flex-col">
+                  <span className="text-slate-400 text-[10px] uppercase font-black tracking-widest">Bathrooms</span>
+                  <span className="text-xl font-bold text-slate-900">{property.baths}</span>
+                </div>
+              </div>
+              <div className="flex items-center gap-3">
+                <div className="w-12 h-12 bg-slate-50 rounded-full flex items-center justify-center text-[#C5A059]">
+                  <Maximize size={24} />
+                </div>
+                <div className="flex flex-col">
+                  <span className="text-slate-400 text-[10px] uppercase font-black tracking-widest">Total Area</span>
+                  <span className="text-xl font-bold text-slate-900">5,200 <small className="text-xs font-medium text-slate-500 lowercase">sqft</small></span>
+                </div>
+              </div>
+            </div>
+
+            <div className="space-y-4">
+              <h3 className="text-2xl font-bold font-serif text-slate-900">About this property</h3>
+              <p className="text-slate-600 leading-relaxed text-base md:text-lg max-w-none">
                 {property.desc}
               </p>
             </div>
 
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 bg-slate-50 p-6 rounded-2xl">
-              {['Smart Home', 'Pool', 'Cinema', 'Security', 'Gym'].map((feat) => (
-                <div key={feat} className="flex items-center gap-2 text-slate-700 font-semibold text-xs">
-                  <CheckCircle2 size={16} className="text-[#C5A059]" /> {feat}
-                </div>
-              ))}
+            <div className="space-y-6">
+              <h3 className="text-2xl font-bold font-serif text-slate-900">Key Features</h3>
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
+                {['Smart Home Automation', 'Infinity Pool', 'Private Cinema', '24/7 Elite Security', 'Home Gym', 'Serviced Quarters'].map((feat) => (
+                  <div key={feat} className="flex items-center gap-3 bg-slate-50 p-4 rounded-xl border border-slate-100/50 group hover:border-[#C5A059]/30 transition-colors">
+                    <CheckCircle2 size={20} className="text-[#C5A059] shrink-0" /> 
+                    <span className="text-slate-700 font-semibold text-sm">{feat}</span>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
 
-          {/* RIGHT SIDE (Contact Card) */}
-          <div className="w-full lg:w-[35%]">
-            <div className="lg:sticky lg:top-32 bg-slate-900 p-6 md:p-8 rounded-[2rem] text-white shadow-xl">
-              <div className="mb-6">
-                <p className="text-slate-400 text-xs mb-1">Asking Price</p>
-                <h2 className="text-3xl font-bold text-[#C5A059] font-serif">{property.price}</h2>
-              </div>
-              
-              <div className="space-y-3">
-                <button className="w-full bg-[#C5A059] py-4 rounded-xl font-bold uppercase text-xs tracking-widest active:scale-95 transition-all">
-                  Book A Tour
-                </button>
-                <button className="w-full bg-white/10 py-4 rounded-xl font-bold uppercase text-xs tracking-widest flex items-center justify-center gap-2 border border-white/10">
-                  <MessageSquare size={16} /> WhatsApp Agent
-                </button>
+          {/* RIGHT SIDE (Sticky Sidebar) */}
+          <div className="hidden lg:block lg:col-span-4 pt-4 md:pt-8">
+            <div className="sticky top-32 space-y-6">
+              <div className="bg-slate-900 p-8 rounded-[2.5rem] text-white shadow-2xl border border-white/5">
+                <div className="mb-8">
+                  <p className="text-slate-400 text-xs uppercase tracking-widest font-bold mb-2">Exclusive Asking Price</p>
+                  <h2 className="text-4xl font-bold text-[#C5A059] font-serif">{property.price}</h2>
+                </div>
+                
+                <div className="space-y-4">
+                  <button className="w-full bg-[#C5A059] hover:bg-[#b38f4a] py-5 rounded-2xl font-bold uppercase text-xs tracking-[0.2em] active:scale-95 transition-all shadow-lg shadow-[#C5A059]/20">
+                    Book A Private Tour
+                  </button>
+                  <button className="w-full bg-white/5 hover:bg-white/10 py-5 rounded-2xl font-bold uppercase text-xs tracking-[0.2em] flex items-center justify-center gap-3 border border-white/10 transition-all">
+                    <MessageSquare size={18} /> WhatsApp Concierge
+                  </button>
+                </div>
+
+                <div className="mt-10 pt-8 border-t border-white/10">
+                  <div className="flex items-center gap-4 mb-6">
+                    <div className="w-14 h-14 bg-gradient-to-tr from-[#C5A059] to-[#d4b77b] rounded-2xl flex items-center justify-center font-bold text-xl shadow-inner shadow-white/20">VH</div>
+                    <div>
+                      <p className="font-bold text-lg leading-tight">Hogar Homes Ltd</p>
+                      <p className="text-luxury-gold uppercase tracking-[0.2em] text-[10px] font-black mt-1">Verified Premium Agency</p>
+                    </div>
+                  </div>
+                  <p className="text-slate-400 text-sm leading-relaxed italic">
+                    "Our advisors are available 24/7 to facilitate your inquiry with the utmost discretion."
+                  </p>
+                </div>
               </div>
 
-              <div className="mt-8 pt-6 border-t border-white/10 flex items-center gap-3">
-                <div className="w-10 h-10 bg-[#C5A059] rounded-full flex items-center justify-center font-bold">VH</div>
-                <div className="text-xs">
-                  <p className="font-bold">Hogar Homes Ltd</p>
-                  <p className="text-slate-400 uppercase tracking-widest text-[8px]">Verified Agency</p>
+              {/* Additional Sidebar Info */}
+              <div className="bg-white border border-slate-100 p-8 rounded-[2.5rem] shadow-sm">
+                <h4 className="font-bold text-slate-900 mb-4 uppercase tracking-widest text-xs">Share this property</h4>
+                <div className="flex gap-3">
+                  {[Share2, Heart].map((Icon, i) => (
+                    <button key={i} className="w-12 h-12 rounded-full border border-slate-100 flex items-center justify-center text-slate-600 hover:bg-[#C5A059] hover:text-white hover:border-[#C5A059] transition-all">
+                      <Icon size={20} />
+                    </button>
+                  ))}
                 </div>
               </div>
             </div>

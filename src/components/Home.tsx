@@ -31,7 +31,7 @@ export default function Home() {
       <section id="home" className="relative h-screen flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img 
-            src="https://picsum.photos/seed/ekoatlantic/1920/1080?blur=0" 
+            src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1920&q=80" 
             alt="Luxury Real Estate" 
             className="w-full h-full object-cover"
             referrerPolicy="no-referrer"
@@ -81,44 +81,40 @@ export default function Home() {
             <div className="w-16 h-0.5 bg-luxury-gold mx-auto"></div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-10">
             {featuredProperties.map((item) => (
-              <div key={item.id} className="bg-white rounded-3xl overflow-hidden border border-gray-100 hover:shadow-2xl transition-all duration-500 group">
-                <div className="relative h-72 overflow-hidden bg-gray-100">
+              <div key={item.id} className="bg-white rounded-2xl md:rounded-3xl overflow-hidden border border-gray-100 hover:shadow-2xl transition-all duration-500 group">
+                <div className="relative h-60 md:h-72 overflow-hidden bg-gray-100">
                   <img 
                     src={`${item.image}?auto=format&fit=crop&w=800&q=80`} 
                     loading="lazy"
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000" 
                     alt={item.title} 
                   />
-                  <div className="absolute top-4 left-4 bg-luxury-gold text-white text-[10px] font-bold px-4 py-1.5 rounded-full uppercase tracking-widest">
+                  <div className="absolute top-3 left-3 md:top-4 md:left-4 bg-luxury-gold text-white text-[9px] md:text-[10px] font-bold px-3 py-1 md:px-4 md:py-1.5 rounded-full uppercase tracking-widest">
                     {item.tag}
                   </div>
-                  <div className="absolute bottom-4 left-4 bg-white/95 backdrop-blur-sm px-4 py-2 rounded-xl shadow-lg font-bold text-slate-900">
+                  <div className="absolute bottom-3 left-3 md:bottom-4 md:left-4 bg-white/95 backdrop-blur-sm px-3 py-1.5 md:px-4 md:py-2 rounded-lg md:rounded-xl shadow-lg font-bold text-slate-900 text-sm md:text-base">
                     {item.price}
                   </div>
                 </div>
 
-                <div className="p-8">
-                  <div className="flex items-center gap-1 text-luxury-gold text-[10px] font-bold mb-3 uppercase tracking-widest">
-                    <MapPin size={14} /> {item.location}
+                <div className="p-5 md:p-8">
+                  <div className="flex items-center gap-1 text-luxury-gold text-[9px] md:text-[10px] font-bold mb-2 md:mb-3 uppercase tracking-widest">
+                    <MapPin size={12} className="md:w-3.5 md:h-3.5" /> {item.location}
                   </div>
-                  <h3 className="text-2xl font-bold mb-3 text-slate-900 group-hover:text-luxury-gold transition-colors font-serif">{item.title}</h3>
-                  <p className="text-gray-500 text-sm leading-relaxed line-clamp-2 mb-8">{item.desc}</p>
+                  <h3 className="text-xl md:text-2xl font-bold mb-2 md:mb-3 text-slate-900 group-hover:text-luxury-gold transition-colors font-serif line-clamp-1">{item.title}</h3>
+                  <p className="text-gray-500 text-xs md:text-sm leading-relaxed line-clamp-2 mb-6 md:mb-8">{item.desc}</p>
                   
-                  <div className="flex items-center justify-between pt-6 border-t border-gray-100">
-                    <div className="flex gap-6 text-xs font-bold text-slate-600">
-                      <span className="flex items-center gap-2"><BedDouble size={18} className="text-luxury-gold" /> {item.beds}</span>
-                      <span className="flex items-center gap-2"><Bath size={18} className="text-luxury-gold" /> {item.baths}</span>
+                  <div className="flex items-center justify-between pt-4 md:pt-6 border-t border-gray-100">
+                    <div className="flex gap-4 md:gap-6 text-[10px] md:text-xs font-bold text-slate-600">
+                      <span className="flex items-center gap-1.5 md:gap-2"><BedDouble size={16} className="md:w-4.5 md:h-4.5 text-luxury-gold" /> {item.beds}</span>
+                      <span className="flex items-center gap-1.5 md:gap-2"><Bath size={16} className="md:w-4.5 md:h-4.5 text-luxury-gold" /> {item.baths}</span>
                     </div>
-                    <Link
-                      to={`/property/${item.id}`} 
-                    > 
-                      <button 
-                      className="text-slate-900 text-xs font-bold uppercase tracking-widest flex items-center gap-2 hover:text-luxury-gold transition-all"
-                    >
-                      View Suite <ArrowUpRight size={16} />
-                    </button>
+                    <Link to={`/property/${item.id}`}> 
+                      <button className="text-slate-900 text-[10px] md:text-xs font-bold uppercase tracking-widest flex items-center gap-1 md:gap-2 hover:text-luxury-gold transition-all">
+                        View Suite <ArrowUpRight size={14} className="md:w-4 md:h-4" />
+                      </button>
                     </Link>
                   </div>
                 </div>
@@ -169,16 +165,16 @@ export default function Home() {
       </section>
 
       {/* About Section */}
-      <section id="about" className="py-24 bg-white">
+      <section id="about" className="py-24 bg-white overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col lg:flex-row gap-16 items-center">
-            <div className="lg:w-1/2">
-              <div className="relative">
+            <div className="lg:w-1/2 w-full">
+              <div className="relative mx-auto max-w-md lg:max-w-none pr-4 pb-4">
                 <div className="absolute inset-0 bg-luxury-gold translate-x-4 translate-y-4"></div>
                 <img 
-                  src="https://picsum.photos/seed/voke/600/800?blur=0" 
+                  src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=800&q=80" 
                   alt="About Hogar Homes" 
-                  className="relative z-10 w-full h-[600px] object-cover"
+                  className="relative z-10 w-full h-[400px] md:h-[600px] object-cover"
                   referrerPolicy="no-referrer"
                 />
               </div>
@@ -211,55 +207,55 @@ export default function Home() {
         </div>
       </section>
       {/* Contact Section */}
-      <section id="contact" className="py-24 bg-gray-50">
+      <section id="contact" className="py-24 bg-gray-50 overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-white rounded-sm shadow-xl overflow-hidden flex flex-col lg:flex-row border border-gray-100">
-            <div className="lg:w-1/2 p-12 lg:p-16 bg-slate-900 text-white">
-              <h2 className="text-4xl font-serif mb-6">Connect with an Expert</h2>
-              <p className="text-gray-400 mb-10 leading-relaxed">
+          <div className="bg-white rounded-2xl md:rounded-sm shadow-xl overflow-hidden flex flex-col lg:flex-row border border-gray-100">
+            <div className="lg:w-1/2 p-8 md:p-12 lg:p-16 bg-slate-900 text-white">
+              <h2 className="text-3xl md:text-4xl font-serif mb-6">Connect with an Expert</h2>
+              <p className="text-gray-400 mb-10 leading-relaxed text-sm md:text-base">
                 Whether you are seeking a primary residence, a seasonal retreat, or a strategic investment, our advisors are at your service.
               </p>
               
               <div className="space-y-6">
                 <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 bg-luxury-gold/10 rounded-full flex items-center justify-center text-luxury-gold border border-luxury-gold/20">
-                    <Phone size={20} />
+                  <div className="w-10 h-10 md:w-12 md:h-12 bg-luxury-gold/10 rounded-full flex items-center justify-center text-luxury-gold border border-luxury-gold/20">
+                    <Phone size={18} className="md:w-5 md:h-5" />
                   </div>
                   <div>
-                    <p className="text-xs uppercase tracking-widest text-gray-500 font-bold">Inquiries</p>
-                    <p className="text-lg">+234 (0) 800 HOGAR</p>
+                    <p className="text-[10px] md:text-xs uppercase tracking-widest text-gray-500 font-bold">Inquiries</p>
+                    <p className="text-base md:text-lg">+234 (0) 800 HOGAR</p>
                   </div>
                 </div>
                 
                 <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 bg-luxury-gold/10 rounded-full flex items-center justify-center text-luxury-gold border border-luxury-gold/20">
-                    <Mail size={20} />
+                  <div className="w-10 h-10 md:w-12 md:h-12 bg-luxury-gold/10 rounded-full flex items-center justify-center text-luxury-gold border border-luxury-gold/20">
+                    <Mail size={18} className="md:w-5 md:h-5" />
                   </div>
                   <div>
-                    <p className="text-xs uppercase tracking-widest text-gray-500 font-bold">Email</p>
-                    <p className="text-lg">concierge@hogarhomes.com</p>
+                    <p className="text-[10px] md:text-xs uppercase tracking-widest text-gray-500 font-bold">Email</p>
+                    <p className="text-base md:text-lg">concierge@hogarhomes.com</p>
                   </div>
                 </div>
               </div>
             </div>
             
-            <div className="lg:w-1/2 p-12 lg:p-16">
+            <div className="lg:w-1/2 p-8 md:p-12 lg:p-16">
               <form className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
-                    <label className="block text-xs uppercase tracking-widest text-gray-500 font-bold mb-2">Full Name</label>
-                    <input type="text" className="w-full border-b border-gray-200 py-2 focus:outline-none focus:border-luxury-gold transition-colors" />
+                    <label className="block text-[10px] md:text-xs uppercase tracking-widest text-gray-500 font-bold mb-2">Full Name</label>
+                    <input type="text" className="w-full border-b border-gray-200 py-2 focus:outline-none focus:border-luxury-gold transition-colors text-sm" />
                   </div>
                   <div>
-                    <label className="block text-xs uppercase tracking-widest text-gray-500 font-bold mb-2">Email Address</label>
-                    <input type="email" className="w-full border-b border-gray-200 py-2 focus:outline-none focus:border-luxury-gold transition-colors" />
+                    <label className="block text-[10px] md:text-xs uppercase tracking-widest text-gray-500 font-bold mb-2">Email Address</label>
+                    <input type="email" className="w-full border-b border-gray-200 py-2 focus:outline-none focus:border-luxury-gold transition-colors text-sm" />
                   </div>
                 </div>
                 <div>
-                  <label className="block text-xs uppercase tracking-widest text-gray-500 font-bold mb-2">Message</label>
-                  <textarea rows={4} className="w-full border-b border-gray-200 py-2 focus:outline-none focus:border-luxury-gold transition-colors resize-none"></textarea>
+                  <label className="block text-[10px] md:text-xs uppercase tracking-widest text-gray-500 font-bold mb-2">Message</label>
+                  <textarea rows={4} className="w-full border-b border-gray-200 py-2 focus:outline-none focus:border-luxury-gold transition-colors resize-none text-sm"></textarea>
                 </div>
-                <button className="w-full bg-slate-900 text-white py-4 uppercase tracking-[0.2em] text-sm font-bold hover:bg-luxury-gold transition-all duration-300">
+                <button className="w-full bg-slate-900 text-white py-4 uppercase tracking-[0.2em] text-xs md:text-sm font-bold hover:bg-luxury-gold transition-all duration-300">
                   Send Inquiry
                 </button>
               </form>

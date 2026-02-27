@@ -10,6 +10,7 @@ export interface Property {
   beds: number;
   baths: number;
   image: string;
+  gallery?: string[];
   type: string;
 }
 
@@ -26,6 +27,10 @@ export const MOCK_PROPERTIES: Property[] = [
     beds: 5, 
     baths: 6, 
     image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c', 
+    gallery: [
+      'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0',
+      'https://images.unsplash.com/photo-1600607687920-4e2a09cf159d'
+    ],
     type: 'Duplex' 
   },
   { 
@@ -38,7 +43,11 @@ export const MOCK_PROPERTIES: Property[] = [
     desc: 'Experience unparalleled luxury in this sprawling penthouse. Features include floor-to-ceiling windows, private elevator access, and a wrap-around balcony.', 
     beds: 4, 
     baths: 5, 
-    image: 'https://images.unsplash.com/photo-1600607687920-4e2a09cf159d', 
+    image: 'https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd', 
+    gallery: [
+      'https://images.unsplash.com/photo-1512918583163-013341278391',
+      'https://images.unsplash.com/photo-1600566753190-17f0bb2a6c3e'
+    ],
     type: 'Penthouse' 
   },
   { 
@@ -51,7 +60,11 @@ export const MOCK_PROPERTIES: Property[] = [
     desc: 'A perfect blend of comfort and style. This apartment features high ceilings, premium tile flooring, and 24/7 security in a quiet neighborhood.', 
     beds: 3, 
     baths: 3, 
-    image: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00', 
+    image: 'https://images.unsplash.com/photo-1493809842364-78817add7ffb', 
+    gallery: [
+      'https://images.unsplash.com/photo-1484154218962-a197022b5858',
+      'https://images.unsplash.com/photo-1494438639946-1ebd1d20bf85'
+    ],
     type: 'Apartment' 
   },
   { 
@@ -77,7 +90,7 @@ export const MOCK_PROPERTIES: Property[] = [
     desc: 'A palatial residence situated in the diplomatic zone. Boasts an olympic-sized pool, guest chalets, and a bulletproof safe room.', 
     beds: 7, 
     baths: 8, 
-    image: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750', 
+    image: 'https://images.unsplash.com/photo-1613490493576-7fde63acd811', 
     type: 'Mansion' 
   },
   { 
@@ -116,7 +129,11 @@ export const MOCK_PROPERTIES: Property[] = [
     desc: 'One of Nigeria\'s most exclusive addresses. Includes a private jetty, infinity pool, and a master suite that occupies an entire floor.', 
     beds: 6, 
     baths: 7, 
-    image: 'https://images.unsplash.com/photo-1613490493576-7fde63acd811', 
+    image: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750', 
+    gallery: [
+      'https://images.unsplash.com/photo-1613977257363-747ba2761b7d',
+      'https://images.unsplash.com/photo-1600607687920-4e2a09cf159d'
+    ],
     type: 'Mansion' 
   },
   { 
@@ -130,6 +147,10 @@ export const MOCK_PROPERTIES: Property[] = [
     beds: 0, 
     baths: 0, 
     image: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef', 
+    gallery: [
+      'https://images.unsplash.com/photo-1500382017468-9049fed747ef',
+      'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05'
+    ],
     type: 'Land' 
   },
   { 
@@ -155,7 +176,7 @@ export const MOCK_PROPERTIES: Property[] = [
     desc: 'Nestled in a secure gated community, this terrace offers sleek finishes, a gourmet kitchen, and beautifully landscaped outdoor spaces.', 
     beds: 4, 
     baths: 4, 
-    image: 'https://images.unsplash.com/photo-1600566753190-17f0bb2a6c3e', 
+    image: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0', 
     type: 'Terrace' 
   },
   { 
@@ -168,7 +189,7 @@ export const MOCK_PROPERTIES: Property[] = [
     desc: 'Equipped with voice-controlled lighting, climate control, and a state-of-the-art security system. The ultimate modern living experience.', 
     beds: 5, 
     baths: 5, 
-    image: 'https://images.unsplash.com/photo-1580587767303-9cd702c89736', 
+    image: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9', 
     type: 'Duplex' 
   },
 ];

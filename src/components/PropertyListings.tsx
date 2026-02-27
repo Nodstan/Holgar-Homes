@@ -94,7 +94,7 @@ const PropertyListings: React.FC<PropertyListingsProps> = ({ onViewDetails }) =>
         
         <select 
           value={propertyType}
-          className="min-w-[120px] md:col-span-2 px-4 py-2.5 bg-white border border-gray-100 rounded-xl text-xs font-bold text-slate-600 outline-none hover:border-luxury-gold transition-all cursor-pointer"
+          className="min-w-[120px] md:col-span-2 px-4 py-2.5 bg-gray-50 border border-gray-100 rounded-xl text-xs font-bold text-slate-700 outline-none hover:border-luxury-gold focus:border-luxury-gold focus:bg-white transition-all cursor-pointer shadow-sm appearance-none"
           onChange={(e) => { setIsLoading(true); setPropertyType(e.target.value); setCurrentPage(1); }}
         >
           <option value="All">All Types</option>
@@ -105,7 +105,7 @@ const PropertyListings: React.FC<PropertyListingsProps> = ({ onViewDetails }) =>
 
         <select 
           value={beds}
-          className="min-w-[120px] md:col-span-2 px-4 py-2.5 bg-white border border-gray-100 rounded-xl text-xs font-bold text-slate-600 outline-none hover:border-luxury-gold transition-all cursor-pointer"
+          className="min-w-[120px] md:col-span-2 px-4 py-2.5 bg-gray-50 border border-gray-100 rounded-xl text-xs font-bold text-slate-700 outline-none hover:border-luxury-gold focus:border-luxury-gold focus:bg-white transition-all cursor-pointer shadow-sm appearance-none"
           onChange={(e) => { setIsLoading(true); setBeds(e.target.value); setCurrentPage(1); }}
         >
           <option value="All">Any Beds</option>
@@ -116,7 +116,7 @@ const PropertyListings: React.FC<PropertyListingsProps> = ({ onViewDetails }) =>
 
         <select 
           value={minPrice}
-          className="min-w-[120px] md:col-span-2 px-4 py-2.5 bg-white border border-gray-100 rounded-xl text-xs font-bold text-slate-600 outline-none hover:border-luxury-gold transition-all cursor-pointer"
+          className="min-w-[120px] md:col-span-2 px-4 py-2.5 bg-gray-50 border border-gray-100 rounded-xl text-xs font-bold text-slate-700 outline-none hover:border-luxury-gold focus:border-luxury-gold focus:bg-white transition-all cursor-pointer shadow-sm appearance-none"
           onChange={(e) => { setIsLoading(true); setMinPrice(Number(e.target.value)); setCurrentPage(1); }}
         >
           <option value="0">Any Price</option>
@@ -150,49 +150,44 @@ const PropertyListings: React.FC<PropertyListingsProps> = ({ onViewDetails }) =>
           <p className="text-gray-500 text-sm mt-2 font-medium">Displaying {filteredData.length} premium properties in Nigeria</p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6 md:gap-10">
           {isLoading ? (
             [...Array(6)].map((_, i) => <PropertySkeleton key={i} />)
           ) : (
             paginatedData.map((item) => (
-              <div key={item.id} className="bg-white rounded-3xl overflow-hidden border border-gray-100 hover:shadow-2xl transition-all duration-500 group">
-                <div className="relative h-72 overflow-hidden bg-gray-100">
+              <div key={item.id} className="bg-white rounded-2xl md:rounded-3xl overflow-hidden border border-gray-100 hover:shadow-2xl transition-all duration-500 group">
+                <div className="relative h-60 md:h-72 overflow-hidden bg-gray-100">
                   <img 
                     src={`${item.image}?auto=format&fit=crop&w=800&q=80`} 
                     loading="lazy"
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000" 
                     alt={item.title} 
                   />
-                  <div className="absolute top-4 left-4 bg-luxury-gold text-white text-[10px] font-bold px-4 py-1.5 rounded-full uppercase tracking-widest">
+                  <div className="absolute top-3 left-3 md:top-4 md:left-4 bg-luxury-gold text-white text-[9px] md:text-[10px] font-bold px-3 py-1 md:px-4 md:py-1.5 rounded-full uppercase tracking-widest">
                     {item.tag}
                   </div>
-                  <div className="absolute bottom-4 left-4 bg-white/95 backdrop-blur-sm px-4 py-2 rounded-xl shadow-lg font-bold text-slate-900">
+                  <div className="absolute bottom-3 left-3 md:bottom-4 md:left-4 bg-white/95 backdrop-blur-sm px-3 py-1.5 md:px-4 md:py-2 rounded-lg md:rounded-xl shadow-lg font-bold text-slate-900 text-sm md:text-base">
                     {item.price}
                   </div>
                 </div>
 
-                <div className="p-8">
-                  <div className="flex items-center gap-1 text-luxury-gold text-[10px] font-bold mb-3 uppercase tracking-widest">
-                    <MapPin size={14} /> {item.location}
+                <div className="p-5 md:p-8">
+                  <div className="flex items-center gap-1 text-luxury-gold text-[9px] md:text-[10px] font-bold mb-2 md:mb-3 uppercase tracking-widest">
+                    <MapPin size={12} className="md:w-3.5 md:h-3.5" /> {item.location}
                   </div>
-                  <h3 className="text-2xl font-bold mb-3 text-slate-900 group-hover:text-luxury-gold transition-colors font-serif">{item.title}</h3>
-                  <p className="text-gray-500 text-sm leading-relaxed line-clamp-2 mb-8">{item.desc}</p>
+                  <h3 className="text-xl md:text-2xl font-bold mb-2 md:mb-3 text-slate-900 group-hover:text-luxury-gold transition-colors font-serif line-clamp-1">{item.title}</h3>
+                  <p className="text-gray-500 text-xs md:text-sm leading-relaxed line-clamp-2 mb-6 md:mb-8">{item.desc}</p>
                   
-                  <div className="flex items-center justify-between pt-6 border-t border-gray-100">
-                    <div className="flex gap-6 text-xs font-bold text-slate-600">
-                      <span className="flex items-center gap-2"><BedDouble size={18} className="text-luxury-gold" /> {item.beds}</span>
-                      <span className="flex items-center gap-2"><Bath size={18} className="text-luxury-gold" /> {item.baths}</span>
+                  <div className="flex items-center justify-between pt-4 md:pt-6 border-t border-gray-100">
+                    <div className="flex gap-4 md:gap-6 text-[10px] md:text-xs font-bold text-slate-600">
+                      <span className="flex items-center gap-1.5 md:gap-2"><BedDouble size={16} className="md:w-4.5 md:h-4.5 text-luxury-gold" /> {item.beds}</span>
+                      <span className="flex items-center gap-1.5 md:gap-2"><Bath size={16} className="md:w-4.5 md:h-4.5 text-luxury-gold" /> {item.baths}</span>
                     </div>
-                    <Link
-                      to={`/property/${item.id}`} 
-                    > 
-                      <button 
-                      className="text-slate-900 text-xs font-bold uppercase tracking-widest flex items-center gap-2 hover:text-luxury-gold transition-all"
-                    >
-                      View Suite <ArrowUpRight size={16} />
-                    </button>
+                    <Link to={`/property/${item.id}`}>
+                      <button className="text-slate-900 text-[10px] md:text-xs font-bold uppercase tracking-widest flex items-center gap-1 md:gap-2 hover:text-luxury-gold transition-all">
+                        View Suite <ArrowUpRight size={14} className="md:w-4 md:h-4" />
+                      </button>
                     </Link>
-                    
                   </div>
                 </div>
               </div>
