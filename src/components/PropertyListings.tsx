@@ -69,9 +69,9 @@ const PropertyListings: React.FC<PropertyListingsProps> = ({ onViewDetails }) =>
   return (
     <div className="w-full bg-[#fafafa] pt-20">
       {/* 1. STICKY FILTER BAR - Positioned to sit under the fixed Layout Nav */}
-     <section 
-  className="sticky w-full bg-white/80 backdrop-blur-md border-b border-gray-100 py-4 z-40 shadow-sm transition-all duration-500 top-20"
->
+      <section 
+        className="sticky w-full bg-white/90 backdrop-blur-md border-b border-gray-100 py-6 z-50 shadow-sm top-[64px] md:top-[80px]"
+      >
   <div className="max-w-[1440px] mx-auto px-4 md:px-6">
     {/* Grid setup: 1 column on mobile, 12 on desktop */}
     <div className="grid grid-cols-1 md:grid-cols-12 gap-3 items-center">

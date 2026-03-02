@@ -172,11 +172,12 @@ export default function Layout() {
                     <a href="tel:+234800HOGAR" className="block text-xl text-white">+234 (0) 800 HOGAR</a>
                     <a href="mailto:concierge@hogarhomes.com" className="block text-xl text-white">concierge@hogarhomes.com</a>
                   </div>
-                  
-                  <button className="w-full bg-[#C5A059] text-white py-5 px-6 rounded-sm text-sm uppercase tracking-widest font-bold flex justify-between items-center group">
+                 
+                    <button className="w-full bg-[#C5A059] text-white py-5 px-6 rounded-sm text-sm uppercase tracking-widest font-bold flex justify-between items-center group">
                     <span>Book a Viewing</span>
                     <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
                   </button>
+                  
                 </div>
               </div>
             </motion.div>
