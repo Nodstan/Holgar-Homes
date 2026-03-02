@@ -213,12 +213,21 @@ const PropertyDetails: React.FC = () => {
               </div>
 
               {/* Additional Sidebar Info */}
-              <div className="bg-white border border-slate-100 p-8 rounded-[2.5rem] shadow-sm">
-                <h4 className="font-bold text-slate-900 mb-4 uppercase tracking-widest text-xs">Share this property</h4>
-                <div className="flex gap-3">
+              <div className="bg-slate-900 border border-white/10 p-8 rounded-[2.5rem] shadow-2xl relative overflow-hidden group">
+                {/* Subtle decorative glow in the corner */}
+                <div className="absolute -top-10 -right-10 w-24 h-24 bg-[#C5A059] opacity-10 blur-3xl group-hover:opacity-20 transition-opacity" />
+                
+                <h4 className="font-bold text-[#C5A059] mb-6 uppercase tracking-[0.2em] text-[10px]">
+                  Share this property
+                </h4>
+                
+                <div className="flex gap-4">
                   {[Share2, Heart].map((Icon, i) => (
-                    <button key={i} className="w-12 h-12 rounded-full border border-slate-100 flex items-center justify-center text-slate-600 hover:bg-[#C5A059] hover:text-white hover:border-[#C5A059] transition-all">
-                      <Icon size={20} />
+                    <button 
+                      key={i} 
+                      className="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-white hover:bg-[#C5A059] hover:scale-110 hover:shadow-[0_0_20px_rgba(197,160,89,0.3)] transition-all duration-300"
+                    >
+                      <Icon size={22} />
                     </button>
                   ))}
                 </div>
