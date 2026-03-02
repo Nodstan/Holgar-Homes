@@ -16,10 +16,10 @@ export default function App() {
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/admin" element={<Admin />} />
         
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
-          <Route path="/admin" element={<Admin />} />
           <Route path="properties" element={<PropertyListings/>} />
           <Route path="property/:id" element={<PropertyDetails />} />
         </Route>

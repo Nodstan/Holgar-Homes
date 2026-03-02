@@ -88,6 +88,14 @@ export default function Admin() {
     baths: 0
   });
 
+  const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const imageUrl = URL.createObjectURL(file);
+      setFormData(prev => ({ ...prev, image: imageUrl }));
+    }
+  };
+
   // --- Handlers ---
   const handleOpenModal = (mode: 'add' | 'edit', property?: any) => {
     setModalMode(mode);
@@ -570,19 +578,34 @@ export default function Admin() {
             </div>
           </div>
 
-          {/* Image URL */}
+          {/* Image Upload */}
           <div className="space-y-2">
             <label className="text-xs uppercase tracking-widest font-bold text-gray-500 flex items-center gap-2">
-              <ImageIcon size={14} className="text-[#C5A059]" /> Image URL
+              <ImageIcon size={14} className="text-[#C5A059]" /> Property Image
             </label>
+            <div className="flex gap-4 items-center">
+              {formData.image && (
+                <div className="w-20 h-20 rounded-sm overflow-hidden border border-gray-200">
+                  <img src={formData.image} alt="Preview" className="w-full h-full object-cover" />
+                </div>
+              )}
+              <div className="flex-1">
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={handleImageUpload}
+                  className="w-full text-sm text-gray-500 file:mr-4 file:py-2.5 file:px-4 file:rounded-sm file:border-0 file:text-xs file:font-semibold file:uppercase file:bg-[#C5A059]/10 file:text-[#C5A059] hover:file:bg-[#C5A059]/20 transition-all"
+                />
+              </div>
+            </div>
+            {/* Fallback URL input for existing images or external links */}
             <input
               type="text"
               name="image"
-              required
               value={formData.image}
               onChange={handleInputChange}
-              className="w-full border border-gray-200 rounded-sm px-4 py-2.5 text-sm focus:border-[#C5A059] outline-none"
-              placeholder="https://images.unsplash.com/..."
+              className="w-full border border-gray-200 rounded-sm px-4 py-2 text-xs text-gray-400 focus:border-[#C5A059] outline-none mt-2"
+              placeholder="Or paste image URL..."
             />
           </div>
 
