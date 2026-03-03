@@ -90,13 +90,13 @@ export default function Layout() {
               </Link>
               <Link to="/properties" className={`${isDarkNav ? 'text-gray-300' : 'text-gray-600'} hover:text-[#C5A059] transition-colors text-sm uppercase tracking-widest font-medium`}>
                 Properties
-              </Link>
-              <a href="#services" className={`${isDarkNav ? 'text-gray-300' : 'text-gray-600'} hover:text-[#C5A059] transition-colors text-sm uppercase tracking-widest font-medium`}>
+              </Link >
+              <Link to="services" className={`${isDarkNav ? 'text-gray-300' : 'text-gray-600'} hover:text-[#C5A059] transition-colors text-sm uppercase tracking-widest font-medium`}>
                 Services
-              </a>
-              <a href="#about" className={`${isDarkNav ? 'text-gray-300' : 'text-gray-600'} hover:text-[#C5A059] transition-colors text-sm uppercase tracking-widest font-medium`}>
+              </Link>
+              <Link to="about" className={`${isDarkNav ? 'text-gray-300' : 'text-gray-600'} hover:text-[#C5A059] transition-colors text-sm uppercase tracking-widest font-medium`}>
                 About
-              </a>
+              </Link>
               
               <div className="flex items-center gap-4 ml-4">
                 <button className="bg-[#C5A059] hover:bg-[#b38f4a] text-white px-6 py-2.5 text-sm uppercase tracking-widest font-bold transition-all shadow-sm active:scale-95">

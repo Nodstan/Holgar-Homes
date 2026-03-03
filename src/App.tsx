@@ -8,6 +8,8 @@ import PropertyListings from './components/PropertyListings';
 import PropertyDetails from './components/PropertyDetails';
 import Login from './components/Login';
 import ForgotPassword from './components/ForgotPassword';
+import ServicesPage from './components/Services';
+import AboutPage from './components/About';
 
 export default function App() {
   return (
@@ -21,6 +23,8 @@ export default function App() {
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="properties" element={<PropertyListings/>} />
+          <Route path="services" element={<ServicesPage/>} />
+          <Route path="about" element={<AboutPage/>} />
           <Route path="property/:id" element={<PropertyDetails />} />
         </Route>
       </Routes>
