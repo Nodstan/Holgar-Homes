@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'motion/react'; 
 import { Home, LineChart, PieChart, ArrowUpRight, CheckCircle, Globe } from 'lucide-react';
 
 const ServicesPage: React.FC = () => {
@@ -29,22 +30,25 @@ const ServicesPage: React.FC = () => {
   return (
     <div className="bg-white pb-20 overflow-x-hidden">
       
-      {/* --- FLASHY HERO SECTION --- */}
-      <section className="relative h-[70vh] md:h-[80vh] flex items-center justify-center overflow-hidden">
-        {/* Background Image with Parallax-like feel */}
+      {/* --- SHADOW-MASK HERO WITH ANIMATION --- */}
+      <section className="relative bg-white pt-20 md:pt-32 pb-24 md:pb-32 overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img 
             src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1920&q=80" 
-            className="w-full h-full object-cover scale-105"
-            alt="Luxury Real Estate"
+            className="w-full h-full object-cover origin-right"
+            alt="Eko Atlantic Skyline"
           />
-          <div className="absolute inset-0 bg-slate-900/60 backdrop-blur-[2px]"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-slate-900/80 via-slate-900/40 to-transparent"></div>
         </div>
 
-        {/* Content Card */}
-        <div className="relative z-10 max-w-[1440px] mx-auto px-6 w-full">
-          <div className="max-w-3xl bg-white/10 backdrop-blur-md border border-white/20 p-8 md:p-16 rounded-[2.5rem] md:rounded-[4rem] text-white shadow-2xl">
-            <div className="flex items-center gap-3 mb-6">
+        <div className="relative z-10 max-w-[1440px] mx-auto px-6">
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="max-w-xl text-white pt-16 md:pt-24"
+          >
+            <div className="flex items-center gap-4 mb-8">
               <div className="h-[1px] w-12 bg-[#C5A059]"></div>
               <span className="text-[#C5A059] font-black uppercase tracking-[0.4em] text-[10px] md:text-xs">
                 Our Expertise
@@ -52,49 +56,56 @@ const ServicesPage: React.FC = () => {
             </div>
             
             <h1 className="text-4xl md:text-7xl font-serif leading-tight mb-8">
-              Bespoke Real Estate <br />
-              <span className="italic text-[#C5A059]">Solutions</span>
+              Bespoke <br />
+              <span className="italic text-[#C5A059] block mt-2">Solutions</span>
             </h1>
             
-            <p className="text-slate-200 text-sm md:text-lg leading-relaxed max-w-xl mb-10">
-              Navigating the pinnacle of Nigerian real estate requires more than just access—it requires an architect of deals. 
+            <p className="text-slate-300 text-base md:text-lg leading-relaxed max-w-lg mb-12 font-light tracking-wide">
+              Navigating the pinnacle of Nigerian real estate requires more than just access—it requires an architect of deals.
             </p>
 
-            <div className="flex flex-wrap gap-6">
-              <div className="flex items-center gap-2">
+            <div className="flex items-center gap-10 opacity-90">
+              <div className="flex items-center gap-3">
                 <Globe size={18} className="text-[#C5A059]" />
-                <span className="text-[10px] font-bold uppercase tracking-widest">Global Standards</span>
+                <span className="text-[10px] md:text-[11px] font-bold uppercase tracking-[0.2em]">Global Standards</span>
               </div>
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-3">
                 <CheckCircle size={18} className="text-[#C5A059]" />
-                <span className="text-[10px] font-bold uppercase tracking-widest">Local Mastery</span>
+                <span className="text-[10px] md:text-[11px] font-bold uppercase tracking-[0.2em]">Local Mastery</span>
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
       </section>
 
-      {/* --- SERVICES CONTENT --- */}
-      <section className="max-w-[1440px] mx-auto px-6 -mt-20 relative z-20">
-        <div className="space-y-16 md:space-y-32">
+{/* --- SERVICES CONTENT  --- */}
+      <section className="max-w-[1440px] mx-auto px-6 relative z-20 -mt-16 md:-mt-24">
+        <div className="space-y-32">
           {services.map((service, idx) => (
-            <div key={idx} className={`flex flex-col ${idx % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} gap-12 lg:gap-24 items-center`}>
-              
+            <motion.div 
+              key={idx}
+              initial={{ opacity: 0, y: 60 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.9, ease: "easeOut", delay: idx === 0 ? 0.4 : 0.1 }}
+              className={`flex flex-col ${idx % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} gap-12 lg:gap-24 items-center`}
+            >
               {/* Image Column */}
               <div className="w-full lg:w-1/2 group">
-                <div className="relative rounded-[2.5rem] md:rounded-[3.5rem] overflow-hidden shadow-2xl h-[350px] md:h-[550px]">
+                <div className="relative rounded-[2.5rem] md:rounded-[3.5rem] overflow-hidden shadow-2xl h-[350px] md:h-[550px] bg-white">
                   <img 
                     src={service.image} 
                     alt={service.title} 
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000" 
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent opacity-60"></div>
+                  {/* Subtle inner glow for the overlap area */}
+                  <div className="absolute inset-0 ring-1 ring-inset ring-white/20 rounded-[2.5rem] md:rounded-[3.5rem]"></div>
                 </div>
               </div>
               
-              {/* Text Column */}
-              <div className="w-full lg:w-1/2 space-y-8">
-                <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-slate-50 text-[#C5A059] shadow-inner">
+              {/* Text Column - Set to white if it overlaps the dark mask, or slate for the rest */}
+              <div className={`w-full lg:w-1/2 space-y-8 ${idx === 0 ? 'lg:pt-12' : ''}`}>
+                <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-white text-[#C5A059] shadow-xl shadow-slate-200/50">
                   <service.icon size={32} />
                 </div>
                 
@@ -120,22 +131,10 @@ const ServicesPage: React.FC = () => {
                   <ArrowUpRight size={18} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                 </button>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </section>
-
-      {/* --- CTA SECTION --- */}
-      <section className="max-w-[1440px] mx-auto px-6 mt-32">
-        <div className="bg-slate-900 rounded-[3rem] p-12 md:p-24 text-center relative overflow-hidden">
-           <div className="absolute top-0 right-0 w-64 h-64 bg-[#C5A059] opacity-5 blur-[100px]"></div>
-           <h2 className="text-3xl md:text-5xl font-serif text-white mb-8">Ready to secure your piece <br /> of <span className="text-[#C5A059]">Eko Atlantic?</span></h2>
-           <button className="bg-[#C5A059] text-white px-10 py-5 rounded-sm font-bold uppercase tracking-widest text-xs hover:bg-white hover:text-slate-900 transition-all active:scale-95">
-             Start Your Journey
-           </button>
-        </div>
-      </section>
-
     </div>
   );
 };
