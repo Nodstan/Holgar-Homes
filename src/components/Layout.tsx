@@ -144,20 +144,20 @@ export default function Layout() {
                   >
                     Properties
                   </Link>
-                  <a 
-                    href="#services" 
+                  <Link
+                    to="services" 
                     onClick={() => setIsMenuOpen(false)}
                     className="block text-4xl font-serif text-white hover:text-[#C5A059] transition-colors"
                   >
                     Services
-                  </a>
-                  <a 
-                    href="#about" 
+                  </Link>
+                  <Link
+                    to="about" 
                     onClick={() => setIsMenuOpen(false)}
                     className="block text-4xl font-serif text-white hover:text-[#C5A059] transition-colors"
                   >
                     About
-                  </a>
+                  </Link>
                   <Link 
                     to="/login" 
                     className="block text-2xl font-serif text-gray-400 hover:text-[#C5A059] transition-colors"
