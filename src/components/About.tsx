@@ -4,10 +4,10 @@ import { Award, ShieldCheck, MapPin, Award as AwardIcon, Users, Building2 } from
 
 const AboutPage: React.FC = () => {
   return (
-    <div className="bg-white pt-24 md:pt-32 overflow-hidden">
+    <div className="bg-brand-gray pt-24 md:pt-32 overflow-hidden">
       
       {/* --- HERO SECTION --- */}
-      <section className="max-w-[1440px] mx-auto px-6 mb-24">
+      <section className="max-w-[1440px] mx-auto px-4 md:px-6 lg:px-8 mb-24">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           
           {/* Image Side */}
@@ -17,7 +17,7 @@ const AboutPage: React.FC = () => {
             transition={{ duration: 0.8, ease: "easeOut" }}
             className="relative group"
           >
-            <div className="absolute -inset-4 bg-[#C5A059]/10 rounded-2xl -rotate-2 group-hover:rotate-0 transition-transform duration-500"></div>
+            <div className="absolute -inset-4 bg-brand-gold/10 rounded-2xl -rotate-2 group-hover:rotate-0 transition-transform duration-500"></div>
             <img 
               src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80" 
               alt="Voke Irekpita" 
@@ -29,9 +29,9 @@ const AboutPage: React.FC = () => {
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.6, duration: 0.5 }}
-              className="absolute bottom-8 -right-8 bg-slate-900 text-white p-8 rounded-2xl shadow-2xl hidden md:block border border-white/10"
+              className="absolute bottom-8 -right-8 bg-brand-navy text-white p-8 rounded-2xl shadow-2xl hidden md:block border border-white/10"
             >
-              <p className="text-[#C5A059] font-black text-3xl mb-1">100+</p>
+              <p className="text-brand-gold font-black text-3xl mb-1">100+</p>
               <p className="text-[10px] uppercase tracking-[0.2em] text-slate-400 font-bold">Premium Closings</p>
             </motion.div>
           </motion.div>
@@ -43,10 +43,10 @@ const AboutPage: React.FC = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
             >
-              <span className="text-[#C5A059] font-black uppercase tracking-[0.4em] text-xs">The Expert</span>
+              <span className="text-brand-gold font-black uppercase tracking-[0.4em] text-xs">The Expert</span>
               <h1 className="text-5xl md:text-7xl font-serif text-slate-900 leading-tight mt-4">
                 Meet Voke <br />
-                <span className="italic text-[#C5A059]">Irekpita</span>
+                <span className="italic text-brand-gold">Irekpita</span>
               </h1>
             </motion.div>
 
@@ -75,7 +75,7 @@ const AboutPage: React.FC = () => {
               <div>
                 <p className="text-sm text-slate-900 font-bold uppercase tracking-widest">Trusted by Nigeria's Elite</p>
                 <div className="flex gap-1 mt-1">
-                  {[1,2,3,4,5].map(i => <div key={i} className="w-3 h-3 bg-[#C5A059] rounded-full" />)}
+                  {[1,2,3,4,5].map(i => <div key={i} className="w-3 h-3 bg-brand-gold rounded-full" />)}
                 </div>
               </div>
             </motion.div>
@@ -84,8 +84,8 @@ const AboutPage: React.FC = () => {
       </section>
 
       {/* --- CORE PILLARS --- */}
-      <section className="bg-slate-50 py-32">
-        <div className="max-w-[1440px] mx-auto px-6">
+      <section className="bg-brand-gray py-32">
+        <div className="max-w-[1440px] mx-auto px-4 md:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
             {[
               { 
@@ -112,8 +112,8 @@ const AboutPage: React.FC = () => {
                 transition={{ duration: 0.7, delay: idx * 0.2 }}
                 className="bg-white p-12 rounded-[3rem] border border-slate-100 hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 group"
               >
-                <div className="w-16 h-16 bg-slate-900 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-[#C5A059] transition-colors duration-300">
-                  <feature.icon className="text-[#C5A059] group-hover:text-white" size={32} />
+                <div className="w-16 h-16 bg-brand-navy rounded-2xl flex items-center justify-center mb-8 group-hover:bg-brand-gold transition-colors duration-300">
+                  <feature.icon className="text-brand-gold group-hover:text-white" size={32} />
                 </div>
                 <h3 className="text-2xl font-bold text-slate-900 mb-4">{feature.title}</h3>
                 <p className="text-slate-500 leading-relaxed font-light">{feature.desc}</p>

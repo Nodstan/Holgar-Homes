@@ -28,7 +28,7 @@ const ServicesPage: React.FC = () => {
   ];
 
   return (
-    <div className="bg-white pb-20 overflow-x-hidden">
+    <div className="bg-brand-gray pb-20 overflow-x-hidden">
       
       {/* --- SHADOW-MASK HERO WITH ANIMATION --- */}
       <section className="relative bg-white pt-20 md:pt-32 pb-24 md:pb-32 overflow-hidden">
@@ -38,10 +38,10 @@ const ServicesPage: React.FC = () => {
             className="w-full h-full object-cover origin-right"
             alt="Eko Atlantic Skyline"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-slate-900/80 via-slate-900/40 to-transparent"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-brand-navy/80 via-brand-navy/40 to-transparent"></div>
         </div>
 
-        <div className="relative z-10 max-w-[1440px] mx-auto px-6">
+        <div className="relative z-10 max-w-[1440px] mx-auto px-4 md:px-6 lg:px-8">
           <motion.div 
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -49,15 +49,15 @@ const ServicesPage: React.FC = () => {
             className="max-w-xl text-white pt-16 md:pt-24"
           >
             <div className="flex items-center gap-4 mb-8">
-              <div className="h-[1px] w-12 bg-[#C5A059]"></div>
-              <span className="text-[#C5A059] font-black uppercase tracking-[0.4em] text-[10px] md:text-xs">
+              <div className="h-[1px] w-12 bg-brand-gold"></div>
+              <span className="text-brand-gold font-black uppercase tracking-[0.4em] text-[10px] md:text-xs">
                 Our Expertise
               </span>
             </div>
             
             <h1 className="text-4xl md:text-7xl font-serif leading-tight mb-8">
               Bespoke <br />
-              <span className="italic text-[#C5A059] block mt-2">Solutions</span>
+              <span className="italic text-brand-gold block mt-2">Solutions</span>
             </h1>
             
             <p className="text-slate-300 text-base md:text-lg leading-relaxed max-w-lg mb-12 font-light tracking-wide">
@@ -66,11 +66,11 @@ const ServicesPage: React.FC = () => {
 
             <div className="flex items-center gap-10 opacity-90">
               <div className="flex items-center gap-3">
-                <Globe size={18} className="text-[#C5A059]" />
+                <Globe size={18} className="text-brand-gold" />
                 <span className="text-[10px] md:text-[11px] font-bold uppercase tracking-[0.2em]">Global Standards</span>
               </div>
               <div className="flex items-center gap-3">
-                <CheckCircle size={18} className="text-[#C5A059]" />
+                <CheckCircle size={18} className="text-brand-gold" />
                 <span className="text-[10px] md:text-[11px] font-bold uppercase tracking-[0.2em]">Local Mastery</span>
               </div>
             </div>
@@ -79,7 +79,7 @@ const ServicesPage: React.FC = () => {
       </section>
 
 {/* --- SERVICES CONTENT  --- */}
-      <section className="max-w-[1440px] mx-auto px-6 relative z-20 -mt-16 md:-mt-24">
+      <section className="max-w-[1440px] mx-auto px-4 md:px-6 lg:px-8 relative z-20 -mt-16 md:-mt-24">
         <div className="space-y-32">
           {services.map((service, idx) => (
             <motion.div 
@@ -105,7 +105,7 @@ const ServicesPage: React.FC = () => {
               
               {/* Text Column - Set to white if it overlaps the dark mask, or slate for the rest */}
               <div className={`w-full lg:w-1/2 space-y-8 ${idx === 0 ? 'lg:pt-12' : ''}`}>
-                <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-white text-[#C5A059] shadow-xl shadow-slate-200/50">
+                <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-white text-brand-gold shadow-xl shadow-slate-200/50">
                   <service.icon size={32} />
                 </div>
                 
@@ -120,13 +120,13 @@ const ServicesPage: React.FC = () => {
                 <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   {service.features.map((feat, i) => (
                     <li key={i} className="flex items-center gap-3 text-slate-500 font-medium text-sm">
-                      <div className="w-1.5 h-1.5 rounded-full bg-[#C5A059]" />
+                      <div className="w-1.5 h-1.5 rounded-full bg-brand-gold" />
                       {feat}
                     </li>
                   ))}
                 </ul>
 
-                <button className="flex items-center gap-3 text-slate-900 font-bold uppercase tracking-[0.2em] text-xs pt-4 border-b-2 border-[#C5A059] pb-2 hover:text-[#C5A059] transition-all group">
+                <button className="flex items-center gap-3 text-slate-900 font-bold uppercase tracking-[0.2em] text-xs pt-4 border-b-2 border-brand-gold pb-2 hover:text-brand-gold transition-all group">
                   Inquire for Details 
                   <ArrowUpRight size={18} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                 </button>

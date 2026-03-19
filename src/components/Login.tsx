@@ -17,11 +17,11 @@ export default function Login() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-900 flex items-center justify-center p-4 selection:bg-[#C5A059]/30">
+    <div className="min-h-screen bg-brand-navy flex items-center justify-center p-4 selection:bg-brand-gold/30">
       {/* Background decoration */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-[-10%] right-[-10%] w-[40%] h-[40%] bg-[#C5A059]/5 rounded-full blur-[120px]"></div>
-        <div className="absolute bottom-[-10%] left-[-10%] w-[40%] h-[40%] bg-[#C5A059]/5 rounded-full blur-[120px]"></div>
+        <div className="absolute top-[-10%] right-[-10%] w-[40%] h-[40%] bg-brand-gold/5 rounded-full blur-[120px]"></div>
+        <div className="absolute bottom-[-10%] left-[-10%] w-[40%] h-[40%] bg-brand-gold/5 rounded-full blur-[120px]"></div>
       </div>
 
       <motion.div 
@@ -33,7 +33,7 @@ export default function Login() {
         {/* Brand Logo */}
         <div className="flex justify-center mb-8">
           <Link to="/" className="flex items-center gap-3 group">
-            <div className="bg-[#C5A059] p-2 rounded-sm group-hover:bg-[#b38f4a] transition-colors shadow-lg">
+            <div className="bg-brand-gold p-2 rounded-sm group-hover:bg-brand-gold-hover transition-colors shadow-lg">
               <div className="grid grid-cols-2 gap-1">
                 <div className="w-2 h-2 bg-white rounded-sm"></div>
                 <div className="w-2 h-2 bg-white rounded-sm opacity-50"></div>
@@ -42,7 +42,7 @@ export default function Login() {
               </div>
             </div>
             <h1 className="text-2xl font-bold tracking-tight font-serif text-white">
-              Hogar<span className="text-[#C5A059]"> Homes</span>
+              Hogar<span className="text-brand-gold"> Homes</span>
             </h1>
           </Link>
         </div>
@@ -61,7 +61,7 @@ export default function Login() {
                 Email Address
               </label>
               <div className="relative group">
-                <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-gray-500 group-focus-within:text-[#C5A059] transition-colors">
+                <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-gray-500 group-focus-within:text-brand-gold transition-colors">
                   <Mail size={18} />
                 </div>
                 <input
@@ -69,7 +69,7 @@ export default function Login() {
                   required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full bg-slate-900/50 border border-white/10 text-white pl-11 pr-4 py-3 focus:outline-none focus:border-[#C5A059] focus:ring-1 focus:ring-[#C5A059]/20 transition-all rounded-sm placeholder:text-gray-600"
+                  className="w-full bg-brand-navy/50 border border-white/10 text-white pl-11 pr-4 py-3 focus:outline-none focus:border-brand-gold focus:ring-1 focus:ring-brand-gold/20 transition-all rounded-sm placeholder:text-gray-600"
                   placeholder="admin@hogarhomes.com"
                 />
               </div>
@@ -81,7 +81,7 @@ export default function Login() {
                 Password
               </label>
               <div className="relative group">
-                <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-gray-500 group-focus-within:text-[#C5A059] transition-colors">
+                <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-gray-500 group-focus-within:text-brand-gold transition-colors">
                   <Lock size={18} />
                 </div>
                 <input
@@ -89,7 +89,7 @@ export default function Login() {
                   required
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="w-full bg-slate-900/50 border border-white/10 text-white pl-11 pr-4 py-3 focus:outline-none focus:border-[#C5A059] focus:ring-1 focus:ring-[#C5A059]/20 transition-all rounded-sm placeholder:text-gray-600"
+                  className="w-full bg-brand-navy/50 border border-white/10 text-white pl-11 pr-4 py-3 focus:outline-none focus:border-brand-gold focus:ring-1 focus:ring-brand-gold/20 transition-all rounded-sm placeholder:text-gray-600"
                   placeholder="••••••••"
                 />
               </div>
@@ -105,7 +105,7 @@ export default function Login() {
                     onChange={(e) => setRememberMe(e.target.checked)}
                     className="peer sr-only"
                   />
-                  <div className="w-4 h-4 border border-white/20 rounded-sm peer-checked:bg-[#C5A059] peer-checked:border-[#C5A059] transition-all"></div>
+                  <div className="w-4 h-4 border border-white/20 rounded-sm peer-checked:bg-brand-gold peer-checked:border-brand-gold transition-all"></div>
                   <div className="absolute inset-0 flex items-center justify-center text-white scale-0 peer-checked:scale-100 transition-transform">
                     <svg className="w-3 h-3 fill-current" viewBox="0 0 20 20"><path d="M0 11l2-2 5 5L18 3l2 2L7 18z"/></svg>
                   </div>
@@ -114,7 +114,7 @@ export default function Login() {
               </label>
               <Link 
                 to="/forgot-password" 
-                className="text-[#C5A059] hover:text-[#b38f4a] font-medium transition-colors"
+                className="text-brand-gold hover:text-brand-gold-hover font-medium transition-colors"
               >
                 Forgot Password?
               </Link>
@@ -123,7 +123,7 @@ export default function Login() {
             {/* Submit Button */}
             <button
               type="submit"
-              className="w-full bg-[#C5A059] hover:bg-[#b38f4a] text-white py-4 rounded-sm font-bold uppercase tracking-widest text-sm transition-all shadow-lg active:scale-[0.98] flex items-center justify-center gap-2"
+              className="w-full bg-brand-gold hover:bg-brand-gold-hover text-white py-4 rounded-sm font-bold uppercase tracking-widest text-sm transition-all shadow-lg active:scale-[0.98] flex items-center justify-center gap-2"
             >
               Sign In
               <ArrowRight size={18} />

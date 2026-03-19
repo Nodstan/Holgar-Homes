@@ -36,8 +36,8 @@ export default function Home() {
             className="w-full h-full object-cover"
             referrerPolicy="no-referrer"
           />
-          <div className="absolute inset-0 bg-slate-900/60 mix-blend-multiply"></div>
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent"></div>
+          <div className="absolute inset-0 bg-brand-navy/60 mix-blend-multiply"></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-brand-navy/80 via-transparent to-transparent"></div>
         </div>
         
         <div className="relative z-10 text-center px-4 max-w-5xl mx-auto mt-16">
@@ -75,7 +75,7 @@ export default function Home() {
 
       {/* Featured Properties Section */}
       <section className="py-24 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-[1440px] mx-auto px-4 md:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-serif text-slate-900 mb-4">Featured Listings</h2>
             <div className="w-16 h-0.5 bg-luxury-gold mx-auto"></div>
@@ -134,8 +134,8 @@ export default function Home() {
       </section>
 
       {/* Services Section */}
-      <section id="services" className="py-24 bg-slate-900 text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section id="services" className="py-24 bg-brand-navy text-white">
+        <div className="max-w-[1440px] mx-auto px-4 md:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-serif mb-4">Our Expertise</h2>
             <div className="w-16 h-0.5 bg-luxury-gold mx-auto"></div>
@@ -166,7 +166,7 @@ export default function Home() {
 
       {/* About Section */}
       <section id="about" className="py-24 bg-white overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-[1440px] mx-auto px-4 md:px-6 lg:px-8">
           <div className="flex flex-col lg:flex-row gap-16 items-center">
             <div className="lg:w-1/2 w-full">
               <div className="relative mx-auto max-w-md lg:max-w-none pr-4 pb-4">
@@ -208,9 +208,9 @@ export default function Home() {
       </section>
       {/* Contact Section */}
       <section id="contact" className="py-24 bg-gray-50 overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-[1440px] mx-auto px-4 md:px-6 lg:px-8">
           <div className="bg-white rounded-2xl md:rounded-sm shadow-xl overflow-hidden flex flex-col lg:flex-row border border-gray-100">
-            <div className="lg:w-1/2 p-8 md:p-12 lg:p-16 bg-slate-900 text-white">
+            <div className="lg:w-1/2 p-8 md:p-12 lg:p-16 bg-brand-navy text-white">
               <h2 className="text-3xl md:text-4xl font-serif mb-6">Connect with an Expert</h2>
               <p className="text-gray-400 mb-10 leading-relaxed text-sm md:text-base">
                 Whether you are seeking a primary residence, a seasonal retreat, or a strategic investment, our advisors are at your service.
@@ -255,7 +255,7 @@ export default function Home() {
                   <label className="block text-[10px] md:text-xs uppercase tracking-widest text-gray-500 font-bold mb-2">Message</label>
                   <textarea rows={4} className="w-full border-b border-gray-200 py-2 focus:outline-none focus:border-luxury-gold transition-colors resize-none text-sm"></textarea>
                 </div>
-                <button className="w-full bg-slate-900 text-white py-4 uppercase tracking-[0.2em] text-xs md:text-sm font-bold hover:bg-luxury-gold transition-all duration-300">
+                <button className="w-full bg-brand-navy text-white py-4 uppercase tracking-[0.2em] text-xs md:text-sm font-bold hover:bg-luxury-gold transition-all duration-300">
                   Send Inquiry
                 </button>
               </form>

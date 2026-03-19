@@ -67,10 +67,10 @@ const PropertyListings: React.FC<PropertyListingsProps> = ({ onViewDetails }) =>
   }, [currentPage, searchQuery, propertyType]);
   
   return (
-    <div className="w-full bg-[#fafafa] pt-20">
+    <div className="w-full bg-brand-gray pt-20">
       {/* 1. STICKY FILTER BAR - Positioned to sit under the fixed Layout Nav */}
       <section 
-        className="sticky w-full bg-white/90 backdrop-blur-md border-b border-gray-100 py-6 z-50 shadow-sm top-[64px] md:top-[80px]"
+        className="sticky w-full bg-white/90 backdrop-blur-md border-b border-gray-100 py-6 z-40 shadow-sm top-[64px] md:top-[80px]"
       >
   <div className="max-w-[1440px] mx-auto px-4 md:px-6">
     {/* Grid setup: 1 column on mobile, 12 on desktop */}
@@ -146,7 +146,7 @@ const PropertyListings: React.FC<PropertyListingsProps> = ({ onViewDetails }) =>
       {/* 2. MAIN CONTENT GRID */}
       <main className="max-w-[1440px] mx-auto px-6 py-10 pt-24">
         <div className="mb-12">
-          <h2 className="text-4xl font-bold text-slate-900 font-serif">Exclusive <span className="text-luxury-gold">Listings</span></h2>
+          <h2 className="text-4xl font-bold text-brand-navy font-serif">Exclusive <span className="text-luxury-gold">Listings</span></h2>
           <p className="text-gray-500 text-sm mt-2 font-medium">Displaying {filteredData.length} premium properties in Nigeria</p>
         </div>
 
@@ -155,7 +155,7 @@ const PropertyListings: React.FC<PropertyListingsProps> = ({ onViewDetails }) =>
             [...Array(6)].map((_, i) => <PropertySkeleton key={i} />)
           ) : (
             paginatedData.map((item) => (
-              <div key={item.id} className="bg-white rounded-2xl md:rounded-3xl overflow-hidden border border-gray-100 hover:shadow-2xl transition-all duration-500 group">
+              <div key={item.id} className="bg-white rounded-2xl md:rounded-3xl overflow-hidden border border-brand-gray hover:shadow-2xl transition-all duration-500 group">
                 <div className="relative h-60 md:h-72 overflow-hidden bg-gray-100">
                   <img 
                     src={`${item.image}?auto=format&fit=crop&w=800&q=80`} 
@@ -175,7 +175,7 @@ const PropertyListings: React.FC<PropertyListingsProps> = ({ onViewDetails }) =>
                   <div className="flex items-center gap-1 text-luxury-gold text-[9px] md:text-[10px] font-bold mb-2 md:mb-3 uppercase tracking-widest">
                     <MapPin size={12} className="md:w-3.5 md:h-3.5" /> {item.location}
                   </div>
-                  <h3 className="text-xl md:text-2xl font-bold mb-2 md:mb-3 text-slate-900 group-hover:text-luxury-gold transition-colors font-serif line-clamp-1">{item.title}</h3>
+                  <h3 className="text-xl md:text-2xl font-bold mb-2 md:mb-3 text-brand-navy group-hover:text-luxury-gold transition-colors font-serif line-clamp-1">{item.title}</h3>
                   <p className="text-gray-500 text-xs md:text-sm leading-relaxed line-clamp-2 mb-6 md:mb-8">{item.desc}</p>
                   
                   <div className="flex items-center justify-between pt-4 md:pt-6 border-t border-gray-100">
@@ -184,7 +184,7 @@ const PropertyListings: React.FC<PropertyListingsProps> = ({ onViewDetails }) =>
                       <span className="flex items-center gap-1.5 md:gap-2"><Bath size={16} className="md:w-4.5 md:h-4.5 text-luxury-gold" /> {item.baths}</span>
                     </div>
                     <Link to={`/property/${item.id}`}>
-                      <button className="text-slate-900 text-[10px] md:text-xs font-bold uppercase tracking-widest flex items-center gap-1 md:gap-2 hover:text-luxury-gold transition-all">
+                      <button className="text-brand-navy text-[10px] md:text-xs font-bold uppercase tracking-widest flex items-center gap-1 md:gap-2 hover:text-luxury-gold transition-all">
                         View Suite <ArrowUpRight size={14} className="md:w-4 md:h-4" />
                       </button>
                     </Link>

@@ -11,16 +11,16 @@ import { MOCK_PROPERTIES } from '../data/properties';
 // Mock extended data for admin
 const mockAdminProperties = MOCK_PROPERTIES.map((p, index) => ({
   ...p,
-  status: index % 4 === 0 ? 'Sold' : index % 3 === 0 ? 'Under Contract' : 'Active',
+  status: index % 4 === 0 ? 'Sold' : index % 3 === 0 ? 'Pending' : 'Active',
   views: Math.floor(Math.random() * 2000) + 200,
   inquiries: Math.floor(Math.random() * 50) + 2,
   isFeatured: index < 3
 }));
 
 const initialLeads = [
-  { id: 1, name: 'Aliko Dangote', email: 'contact@dangote.com', phone: '+234 800 000 0000', interest: '6-Bed Villa, Eko Atlantic', source: 'Website Form', status: 'Hot', lastContact: '2026-02-20', notes: 'Looking for a large family home.' },
-  { id: 2, name: 'Femi Otedola', email: 'femi@otedola.com', phone: '+234 801 111 1111', interest: '4-Bed Penthouse, Victoria Island', source: 'WhatsApp', status: 'Warm', lastContact: '2026-02-18', notes: 'Interested in ocean views.' },
-  { id: 3, name: 'Tony Elumelu', email: 'tony@heirs.com', phone: '+234 802 222 2222', interest: '5-Bed Villa, Banana Island', source: 'Referral', status: 'Cold', lastContact: '2026-02-10', notes: 'No rush, just browsing.' },
+  { id: 1, name: 'Aliko Dangote', email: 'contact@dangote.com', phone: '+234 800 000 0000', interest: '6-Bed Villa, Eko Atlantic', budget: '₦150M', source: 'Website Form', status: 'Hot', lastContact: '2026-02-20', notes: 'Looking for a large family home.' },
+  { id: 2, name: 'Femi Otedola', email: 'femi@otedola.com', phone: '+234 801 111 1111', interest: '4-Bed Penthouse, Victoria Island', budget: '₦90M', source: 'WhatsApp', status: 'Warm', lastContact: '2026-02-18', notes: 'Interested in ocean views.' },
+  { id: 3, name: 'Tony Elumelu', email: 'tony@heirs.com', phone: '+234 802 222 2222', interest: '5-Bed Villa, Banana Island', budget: '₦200M', source: 'Referral', status: 'Cold', lastContact: '2026-02-10', notes: 'No rush, just browsing.' },
 ];
 
 export default function Admin() {
@@ -45,8 +45,15 @@ export default function Admin() {
       fullName: 'Voke Irekpita',
       email: 'voke@hogarhomes.com',
       phone: '+234 800 000 0000',
-      bio: 'Principal Agent at Hogar Homes. Expert in Lagos luxury real estate with over 10 years of experience.',
+      bio: 'Principal Agent. Expert in Lagos luxury real estate with over 10 years of experience.',
       avatar: 'VI'
+    },
+    siteConfig: {
+      primaryBrandColor: '#D4AF37',
+      whatsappContactNumber: '+234 800 000 0000',
+    },
+    notifications: {
+      newLeadAlerts: true,
     },
     security: {
       twoFactor: false
@@ -67,8 +74,11 @@ export default function Admin() {
     email: '',
     phone: '',
     interest: '',
+    budget: '',
     status: 'Warm'
   });
+
+  const [isLeadDetailsOpen, setIsLeadDetailsOpen] = useState(false);
 
   // Property Modal State
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -177,6 +187,7 @@ export default function Admin() {
         email: lead.email,
         phone: lead.phone,
         interest: lead.interest,
+        budget: lead.budget ?? '',
         status: lead.status
       });
     } else {
@@ -186,6 +197,7 @@ export default function Admin() {
         email: '',
         phone: '',
         interest: '',
+        budget: '',
         status: 'Warm'
       });
     }
@@ -253,6 +265,7 @@ export default function Admin() {
   const saveNote = () => {
     setLeads(leads.map(l => l.id === activeNoteId ? { ...l, notes: noteText } : l));
     setActiveNoteId(null);
+    setIsLeadDetailsOpen(false);
   };
 
   const filteredProperties = adminProperties.filter(p => 
@@ -270,7 +283,7 @@ export default function Admin() {
         </div>
         <button 
           onClick={() => setActiveTab('properties')}
-          className="w-full md:w-auto bg-[#C5A059] hover:bg-[#b38f4a] text-white px-5 py-2.5 text-sm font-medium rounded-md flex items-center justify-center gap-2 transition-all shadow-md"
+          className="w-full md:w-auto bg-brand-gold hover:bg-brand-gold-hover text-white px-5 py-2.5 text-sm font-medium rounded-md flex items-center justify-center gap-2 transition-all shadow-md"
         >
           <Building size={16} /> Manage Properties
         </button>
@@ -282,7 +295,7 @@ export default function Admin() {
             <p className="text-sm text-gray-500 mb-1 font-medium">Total Properties</p>
             <p className="text-3xl font-serif text-slate-900">{adminProperties.length}</p>
           </div>
-          <div className="w-12 h-12 bg-[#C5A059]/10 rounded-full flex items-center justify-center text-[#C5A059]">
+          <div className="w-12 h-12 bg-brand-gold/10 rounded-full flex items-center justify-center text-brand-gold">
             <Building size={24} />
           </div>
         </div>
@@ -309,18 +322,18 @@ export default function Admin() {
       <div className="bg-white rounded-sm border border-gray-200 shadow-sm">
         <div className="px-6 py-5 border-b border-gray-200 flex justify-between items-center">
           <h2 className="text-lg font-medium text-slate-900">Recent Leads</h2>
-          <button onClick={() => setActiveTab('leads')} className="text-sm text-[#C5A059] hover:text-[#b38f4a] font-medium">View All</button>
+        <button onClick={() => setActiveTab('leads')} className="text-sm text-brand-gold hover:text-brand-gold-hover font-medium">View All</button>
         </div>
         <div className="p-0">
           {leads.map((lead, i) => (
             <div key={lead.id} className={`px-6 py-4 flex items-center justify-between ${i !== leads.length - 1 ? 'border-b border-gray-100' : ''}`}>
               <div>
                 <p className="font-medium text-slate-900">{lead.name}</p>
-                <p className="text-sm text-gray-500">Inquired: <span className="text-[#C5A059]">{lead.interest}</span></p>
+                <p className="text-sm text-gray-500">Inquired: <span className="text-brand-gold">{lead.interest}</span></p>
               </div>
               <span className={`px-3 py-1 rounded-full text-xs font-medium ${
                 lead.status === 'Hot' ? 'bg-red-50 text-red-600' : 
-                lead.status === 'Warm' ? 'bg-orange-50 text-orange-600' : 'bg-[#C5A059]/10 text-[#C5A059]'
+                lead.status === 'Warm' ? 'bg-orange-50 text-orange-600' : 'bg-brand-gold/10 text-brand-gold'
               }`}>
                 {lead.status}
               </span>
@@ -346,12 +359,12 @@ export default function Admin() {
               placeholder="Filter list..." 
               value={propertySearch}
               onChange={(e) => setPropertySearch(e.target.value)}
-              className="w-full pl-9 pr-4 py-2 border border-gray-200 rounded-sm text-sm focus:outline-none focus:border-[#C5A059]"
+              className="w-full pl-9 pr-4 py-2 border border-gray-200 rounded-sm text-sm focus:outline-none focus:border-brand-gold"
             />
           </div>
           <button 
             onClick={() => handleOpenModal('add')}
-            className="w-full sm:w-auto bg-[#C5A059] hover:bg-[#b38f4a] text-white px-5 py-2.5 text-sm font-medium rounded-md flex items-center justify-center gap-2 transition-all shadow-md"
+            className="w-full sm:w-auto bg-brand-gold hover:bg-brand-gold-hover text-white px-5 py-2.5 text-sm font-medium rounded-md flex items-center justify-center gap-2 transition-all shadow-md"
           >
             <Plus size={16} /> Add New Listing
           </button>
@@ -364,13 +377,17 @@ export default function Admin() {
             <div className="relative h-48">
               <img src={prop.image} alt={prop.title} className="w-full h-full object-cover" />
               <div className="absolute top-3 left-3 flex gap-2">
-                <span className={`px-2.5 py-1 text-xs font-medium rounded-sm shadow-sm text-white ${
-                  prop.status === 'Active' ? 'bg-green-600' : prop.status === 'Under Contract' ? 'bg-amber-500' : 'bg-red-600'
-                }`}>
+                  <span className={`rounded-full px-3 py-1 text-xs font-medium ${
+                    prop.status === 'Active'
+                      ? 'bg-green-50 text-green-700'
+                      : prop.status === 'Pending'
+                        ? 'bg-amber-50 text-amber-700'
+                        : 'bg-red-50 text-red-700'
+                  }`}>
                   {prop.status}
                 </span>
                 {prop.isFeatured && (
-                  <span className="px-2.5 py-1 bg-[#C5A059] text-white text-xs font-medium rounded-sm shadow-sm flex items-center gap-1">
+                  <span className="px-2.5 py-1 bg-brand-gold text-white text-xs font-medium rounded-sm shadow-sm flex items-center gap-1">
                     <Star size={12} className="fill-current" /> Featured
                   </span>
                 )}
@@ -383,7 +400,7 @@ export default function Admin() {
                   <h3 className="font-serif text-lg text-slate-900 mb-1">{prop.title}</h3>
                   <p className="text-sm text-gray-500">{prop.location}</p>
                 </div>
-                <p className="font-medium text-[#C5A059]">{prop.price}</p>
+                <p className="font-medium text-brand-gold">{prop.price}</p>
               </div>
 
               <div className="flex items-center gap-4 mt-4 mb-6 py-3 border-y border-gray-100">
@@ -406,13 +423,13 @@ export default function Admin() {
                     className="text-sm border border-gray-200 rounded-sm px-2 py-1 outline-none"
                   >
                     <option value="Active">Active</option>
-                    <option value="Under Contract">Under Contract</option>
+                    <option value="Pending">Pending</option>
                     <option value="Sold">Sold</option>
                   </select>
                 </div>
                 <div className="flex items-center justify-between">
                   <label className="text-sm text-gray-600 font-medium">Feature on Home</label>
-                  <button onClick={() => toggleFeatured(prop.id)} className={`transition-colors ${prop.isFeatured ? 'text-[#C5A059]' : 'text-gray-300'}`}>
+                  <button onClick={() => toggleFeatured(prop.id)} className={`transition-colors ${prop.isFeatured ? 'text-brand-gold' : 'text-gray-300'}`}>
                     {prop.isFeatured ? <ToggleRight size={28} /> : <ToggleLeft size={28} />}
                   </button>
                 </div>
@@ -438,11 +455,11 @@ export default function Admin() {
   const renderPropertyModal = () => (
     <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
       <div 
-        className="absolute inset-0 bg-slate-900/60 backdrop-blur-sm"
+        className="absolute inset-0 bg-brand-navy/60 backdrop-blur-sm"
         onClick={handleCloseModal}
       />
       <div className="relative bg-white w-full max-w-2xl rounded-sm shadow-2xl overflow-hidden flex flex-col max-h-[90vh]">
-        <div className="p-6 border-b border-gray-100 flex justify-between items-center bg-slate-900 text-white">
+        <div className="p-6 border-b border-gray-100 flex justify-between items-center bg-brand-navy text-white">
           <h2 className="text-xl font-serif">{modalMode === 'add' ? 'Add New Property' : 'Edit Property'}</h2>
           <button onClick={handleCloseModal} className="text-gray-400 hover:text-white transition-colors">
             <X size={24} />
@@ -454,7 +471,7 @@ export default function Admin() {
             {/* Title */}
             <div className="space-y-2">
               <label className="text-xs uppercase tracking-widest font-bold text-gray-500 flex items-center gap-2">
-                <Building size={14} className="text-[#C5A059]" /> Property Title
+                <Building size={14} className="text-brand-gold" /> Property Title
               </label>
               <input
                 type="text"
@@ -462,7 +479,7 @@ export default function Admin() {
                 required
                 value={formData.title}
                 onChange={handleInputChange}
-                className="w-full border border-gray-200 rounded-sm px-4 py-2.5 text-sm focus:border-[#C5A059] outline-none"
+                className="w-full border border-gray-200 rounded-sm px-4 py-2.5 text-sm focus:border-brand-gold outline-none"
                 placeholder="e.g. Modern 5-Bedroom Duplex"
               />
             </div>
@@ -470,7 +487,7 @@ export default function Admin() {
             {/* Location */}
             <div className="space-y-2">
               <label className="text-xs uppercase tracking-widest font-bold text-gray-500 flex items-center gap-2">
-                <MapPin size={14} className="text-[#C5A059]" /> Location
+                <MapPin size={14} className="text-brand-gold" /> Location
               </label>
               <input
                 type="text"
@@ -478,7 +495,7 @@ export default function Admin() {
                 required
                 value={formData.location}
                 onChange={handleInputChange}
-                className="w-full border border-gray-200 rounded-sm px-4 py-2.5 text-sm focus:border-[#C5A059] outline-none"
+                className="w-full border border-gray-200 rounded-sm px-4 py-2.5 text-sm focus:border-brand-gold outline-none"
                 placeholder="e.g. Lekki Phase 1, Lagos"
               />
             </div>
@@ -486,7 +503,7 @@ export default function Admin() {
             {/* Price String */}
             <div className="space-y-2">
               <label className="text-xs uppercase tracking-widest font-bold text-gray-500 flex items-center gap-2">
-                <Tag size={14} className="text-[#C5A059]" /> Display Price
+                <Tag size={14} className="text-brand-gold" /> Display Price
               </label>
               <input
                 type="text"
@@ -494,7 +511,7 @@ export default function Admin() {
                 required
                 value={formData.price}
                 onChange={handleInputChange}
-                className="w-full border border-gray-200 rounded-sm px-4 py-2.5 text-sm focus:border-[#C5A059] outline-none"
+                className="w-full border border-gray-200 rounded-sm px-4 py-2.5 text-sm focus:border-brand-gold outline-none"
                 placeholder="e.g. ₦150M"
               />
             </div>
@@ -502,7 +519,7 @@ export default function Admin() {
             {/* Price Numeric */}
             <div className="space-y-2">
               <label className="text-xs uppercase tracking-widest font-bold text-gray-500 flex items-center gap-2">
-                <Tag size={14} className="text-[#C5A059]" /> Price (Millions)
+                <Tag size={14} className="text-brand-gold" /> Price (Millions)
               </label>
               <input
                 type="number"
@@ -510,7 +527,7 @@ export default function Admin() {
                 required
                 value={formData.priceNumeric}
                 onChange={handleInputChange}
-                className="w-full border border-gray-200 rounded-sm px-4 py-2.5 text-sm focus:border-[#C5A059] outline-none"
+                className="w-full border border-gray-200 rounded-sm px-4 py-2.5 text-sm focus:border-brand-gold outline-none"
                 placeholder="e.g. 150"
               />
             </div>
@@ -518,13 +535,13 @@ export default function Admin() {
             {/* Property Type */}
             <div className="space-y-2">
               <label className="text-xs uppercase tracking-widest font-bold text-gray-500 flex items-center gap-2">
-                <HomeIcon size={14} className="text-[#C5A059]" /> Property Type
+                <HomeIcon size={14} className="text-brand-gold" /> Property Type
               </label>
               <select
                 name="type"
                 value={formData.type}
                 onChange={handleInputChange}
-                className="w-full border border-gray-200 rounded-sm px-4 py-2.5 text-sm focus:border-[#C5A059] outline-none"
+                className="w-full border border-gray-200 rounded-sm px-4 py-2.5 text-sm focus:border-brand-gold outline-none"
               >
                 {['Duplex', 'Penthouse', 'Apartment', 'Commercial', 'Mansion', 'Bungalow'].map(t => (
                   <option key={t} value={t}>{t}</option>
@@ -535,15 +552,15 @@ export default function Admin() {
             {/* Status */}
             <div className="space-y-2">
               <label className="text-xs uppercase tracking-widest font-bold text-gray-500 flex items-center gap-2">
-                <Star size={14} className="text-[#C5A059]" /> Status
+                <Star size={14} className="text-brand-gold" /> Status
               </label>
               <select
                 name="status"
                 value={formData.status}
                 onChange={handleInputChange}
-                className="w-full border border-gray-200 rounded-sm px-4 py-2.5 text-sm focus:border-[#C5A059] outline-none"
+                className="w-full border border-gray-200 rounded-sm px-4 py-2.5 text-sm focus:border-brand-gold outline-none"
               >
-                {['Active', 'Under Contract', 'Sold'].map(s => (
+                {['Active', 'Pending', 'Sold'].map(s => (
                   <option key={s} value={s}>{s}</option>
                 ))}
               </select>
@@ -552,28 +569,28 @@ export default function Admin() {
             {/* Beds */}
             <div className="space-y-2">
               <label className="text-xs uppercase tracking-widest font-bold text-gray-500 flex items-center gap-2">
-                <BedDouble size={14} className="text-[#C5A059]" /> Bedrooms
+                <BedDouble size={14} className="text-brand-gold" /> Bedrooms
               </label>
               <input
                 type="number"
                 name="beds"
                 value={formData.beds}
                 onChange={handleInputChange}
-                className="w-full border border-gray-200 rounded-sm px-4 py-2.5 text-sm focus:border-[#C5A059] outline-none"
+                className="w-full border border-gray-200 rounded-sm px-4 py-2.5 text-sm focus:border-brand-gold outline-none"
               />
             </div>
 
             {/* Baths */}
             <div className="space-y-2">
               <label className="text-xs uppercase tracking-widest font-bold text-gray-500 flex items-center gap-2">
-                <Bath size={14} className="text-[#C5A059]" /> Bathrooms
+                <Bath size={14} className="text-brand-gold" /> Bathrooms
               </label>
               <input
                 type="number"
                 name="baths"
                 value={formData.baths}
                 onChange={handleInputChange}
-                className="w-full border border-gray-200 rounded-sm px-4 py-2.5 text-sm focus:border-[#C5A059] outline-none"
+                className="w-full border border-gray-200 rounded-sm px-4 py-2.5 text-sm focus:border-brand-gold outline-none"
               />
             </div>
           </div>
@@ -581,7 +598,7 @@ export default function Admin() {
           {/* Image Upload */}
           <div className="space-y-2">
             <label className="text-xs uppercase tracking-widest font-bold text-gray-500 flex items-center gap-2">
-              <ImageIcon size={14} className="text-[#C5A059]" /> Property Image
+              <ImageIcon size={14} className="text-brand-gold" /> Property Image
             </label>
             <div className="flex gap-4 items-center">
               {formData.image && (
@@ -594,7 +611,7 @@ export default function Admin() {
                   type="file"
                   accept="image/*"
                   onChange={handleImageUpload}
-                  className="w-full text-sm text-gray-500 file:mr-4 file:py-2.5 file:px-4 file:rounded-sm file:border-0 file:text-xs file:font-semibold file:uppercase file:bg-[#C5A059]/10 file:text-[#C5A059] hover:file:bg-[#C5A059]/20 transition-all"
+                  className="w-full text-sm text-gray-500 file:mr-4 file:py-2.5 file:px-4 file:rounded-sm file:border-0 file:text-xs file:font-semibold file:uppercase file:bg-brand-gold/10 file:text-brand-gold hover:file:bg-brand-gold/20 transition-all"
                 />
               </div>
             </div>
@@ -604,7 +621,7 @@ export default function Admin() {
               name="image"
               value={formData.image}
               onChange={handleInputChange}
-              className="w-full border border-gray-200 rounded-sm px-4 py-2 text-xs text-gray-400 focus:border-[#C5A059] outline-none mt-2"
+              className="w-full border border-gray-200 rounded-sm px-4 py-2 text-xs text-gray-400 focus:border-brand-gold outline-none mt-2"
               placeholder="Or paste image URL..."
             />
           </div>
@@ -612,7 +629,7 @@ export default function Admin() {
           {/* Description */}
           <div className="space-y-2">
             <label className="text-xs uppercase tracking-widest font-bold text-gray-500 flex items-center gap-2">
-              <FileText size={14} className="text-[#C5A059]" /> Description
+              <FileText size={14} className="text-brand-gold" /> Description
             </label>
             <textarea
               name="desc"
@@ -620,7 +637,7 @@ export default function Admin() {
               value={formData.desc}
               onChange={handleInputChange}
               rows={4}
-              className="w-full border border-gray-200 rounded-sm px-4 py-2.5 text-sm focus:border-[#C5A059] outline-none resize-none"
+              className="w-full border border-gray-200 rounded-sm px-4 py-2.5 text-sm focus:border-brand-gold outline-none resize-none"
               placeholder="Detailed description of the property..."
             />
           </div>
@@ -635,7 +652,7 @@ export default function Admin() {
             </button>
             <button
               type="submit"
-              className="flex-1 bg-[#C5A059] hover:bg-[#b38f4a] text-white py-3 rounded-sm font-bold uppercase tracking-widest text-xs transition-all shadow-lg"
+              className="flex-1 bg-brand-gold hover:bg-brand-gold-hover text-white py-3 rounded-sm font-bold uppercase tracking-widest text-xs transition-all shadow-lg"
             >
               {modalMode === 'add' ? 'Create Listing' : 'Save Changes'}
             </button>
@@ -649,12 +666,12 @@ export default function Admin() {
     <div className="p-4 md:p-8">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end mb-8 gap-4">
         <div>
-          <h1 className="text-2xl font-serif text-slate-900 mb-1">Leads & Clients</h1>
+          <h1 className="text-2xl font-serif text-slate-900 mb-1">Lead Clients</h1>
           <p className="text-sm text-gray-500">Manage inquiries and client relationships.</p>
         </div>
-        <button 
+        <button
           onClick={() => handleOpenLeadModal('add')}
-          className="w-full sm:w-auto bg-[#C5A059] hover:bg-[#b38f4a] text-white px-4 py-2 text-sm font-medium rounded-sm flex items-center gap-2 shadow-sm"
+          className="w-full sm:w-auto bg-brand-gold hover:bg-brand-gold-hover text-white px-4 py-2 text-sm font-medium rounded-sm flex items-center gap-2 shadow-sm"
         >
           <Plus size={16} /> Add Lead
         </button>
@@ -664,66 +681,45 @@ export default function Admin() {
         <table className="w-full text-left border-collapse min-w-[800px]">
           <thead>
             <tr className="bg-gray-50 text-gray-500 text-xs uppercase border-b border-gray-200">
-              <th className="px-6 py-4 font-medium">Client Name</th>
-              <th className="px-6 py-4 font-medium">Interest</th>
+              <th className="px-6 py-4 font-medium">Name</th>
+              <th className="px-6 py-4 font-medium">Property of Interest</th>
+              <th className="px-6 py-4 font-medium">Budget</th>
               <th className="px-6 py-4 font-medium">Status</th>
-              <th className="px-6 py-4 font-medium text-right">Actions</th>
+              <th className="px-6 py-4 font-medium text-right">Action</th>
             </tr>
           </thead>
           <tbody className="text-sm">
-            {leads.map(lead => (
-              <React.Fragment key={lead.id}>
-                <tr className="border-b border-gray-100 hover:bg-gray-50">
-                  <td className="px-6 py-4">
-                    <p className="font-medium text-slate-900">{lead.name}</p>
-                    <div className="flex flex-col gap-0.5">
-                      <p className="text-xs text-gray-500 flex items-center gap-1"><Mail size={12} /> {lead.email}</p>
-                      <p className="text-xs text-gray-500 flex items-center gap-1"><Phone size={12} /> {lead.phone}</p>
-                    </div>
-                  </td>
-                  <td className="px-6 py-4 text-[#C5A059] font-medium">{lead.interest}</td>
-                  <td className="px-6 py-4">
-                    <span className={`px-2.5 py-1 rounded-sm text-xs font-medium ${
-                      lead.status === 'Hot' ? 'bg-red-50 text-red-600' : 
-                      lead.status === 'Warm' ? 'bg-orange-50 text-orange-600' : 'bg-[#C5A059]/10 text-[#C5A059]'
-                    }`}>
-                      {lead.status}
-                    </span>
-                  </td>
-                  <td className="px-6 py-4 text-right">
-                    <div className="flex items-center justify-end gap-3">
-                      <button onClick={() => openNote(lead)} className="text-slate-400 hover:text-[#C5A059] transition-colors">
-                        <MessageSquare size={18} />
-                      </button>
-                      <button onClick={() => handleOpenLeadModal('edit', lead)} className="text-slate-400 hover:text-blue-600 transition-colors">
-                        <Edit size={18} />
-                      </button>
-                      <button onClick={() => deleteLead(lead.id)} className="text-slate-400 hover:text-red-600 transition-colors">
-                        <Trash2 size={18} />
-                      </button>
-                    </div>
-                  </td>
-                </tr>
-                {activeNoteId === lead.id && (
-                  <tr className="bg-gray-50 border-b border-gray-200">
-                    <td colSpan={4} className="px-6 py-4">
-                      <div className="max-w-2xl">
-                        <label className="block text-xs uppercase font-bold text-gray-500 mb-2">Lead Notes</label>
-                        <textarea 
-                          value={noteText}
-                          onChange={(e) => setNoteText(e.target.value)}
-                          className="w-full border border-gray-200 rounded-sm p-3 text-sm focus:border-[#C5A059] outline-none min-h-[100px]"
-                          placeholder="Add details about client preferences..."
-                        />
-                        <div className="flex justify-end gap-2 mt-2">
-                          <button onClick={() => setActiveNoteId(null)} className="px-4 py-2 text-sm text-gray-600">Cancel</button>
-                          <button onClick={saveNote} className="bg-[#C5A059] text-white px-4 py-2 text-sm font-medium rounded-sm">Save Note</button>
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
-                )}
-              </React.Fragment>
+            {leads.map((lead) => (
+              <tr key={lead.id} className="border-b border-gray-100 hover:bg-gray-50">
+                <td className="px-6 py-4">
+                  <p className="font-medium text-slate-900">{lead.name}</p>
+                  <div className="flex flex-col gap-0.5">
+                    <p className="text-xs text-gray-500 flex items-center gap-1"><Mail size={12} /> {lead.email}</p>
+                    <p className="text-xs text-gray-500 flex items-center gap-1"><Phone size={12} /> {lead.phone}</p>
+                  </div>
+                </td>
+                <td className="px-6 py-4 text-brand-gold font-medium">{lead.interest}</td>
+                <td className="px-6 py-4 font-medium">{lead.budget}</td>
+                <td className="px-6 py-4">
+                  <span className={`rounded-full px-3 py-1 text-xs font-medium ${
+                    lead.status === 'Hot'
+                      ? 'bg-red-50 text-red-600'
+                      : lead.status === 'Warm'
+                        ? 'bg-orange-50 text-orange-600'
+                        : 'bg-brand-gold/10 text-brand-gold'
+                  }`}>
+                    {lead.status}
+                  </span>
+                </td>
+                <td className="px-6 py-4 text-right">
+                  <button
+                    onClick={() => { openNote(lead); setIsLeadDetailsOpen(true); }}
+                    className="inline-flex items-center justify-end gap-2 px-4 py-2 text-sm font-medium rounded-sm border border-gray-200 hover:border-brand-gold text-slate-700 hover:text-brand-gold transition-colors"
+                  >
+                    <Eye size={16} /> View Details
+                  </button>
+                </td>
+              </tr>
             ))}
           </tbody>
         </table>
@@ -734,11 +730,11 @@ export default function Admin() {
   const renderLeadModal = () => (
     <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
       <div 
-        className="absolute inset-0 bg-slate-900/60 backdrop-blur-sm"
+        className="absolute inset-0 bg-brand-navy/60 backdrop-blur-sm"
         onClick={handleCloseLeadModal}
       />
       <div className="relative bg-white w-full max-w-lg rounded-sm shadow-2xl overflow-hidden flex flex-col">
-        <div className="p-6 border-b border-gray-100 flex justify-between items-center bg-slate-900 text-white">
+        <div className="p-6 border-b border-gray-100 flex justify-between items-center bg-brand-navy text-white">
           <h2 className="text-xl font-serif">{leadModalMode === 'add' ? 'Add New Lead' : 'Edit Lead Details'}</h2>
           <button onClick={handleCloseLeadModal} className="text-gray-400 hover:text-white transition-colors">
             <X size={24} />
@@ -749,7 +745,7 @@ export default function Admin() {
           {/* Full Name */}
           <div className="space-y-1.5">
             <label className="text-[10px] uppercase tracking-widest font-bold text-gray-500 flex items-center gap-2">
-              <Users size={12} className="text-[#C5A059]" /> Client Full Name
+              <Users size={12} className="text-brand-gold" /> Client Full Name
             </label>
             <input
               type="text"
@@ -757,7 +753,7 @@ export default function Admin() {
               required
               value={leadFormData.name}
               onChange={handleLeadInputChange}
-              className="w-full border border-gray-200 rounded-sm px-4 py-2.5 text-sm focus:border-[#C5A059] outline-none"
+              className="w-full border border-gray-200 rounded-sm px-4 py-2.5 text-sm focus:border-brand-gold outline-none"
               placeholder="e.g. Aliko Dangote"
             />
           </div>
@@ -766,7 +762,7 @@ export default function Admin() {
             {/* Email */}
             <div className="space-y-1.5">
               <label className="text-[10px] uppercase tracking-widest font-bold text-gray-500 flex items-center gap-2">
-                <Mail size={12} className="text-[#C5A059]" /> Email Address
+                <Mail size={12} className="text-brand-gold" /> Email Address
               </label>
               <input
                 type="email"
@@ -774,7 +770,7 @@ export default function Admin() {
                 required
                 value={leadFormData.email}
                 onChange={handleLeadInputChange}
-                className="w-full border border-gray-200 rounded-sm px-4 py-2.5 text-sm focus:border-[#C5A059] outline-none"
+                className="w-full border border-gray-200 rounded-sm px-4 py-2.5 text-sm focus:border-brand-gold outline-none"
                 placeholder="client@example.com"
               />
             </div>
@@ -782,7 +778,7 @@ export default function Admin() {
             {/* Phone */}
             <div className="space-y-1.5">
               <label className="text-[10px] uppercase tracking-widest font-bold text-gray-500 flex items-center gap-2">
-                <Phone size={12} className="text-[#C5A059]" /> Phone Number
+                <Phone size={12} className="text-brand-gold" /> Phone Number
               </label>
               <input
                 type="text"
@@ -790,7 +786,7 @@ export default function Admin() {
                 required
                 value={leadFormData.phone}
                 onChange={handleLeadInputChange}
-                className="w-full border border-gray-200 rounded-sm px-4 py-2.5 text-sm focus:border-[#C5A059] outline-none"
+                className="w-full border border-gray-200 rounded-sm px-4 py-2.5 text-sm focus:border-brand-gold outline-none"
                 placeholder="+234..."
               />
             </div>
@@ -799,7 +795,7 @@ export default function Admin() {
           {/* Interest */}
           <div className="space-y-1.5">
             <label className="text-[10px] uppercase tracking-widest font-bold text-gray-500 flex items-center gap-2">
-              <Building size={12} className="text-[#C5A059]" /> Property of Interest
+              <Building size={12} className="text-brand-gold" /> Property of Interest
             </label>
             <input
               type="text"
@@ -807,21 +803,37 @@ export default function Admin() {
               required
               value={leadFormData.interest}
               onChange={handleLeadInputChange}
-              className="w-full border border-gray-200 rounded-sm px-4 py-2.5 text-sm focus:border-[#C5A059] outline-none"
+              className="w-full border border-gray-200 rounded-sm px-4 py-2.5 text-sm focus:border-brand-gold outline-none"
               placeholder="e.g. 6-Bed Villa, Eko Atlantic"
+            />
+          </div>
+
+          {/* Budget */}
+          <div className="space-y-1.5">
+            <label className="text-[10px] uppercase tracking-widest font-bold text-gray-500">
+              Budget
+            </label>
+            <input
+              type="text"
+              name="budget"
+              required
+              value={leadFormData.budget}
+              onChange={handleLeadInputChange}
+              className="w-full border border-gray-200 rounded-sm px-4 py-2.5 text-sm focus:border-brand-gold outline-none"
+              placeholder="e.g. ₦150M"
             />
           </div>
 
           {/* Status */}
           <div className="space-y-1.5">
             <label className="text-[10px] uppercase tracking-widest font-bold text-gray-500 flex items-center gap-2">
-              <Star size={12} className="text-[#C5A059]" /> Lead Status
+              <Star size={12} className="text-brand-gold" /> Lead Status
             </label>
             <select
               name="status"
               value={leadFormData.status}
               onChange={handleLeadInputChange}
-              className="w-full border border-gray-200 rounded-sm px-4 py-2.5 text-sm focus:border-[#C5A059] outline-none bg-white"
+              className="w-full border border-gray-200 rounded-sm px-4 py-2.5 text-sm focus:border-brand-gold outline-none bg-white"
             >
               {['Hot', 'Warm', 'Cold'].map(s => (
                 <option key={s} value={s}>{s} Lead</option>
@@ -839,7 +851,7 @@ export default function Admin() {
             </button>
             <button
               type="submit"
-              className="flex-1 bg-[#C5A059] hover:bg-[#b38f4a] text-white py-3 rounded-sm font-bold uppercase tracking-widest text-[10px] transition-all shadow-lg"
+              className="flex-1 bg-brand-gold hover:bg-brand-gold-hover text-white py-3 rounded-sm font-bold uppercase tracking-widest text-[10px] transition-all shadow-lg"
             >
               {leadModalMode === 'add' ? 'Add Client' : 'Update Client'}
             </button>
@@ -849,11 +861,110 @@ export default function Admin() {
     </div>
   );
 
+  const renderLeadDetailsModal = () => {
+    const lead = leads.find((l) => l.id === activeNoteId);
+    if (!lead) return null;
+
+    return (
+      <div className="fixed inset-0 z-[110] flex items-center justify-center p-4">
+      <div
+          className="absolute inset-0 bg-brand-navy/60 backdrop-blur-sm"
+          onClick={() => { setIsLeadDetailsOpen(false); setActiveNoteId(null); }}
+        />
+
+        <div className="relative bg-white w-full max-w-2xl rounded-sm shadow-2xl overflow-hidden flex flex-col max-h-[90vh]">
+          <div className="p-6 border-b border-gray-100 flex justify-between items-center bg-brand-navy text-white">
+            <h2 className="text-xl font-serif flex items-center gap-2">
+              <Eye size={20} /> Lead Details
+            </h2>
+            <button
+              onClick={() => { setIsLeadDetailsOpen(false); setActiveNoteId(null); }}
+              className="text-gray-400 hover:text-white transition-colors"
+              aria-label="Close lead details"
+            >
+              <X size={24} />
+            </button>
+          </div>
+
+          <div className="p-6 overflow-y-auto space-y-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="space-y-3">
+                <h3 className="font-serif text-2xl text-slate-900">{lead.name}</h3>
+                <div className="flex flex-col gap-1">
+                  <div className="text-sm text-gray-600 flex items-center gap-2">
+                    <Mail size={16} className="text-brand-gold" /> {lead.email}
+                  </div>
+                  <div className="text-sm text-gray-600 flex items-center gap-2">
+                    <Phone size={16} className="text-brand-gold" /> {lead.phone}
+                  </div>
+                </div>
+              </div>
+
+              <div className="space-y-3">
+                <div>
+                  <label className="block text-xs uppercase font-bold text-gray-500 mb-2">
+                    Status
+                  </label>
+                  <span className={`rounded-full px-3 py-1 text-xs font-medium ${
+                    lead.status === 'Hot'
+                      ? 'bg-red-50 text-red-600'
+                      : lead.status === 'Warm'
+                        ? 'bg-orange-50 text-orange-600'
+                        : 'bg-brand-gold/10 text-brand-gold'
+                  }`}>
+                    {lead.status}
+                  </span>
+                </div>
+
+                <div className="space-y-2">
+                  <div className="text-sm">
+                    <span className="text-gray-500">Property of Interest: </span>
+                    <span className="text-brand-gold font-medium">{lead.interest}</span>
+                  </div>
+                  <div className="text-sm">
+                    <span className="text-gray-500">Budget: </span>
+                    <span className="text-slate-900 font-medium">{lead.budget}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="space-y-2">
+              <label className="block text-xs uppercase font-bold text-gray-500">
+                Notes
+              </label>
+              <textarea
+                value={noteText}
+                onChange={(e) => setNoteText(e.target.value)}
+                className="w-full border border-gray-200 rounded-sm p-3 text-sm focus:border-brand-gold outline-none min-h-[120px]"
+                placeholder="Add details about client preferences..."
+              />
+            </div>
+
+            <div className="flex justify-end gap-3 pt-2">
+              <button
+                onClick={() => { setIsLeadDetailsOpen(false); setActiveNoteId(null); }}
+                className="px-4 py-2 text-sm text-gray-600 hover:text-gray-800 transition-colors"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={saveNote}
+                className="bg-brand-gold hover:bg-brand-gold-hover text-white px-5 py-2 text-sm font-medium rounded-sm transition-colors"
+              >
+                Save
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
   const renderSettings = () => {
     const tabs = [
       { id: 'profile', label: 'Profile', icon: User },
-      { id: 'security', label: 'Security', icon: Shield },
-      { id: 'branding', label: 'Platform & Branding', icon: Palette },
+      { id: 'siteConfig', label: 'Site Config', icon: Palette },
       { id: 'notifications', label: 'Notifications', icon: Bell },
     ];
 
@@ -862,16 +973,16 @@ export default function Admin() {
         <div className="bg-white rounded-sm border border-gray-200 shadow-sm overflow-hidden">
           <div className="p-6 border-b border-gray-100 flex items-center gap-4">
             <div className="relative group">
-              <div className="w-20 h-20 bg-[#C5A059]/10 rounded-full flex items-center justify-center text-[#C5A059] font-bold text-2xl border-2 border-[#C5A059]">
+              <div className="w-20 h-20 bg-brand-gold/10 rounded-full flex items-center justify-center text-brand-gold font-bold text-2xl border-2 border-brand-gold">
                 {settingsData.profile.avatar}
               </div>
-              <button className="absolute bottom-0 right-0 p-1.5 bg-[#C5A059] text-white rounded-full shadow-lg hover:bg-[#b38f4a] transition-colors border-2 border-white">
+              <button className="absolute bottom-0 right-0 p-1.5 bg-brand-gold text-white rounded-full shadow-lg hover:bg-brand-gold-hover transition-colors border-2 border-white">
                 <Camera size={12} />
               </button>
             </div>
             <div>
-              <h3 className="font-serif text-lg text-slate-900">Agent Profile</h3>
-              <p className="text-sm text-gray-500">Update your personal information and public bio.</p>
+              <h3 className="font-serif text-lg text-slate-900">Profile</h3>
+              <p className="text-sm text-gray-500">Update your name and email.</p>
             </div>
           </div>
           <div className="p-6 grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -881,7 +992,7 @@ export default function Admin() {
                 type="text" 
                 value={settingsData.profile.fullName}
                 onChange={(e) => setSettingsData({...settingsData, profile: {...settingsData.profile, fullName: e.target.value}})}
-                className="w-full border border-gray-200 rounded-sm px-4 py-2.5 text-sm focus:border-[#C5A059] outline-none" 
+                className="w-full border border-gray-200 rounded-sm px-4 py-2.5 text-sm focus:border-brand-gold outline-none" 
               />
             </div>
             <div className="space-y-2">
@@ -890,31 +1001,113 @@ export default function Admin() {
                 type="email" 
                 value={settingsData.profile.email}
                 onChange={(e) => setSettingsData({...settingsData, profile: {...settingsData.profile, email: e.target.value}})}
-                className="w-full border border-gray-200 rounded-sm px-4 py-2.5 text-sm focus:border-[#C5A059] outline-none" 
-              />
-            </div>
-            <div className="space-y-2">
-              <label className="text-[10px] uppercase tracking-widest font-bold text-gray-500">Phone Number</label>
-              <input 
-                type="text" 
-                value={settingsData.profile.phone}
-                onChange={(e) => setSettingsData({...settingsData, profile: {...settingsData.profile, phone: e.target.value}})}
-                className="w-full border border-gray-200 rounded-sm px-4 py-2.5 text-sm focus:border-[#C5A059] outline-none" 
-              />
-            </div>
-            <div className="space-y-2 md:col-span-2">
-              <label className="text-[10px] uppercase tracking-widest font-bold text-gray-500">Bio / Signature</label>
-              <textarea 
-                rows={4}
-                value={settingsData.profile.bio}
-                onChange={(e) => setSettingsData({...settingsData, profile: {...settingsData.profile, bio: e.target.value}})}
-                className="w-full border border-gray-200 rounded-sm px-4 py-2.5 text-sm focus:border-[#C5A059] outline-none resize-none"
+                className="w-full border border-gray-200 rounded-sm px-4 py-2.5 text-sm focus:border-brand-gold outline-none" 
               />
             </div>
           </div>
           <div className="p-6 bg-gray-50 border-t border-gray-100 flex justify-end">
-            <button className="bg-[#C5A059] hover:bg-[#b38f4a] text-white px-8 py-2.5 text-sm font-bold uppercase tracking-widest transition-all shadow-md">
+            <button className="bg-brand-gold hover:bg-brand-gold-hover text-white px-8 py-2.5 text-sm font-bold uppercase tracking-widest transition-all shadow-md">
               Save Changes
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+
+    const renderSiteConfigSettings = () => (
+      <div className="space-y-6">
+        <div className="bg-white rounded-sm border border-gray-200 shadow-sm overflow-hidden">
+          <div className="p-6 border-b border-gray-100">
+            <h3 className="font-serif text-lg text-slate-900">Site Config</h3>
+            <p className="text-sm text-gray-500">Primary branding and WhatsApp contact.</p>
+          </div>
+          <div className="p-6 space-y-6">
+            <div className="space-y-2">
+              <label className="text-[10px] uppercase tracking-widest font-bold text-gray-500">
+                Primary Brand Color
+              </label>
+              <div className="flex items-center gap-4">
+                <input
+                  type="color"
+                  value={settingsData.siteConfig.primaryBrandColor}
+                  onChange={(e) =>
+                    setSettingsData({
+                      ...settingsData,
+                      siteConfig: { ...settingsData.siteConfig, primaryBrandColor: e.target.value },
+                    })
+                  }
+                  className="h-12 w-16 rounded-sm border border-gray-200 bg-white p-1 cursor-pointer"
+                  aria-label="Primary brand color"
+                />
+                <span className="text-sm text-slate-900 font-medium">
+                  {settingsData.siteConfig.primaryBrandColor}
+                </span>
+              </div>
+            </div>
+
+            <div className="space-y-2">
+              <label className="text-[10px] uppercase tracking-widest font-bold text-gray-500">
+                WhatsApp Contact Number
+              </label>
+              <input
+                type="text"
+                value={settingsData.siteConfig.whatsappContactNumber}
+                onChange={(e) =>
+                  setSettingsData({
+                    ...settingsData,
+                    siteConfig: { ...settingsData.siteConfig, whatsappContactNumber: e.target.value },
+                  })
+                }
+                className="w-full border border-gray-200 rounded-sm px-4 py-2.5 text-sm focus:border-brand-gold outline-none"
+                placeholder="+234..."
+              />
+            </div>
+
+            <div className="flex justify-end pt-2">
+              <button
+                type="button"
+                className="bg-brand-gold hover:bg-brand-gold-hover text-white px-8 py-2.5 text-sm font-bold uppercase tracking-widest transition-all shadow-md"
+              >
+                Save Changes
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+
+    const renderNotificationsSettings = () => (
+      <div className="space-y-6">
+        <div className="bg-white rounded-sm border border-gray-200 shadow-sm overflow-hidden">
+          <div className="p-6 border-b border-gray-100 flex items-center justify-between gap-4">
+            <div className="flex items-center gap-4">
+                <div className="w-12 h-12 bg-brand-gold/10 rounded-full flex items-center justify-center text-brand-gold">
+                <Bell size={24} />
+              </div>
+              <div>
+                <h3 className="font-medium text-slate-900">New Lead Alerts</h3>
+                <p className="text-sm text-gray-500">Toggle alerts for newly captured leads.</p>
+              </div>
+            </div>
+
+            <button
+              type="button"
+              onClick={() =>
+                setSettingsData({
+                  ...settingsData,
+                  notifications: {
+                    ...settingsData.notifications,
+                    newLeadAlerts: !settingsData.notifications.newLeadAlerts,
+                  },
+                })
+              }
+              className={`transition-colors ${settingsData.notifications.newLeadAlerts ? 'text-brand-gold' : 'text-gray-300'}`}
+            >
+              {settingsData.notifications.newLeadAlerts ? (
+                <ToggleRight size={40} />
+              ) : (
+                <ToggleLeft size={40} />
+              )}
             </button>
           </div>
         </div>
@@ -980,7 +1173,7 @@ export default function Admin() {
                     placeholder="••••••••" 
                     value={passwordState.current}
                     onChange={(e) => setPasswordState({...passwordState, current: e.target.value})}
-                    className="w-full border border-gray-200 rounded-sm px-4 py-2.5 text-sm focus:border-[#C5A059] outline-none" 
+                    className="w-full border border-gray-200 rounded-sm px-4 py-2.5 text-sm focus:border-brand-gold outline-none" 
                   />
                 </div>
                 <div className="space-y-2">
@@ -990,7 +1183,7 @@ export default function Admin() {
                     placeholder="••••••••" 
                     value={passwordState.new}
                     onChange={(e) => setPasswordState({...passwordState, new: e.target.value})}
-                    className="w-full border border-gray-200 rounded-sm px-4 py-2.5 text-sm focus:border-[#C5A059] outline-none" 
+                    className="w-full border border-gray-200 rounded-sm px-4 py-2.5 text-sm focus:border-brand-gold outline-none" 
                   />
                 </div>
                 <div className="space-y-2">
@@ -1000,7 +1193,7 @@ export default function Admin() {
                     placeholder="••••••••" 
                     value={passwordState.confirm}
                     onChange={(e) => setPasswordState({...passwordState, confirm: e.target.value})}
-                    className="w-full border border-gray-200 rounded-sm px-4 py-2.5 text-sm focus:border-[#C5A059] outline-none" 
+                    className="w-full border border-gray-200 rounded-sm px-4 py-2.5 text-sm focus:border-brand-gold outline-none" 
                   />
                 </div>
               </div>
@@ -1008,7 +1201,7 @@ export default function Admin() {
             <div className="p-6 bg-gray-50 border-t border-gray-100 flex justify-end">
               <button 
                 type="submit"
-                className="bg-slate-900 hover:bg-slate-800 text-white px-8 py-2.5 text-sm font-bold uppercase tracking-widest transition-all shadow-md"
+              className="bg-brand-navy hover:bg-brand-navy/90 text-white px-8 py-2.5 text-sm font-bold uppercase tracking-widest transition-all shadow-md"
               >
                 Update Password
               </button>
@@ -1019,17 +1212,17 @@ export default function Admin() {
         <div className="bg-white rounded-sm border border-gray-200 shadow-sm p-6">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
-              <div className="w-12 h-12 bg-blue-50 rounded-full flex items-center justify-center text-blue-600">
+              <div className="w-12 h-12 bg-brand-gold/10 rounded-full flex items-center justify-center text-brand-gold">
                 <Shield size={24} />
               </div>
               <div>
-                <h3 className="font-medium text-slate-900">Two-Factor Authentication</h3>
+                <h3 className="font-medium text-brand-charcoal">Two-Factor Authentication</h3>
                 <p className="text-sm text-gray-500">Add an extra layer of security to your admin account.</p>
               </div>
             </div>
             <button 
               onClick={() => setSettingsData({...settingsData, security: {twoFactor: !settingsData.security.twoFactor}})}
-              className={`transition-colors ${settingsData.security.twoFactor ? 'text-[#C5A059]' : 'text-gray-300'}`}
+              className={`transition-colors ${settingsData.security.twoFactor ? 'text-brand-gold' : 'text-gray-300'}`}
             >
               {settingsData.security.twoFactor ? <ToggleRight size={40} /> : <ToggleLeft size={40} />}
             </button>
@@ -1048,7 +1241,7 @@ export default function Admin() {
           <div className="p-6 grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="space-y-2">
               <label className="text-[10px] uppercase tracking-widest font-bold text-gray-500 flex items-center gap-2">
-                <CreditCard size={14} className="text-[#C5A059]" /> Portfolio Value (Billions)
+                <CreditCard size={14} className="text-brand-gold" /> Portfolio Value (Billions)
               </label>
               <div className="relative">
                 <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 font-serif">₦</span>
@@ -1056,19 +1249,19 @@ export default function Admin() {
                   type="text" 
                   value={settingsData.branding.portfolioValue}
                   onChange={(e) => setSettingsData({...settingsData, branding: {...settingsData.branding, portfolioValue: e.target.value}})}
-                  className="w-full border border-gray-200 rounded-sm pl-8 pr-4 py-2.5 text-sm focus:border-[#C5A059] outline-none font-serif text-lg" 
+                  className="w-full border border-gray-200 rounded-sm pl-8 pr-4 py-2.5 text-sm focus:border-brand-gold outline-none font-serif text-lg" 
                 />
                 <span className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 text-xs uppercase font-bold">Billion</span>
               </div>
             </div>
             <div className="space-y-2">
               <label className="text-[10px] uppercase tracking-widest font-bold text-gray-500 flex items-center gap-2">
-                <Globe size={14} className="text-[#C5A059]" /> Base Currency
+                <Globe size={14} className="text-brand-gold" /> Base Currency
               </label>
               <select 
                 value={settingsData.branding.currency}
                 onChange={(e) => setSettingsData({...settingsData, branding: {...settingsData.branding, currency: e.target.value}})}
-                className="w-full border border-gray-200 rounded-sm px-4 py-2.5 text-sm focus:border-[#C5A059] outline-none bg-white"
+                className="w-full border border-gray-200 rounded-sm px-4 py-2.5 text-sm focus:border-brand-gold outline-none bg-white"
               >
                 <option value="NGN">Naira (₦)</option>
                 <option value="USD">Dollar ($)</option>
@@ -1116,7 +1309,7 @@ export default function Admin() {
                 onClick={() => setActiveSettingsTab(tab.id)}
                 className={`w-full flex items-center gap-3 px-4 py-3 rounded-sm text-sm font-medium transition-all ${
                   activeSettingsTab === tab.id 
-                    ? 'bg-[#C5A059] text-white shadow-md shadow-[#C5A059]/20' 
+                    ? 'bg-brand-gold text-white shadow-md shadow-[#D4AF37]/20' 
                     : 'text-gray-500 hover:bg-gray-100'
                 }`}
               >
@@ -1128,15 +1321,8 @@ export default function Admin() {
           {/* Settings Content */}
           <div className="flex-1">
             {activeSettingsTab === 'profile' && renderProfileSettings()}
-            {activeSettingsTab === 'security' && renderSecuritySettings()}
-            {activeSettingsTab === 'branding' && renderBrandingSettings()}
-            {activeSettingsTab === 'notifications' && (
-              <div className="bg-white border border-gray-200 rounded-sm p-12 text-center">
-                <Bell size={48} className="mx-auto text-gray-200 mb-4" />
-                <h3 className="font-serif text-xl text-slate-900 mb-2">Notification Preferences</h3>
-                <p className="text-gray-500 max-w-xs mx-auto">This section is coming soon. You'll be able to manage your email and push alerts here.</p>
-              </div>
-            )}
+            {activeSettingsTab === 'siteConfig' && renderSiteConfigSettings()}
+            {activeSettingsTab === 'notifications' && renderNotificationsSettings()}
           </div>
         </div>
       </div>
@@ -1144,15 +1330,12 @@ export default function Admin() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col md:flex-row font-sans text-slate-900">
+    <div className="min-h-screen bg-brand-gray flex flex-col md:flex-row font-sans text-brand-charcoal">
       
       {/* 1. Mobile Branding Header (Visible only on Mobile) */}
-      <div className="md:hidden bg-slate-900 text-white p-4 flex justify-between items-center sticky top-0 z-50">
+      <div className="md:hidden bg-brand-navy text-white p-4 flex justify-between items-center sticky top-0 z-50">
         <div className="flex items-center gap-3">
-          <div className="w-8 h-8 bg-[#C5A059] flex items-center justify-center rounded-sm">
-            <span className="font-serif text-white font-bold text-xl leading-none">H</span>
-          </div>
-          <span className="font-serif text-xl tracking-wide">Hogar Admin</span>
+          <img src="/Logo.png" alt="Hogar Homes" className="h-12 w-auto" />
         </div>
         <button onClick={() => setIsSidebarOpen(true)} className="p-2 hover:bg-white/10 rounded-sm">
           <MoreVertical size={24} />
@@ -1169,17 +1352,14 @@ export default function Admin() {
 
       {/* 3. Sidebar */}
       <aside className={`
-        fixed inset-y-0 left-0 w-72 bg-slate-900 text-white flex flex-col z-[70] 
+        fixed inset-y-0 left-0 w-72 bg-brand-navy text-white flex flex-col z-[70] 
         transform transition-transform duration-300 ease-in-out
         ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'}
         md:translate-x-0 md:static md:w-64
       `}>
         <div className="p-6 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="w-8 h-8 bg-[#C5A059] flex items-center justify-center rounded-sm">
-              <span className="font-serif text-white font-bold text-xl leading-none">H</span>
-            </div>
-            <span className="font-serif text-xl tracking-wide">Hogar Admin</span>
+            <img src="/Logo.png" alt="Hogar Homes" className="h-12 w-auto" />
           </div>
           <button onClick={() => setIsSidebarOpen(false)} className="md:hidden text-gray-400">
             <X size={24} />
@@ -1196,7 +1376,7 @@ export default function Admin() {
             <button 
               key={item.id}
               onClick={() => { setActiveTab(item.id); setIsSidebarOpen(false); }}
-              className={`w-full flex items-center gap-3 px-4 py-3 rounded-sm text-sm font-medium transition-colors ${activeTab === item.id ? 'bg-[#C5A059] text-white' : 'text-gray-400 hover:text-white hover:bg-white/5'}`}
+              className={`w-full flex items-center gap-3 px-4 py-3 rounded-sm text-sm font-medium transition-colors ${activeTab === item.id ? 'bg-brand-gold text-white' : 'text-brand-gray/70 hover:text-brand-gray hover:bg-white/5'}`}
             >
               <item.icon size={18} /> {item.label}
             </button>
@@ -1213,22 +1393,22 @@ export default function Admin() {
       {/* 4. Main Content Area */}
       <main className="flex-1 flex flex-col min-h-screen">
         {/* Dynamic Header: Search sits below user profile on mobile */}
-        <header className="bg-white border-b border-gray-200 px-4 md:px-8 py-4 sticky top-0 z-30">
+        <header className="bg-brand-gray border-b border-brand-gray/80 px-4 md:px-8 py-4 sticky top-0 z-30">
           <div className="flex flex-col-reverse md:flex-row md:justify-between md:items-center gap-4">
             
             {/* Search - Below on Mobile, Left on Desktop */}
-            <div className="flex items-center bg-gray-50 border border-gray-200 rounded-sm px-3 py-2 w-full md:w-96 shadow-sm">
+            <div className="flex items-center bg-brand-gray border border-gray-200 rounded-sm px-3 py-2 w-full md:w-96 shadow-sm">
               <Search size={16} className="text-gray-400 mr-2" />
               <input 
                 type="text" 
                 placeholder="Search listings, clients..." 
-                className="bg-transparent border-none outline-none text-sm w-full text-slate-900"
+                className="bg-transparent border-none outline-none text-sm w-full text-brand-charcoal"
               />
             </div>
 
             {/* Profile - Top on Mobile, Right on Desktop */}
             <div className="flex items-center justify-between md:justify-end gap-4 md:gap-6">
-              <button className="text-gray-400 hover:text-[#C5A059] transition-colors relative">
+              <button className="text-gray-400 hover:text-brand-gold transition-colors relative">
                 <Bell size={20} />
                 <span className="absolute -top-1 -right-1 w-2 h-2 bg-red-500 rounded-full border-2 border-white"></span>
               </button>
@@ -1238,7 +1418,7 @@ export default function Admin() {
                   <p className="text-sm font-semibold text-slate-900 leading-none mb-1">Voke Irekpita</p>
                   <p className="text-[10px] text-gray-500 uppercase tracking-wider">Super Admin</p>
                 </div>
-                <div className="w-10 h-10 bg-[#C5A059]/10 rounded-full flex items-center justify-center text-[#C5A059] font-bold border border-[#C5A059]/30">
+                <div className="w-10 h-10 bg-brand-gold/10 rounded-full flex items-center justify-center text-brand-gold font-bold border border-brand-gold/30">
                   VI
                 </div>
               </div>
@@ -1258,6 +1438,7 @@ export default function Admin() {
         {/* Modals */}
         {isModalOpen && renderPropertyModal()}
         {isLeadModalOpen && renderLeadModal()}
+        {isLeadDetailsOpen && renderLeadDetailsModal()}
       </main>
     </div>
   );

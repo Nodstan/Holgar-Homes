@@ -20,7 +20,7 @@ const PropertyDetails: React.FC = () => {
       <div className="min-h-screen flex items-center justify-center p-6">
         <div className="text-center">
           <h2 className="text-2xl font-bold">Property Not Found</h2>
-          <button onClick={() => navigate('/properties')} className="mt-4 text-[#C5A059]">
+          <button onClick={() => navigate('/properties')} className="mt-4 text-brand-gold">
             Return to Listings
           </button>
         </div>
@@ -91,7 +91,7 @@ const PropertyDetails: React.FC = () => {
           <div className="lg:col-span-8 space-y-8 pt-4 md:pt-8">
             <div>
               <div className="mb-4">
-                <span className="bg-[#C5A059]/10 text-[#C5A059] px-3 py-1 rounded-full text-[10px] font-black tracking-widest uppercase">
+                <span className="bg-brand-gold/10 text-brand-gold px-3 py-1 rounded-full text-[10px] font-black tracking-widest uppercase">
                   {property.tag}
                 </span>
               </div>
@@ -101,25 +101,25 @@ const PropertyDetails: React.FC = () => {
               </h1>
               
               <div className="flex items-center gap-2 text-slate-500">
-                <MapPin size={18} className="text-[#C5A059]" />
+                <MapPin size={18} className="text-brand-gold" />
                 <span className="text-base md:text-lg">{property.location}</span>
               </div>
             </div>
 
             {/* Mobile Price Card - Visible only on Mobile (below title) */}
             <div className="lg:hidden">
-              <div className="bg-slate-900 p-6 rounded-3xl text-white shadow-xl">
+              <div className="bg-brand-navy p-6 rounded-3xl text-white shadow-xl">
                 <div className="flex justify-between items-end mb-6">
                   <div>
                     <p className="text-slate-400 text-xs mb-1">Asking Price</p>
-                    <h2 className="text-3xl font-bold text-[#C5A059] font-serif">{property.price}</h2>
+                    <h2 className="text-3xl font-bold text-brand-gold font-serif">{property.price}</h2>
                   </div>
                   <div className="flex items-center gap-2 text-[10px] text-slate-400 uppercase tracking-widest font-bold mb-1">
                     <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span> Available
                   </div>
                 </div>
                 <div className="grid grid-cols-2 gap-3">
-                  <button className="bg-[#C5A059] py-4 rounded-xl font-bold uppercase text-[10px] tracking-widest active:scale-95 transition-all">
+                  <button className="bg-brand-gold hover:bg-brand-gold-hover py-4 rounded-xl font-bold uppercase text-[10px] tracking-widest active:scale-95 transition-all">
                     Book Tour
                   </button>
                   <button className="bg-white/10 py-4 rounded-xl font-bold uppercase text-[10px] tracking-widest flex items-center justify-center gap-2 border border-white/10">
@@ -132,7 +132,7 @@ const PropertyDetails: React.FC = () => {
             {/* STATS */}
             <div className="flex flex-wrap gap-8 lg:gap-12 py-8 border-y border-gray-100">
               <div className="flex items-center gap-3">
-                <div className="w-12 h-12 bg-slate-50 rounded-full flex items-center justify-center text-[#C5A059]">
+                <div className="w-12 h-12 bg-slate-50 rounded-full flex items-center justify-center text-brand-gold">
                   <BedDouble size={24} />
                 </div>
                 <div className="flex flex-col">
@@ -141,7 +141,7 @@ const PropertyDetails: React.FC = () => {
                 </div>
               </div>
               <div className="flex items-center gap-3">
-                <div className="w-12 h-12 bg-slate-50 rounded-full flex items-center justify-center text-[#C5A059]">
+                <div className="w-12 h-12 bg-slate-50 rounded-full flex items-center justify-center text-brand-gold">
                   <Bath size={24} />
                 </div>
                 <div className="flex flex-col">
@@ -150,7 +150,7 @@ const PropertyDetails: React.FC = () => {
                 </div>
               </div>
               <div className="flex items-center gap-3">
-                <div className="w-12 h-12 bg-slate-50 rounded-full flex items-center justify-center text-[#C5A059]">
+                <div className="w-12 h-12 bg-slate-50 rounded-full flex items-center justify-center text-brand-gold">
                   <Maximize size={24} />
                 </div>
                 <div className="flex flex-col">
@@ -171,8 +171,8 @@ const PropertyDetails: React.FC = () => {
               <h3 className="text-2xl font-bold font-serif text-slate-900">Key Features</h3>
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
                 {['Smart Home Automation', 'Infinity Pool', 'Private Cinema', '24/7 Elite Security', 'Home Gym', 'Serviced Quarters'].map((feat) => (
-                  <div key={feat} className="flex items-center gap-3 bg-slate-50 p-4 rounded-xl border border-slate-100/50 group hover:border-[#C5A059]/30 transition-colors">
-                    <CheckCircle2 size={20} className="text-[#C5A059] shrink-0" /> 
+                  <div key={feat} className="flex items-center gap-3 bg-slate-50 p-4 rounded-xl border border-slate-100/50 group hover:border-brand-gold/30 transition-colors">
+                    <CheckCircle2 size={20} className="text-brand-gold shrink-0" /> 
                     <span className="text-slate-700 font-semibold text-sm">{feat}</span>
                   </div>
                 ))}
@@ -183,14 +183,14 @@ const PropertyDetails: React.FC = () => {
           {/* RIGHT SIDE (Sticky Sidebar) */}
           <div className="hidden lg:block lg:col-span-4 pt-4 md:pt-8">
             <div className="sticky top-32 space-y-6">
-              <div className="bg-slate-900 p-8 rounded-[2.5rem] text-white shadow-2xl border border-white/5">
+              <div className="bg-brand-navy p-8 rounded-[2.5rem] text-white shadow-2xl border border-white/5">
                 <div className="mb-8">
                   <p className="text-slate-400 text-xs uppercase tracking-widest font-bold mb-2">Exclusive Asking Price</p>
-                  <h2 className="text-4xl font-bold text-[#C5A059] font-serif">{property.price}</h2>
+                  <h2 className="text-4xl font-bold text-brand-gold font-serif">{property.price}</h2>
                 </div>
                 
                 <div className="space-y-4">
-                  <button className="w-full bg-[#C5A059] hover:bg-[#b38f4a] py-5 rounded-2xl font-bold uppercase text-xs tracking-[0.2em] active:scale-95 transition-all shadow-lg shadow-[#C5A059]/20">
+                  <button className="w-full bg-brand-gold hover:bg-brand-gold-hover py-5 rounded-2xl font-bold uppercase text-xs tracking-[0.2em] active:scale-95 transition-all shadow-lg shadow-[#D4AF37]/20">
                     Book A Private Tour
                   </button>
                   <button className="w-full bg-white/5 hover:bg-white/10 py-5 rounded-2xl font-bold uppercase text-xs tracking-[0.2em] flex items-center justify-center gap-3 border border-white/10 transition-all">
@@ -200,7 +200,7 @@ const PropertyDetails: React.FC = () => {
 
                 <div className="mt-10 pt-8 border-t border-white/10">
                   <div className="flex items-center gap-4 mb-6">
-                    <div className="w-14 h-14 bg-gradient-to-tr from-[#C5A059] to-[#d4b77b] rounded-2xl flex items-center justify-center font-bold text-xl shadow-inner shadow-white/20">VH</div>
+                    <div className="w-14 h-14 bg-gradient-to-tr from-brand-gold to-[#d4b77b] rounded-2xl flex items-center justify-center font-bold text-xl shadow-inner shadow-white/20">VH</div>
                     <div>
                       <p className="font-bold text-lg leading-tight">Hogar Homes Ltd</p>
                       <p className="text-luxury-gold uppercase tracking-[0.2em] text-[10px] font-black mt-1">Verified Premium Agency</p>
@@ -213,11 +213,11 @@ const PropertyDetails: React.FC = () => {
               </div>
 
               {/* Additional Sidebar Info */}
-              <div className="bg-slate-900 border border-white/10 p-8 rounded-[2.5rem] shadow-2xl relative overflow-hidden group">
+              <div className="bg-brand-navy border border-white/10 p-8 rounded-[2.5rem] shadow-2xl relative overflow-hidden group">
                 {/* Subtle decorative glow in the corner */}
-                <div className="absolute -top-10 -right-10 w-24 h-24 bg-[#C5A059] opacity-10 blur-3xl group-hover:opacity-20 transition-opacity" />
+                <div className="absolute -top-10 -right-10 w-24 h-24 bg-brand-gold opacity-10 blur-3xl group-hover:opacity-20 transition-opacity" />
                 
-                <h4 className="font-bold text-[#C5A059] mb-6 uppercase tracking-[0.2em] text-[10px]">
+                <h4 className="font-bold text-brand-gold mb-6 uppercase tracking-[0.2em] text-[10px]">
                   Share this property
                 </h4>
                 
@@ -225,7 +225,7 @@ const PropertyDetails: React.FC = () => {
                   {[Share2, Heart].map((Icon, i) => (
                     <button 
                       key={i} 
-                      className="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-white hover:bg-[#C5A059] hover:scale-110 hover:shadow-[0_0_20px_rgba(197,160,89,0.3)] transition-all duration-300"
+                      className="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-white hover:bg-brand-gold hover:scale-110 hover:shadow-[0_0_20px_rgba(212,175,55,0.3)] transition-all duration-300"
                     >
                       <Icon size={22} />
                     </button>
