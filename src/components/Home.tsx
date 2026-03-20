@@ -1,24 +1,24 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'motion/react';
-import { MapPin, Square, Search, Phone, Mail, BedDouble, Bath, ArrowUpRight } from 'lucide-react';
+import { MapPin, Square, Search, BedDouble, Bath, ArrowUpRight, Phone, Mail } from 'lucide-react';
 import { MOCK_PROPERTIES } from '../data/properties';
 
 const services = [
   {
     title: 'Luxury Sales',
     description: 'Exclusive access to off-market properties and premium listings across Nigeria\'s most coveted neighborhoods.',
-    icon: <Square className="w-8 h-8 text-luxury-gold" strokeWidth={1.5} />
+    icon: <Square className="w-8 h-8 text-brand-gold" strokeWidth={1.5} />
   },
   {
     title: 'Market Analysis',
     description: 'Data-driven insights and comprehensive valuations to ensure your investment yields maximum returns.',
-    icon: <Search className="w-8 h-8 text-luxury-gold" strokeWidth={1.5} />
+    icon: <Search className="w-8 h-8 text-brand-gold" strokeWidth={1.5} />
   },
   {
     title: 'Elite Consulting',
     description: 'Bespoke advisory services tailored to high-net-worth individuals and institutional investors.',
-    icon: <MapPin className="w-8 h-8 text-luxury-gold" strokeWidth={1.5} />
+    icon: <MapPin className="w-8 h-8 text-brand-gold" strokeWidth={1.5} />
   }
 ];
 
@@ -28,7 +28,7 @@ export default function Home() {
   return (
     <>
       {/* Hero Section */}
-      <section id="home" className="relative h-screen flex items-center justify-center overflow-hidden">
+      <section id="home" className="relative h-screen w-full flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img 
             src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1920&q=80" 
@@ -164,17 +164,19 @@ export default function Home() {
         </div>
       </section>
 
-      {/* About Section */}
+      {/* About Section - Fixed Mobile Edge Bleed */}
       <section id="about" className="py-24 bg-white overflow-hidden">
         <div className="max-w-[1440px] mx-auto px-4 md:px-6 lg:px-8">
           <div className="flex flex-col lg:flex-row gap-16 items-center">
-            <div className="lg:w-1/2 w-full">
-              <div className="relative mx-auto max-w-md lg:max-w-none pr-4 pb-4">
-                <div className="absolute inset-0 bg-luxury-gold translate-x-4 translate-y-4"></div>
+            
+            <div className="lg:w-1/2 w-full px-2 md:px-0">
+              <div className="relative mx-auto max-w-md lg:max-w-none">
+                {/* Gold offset box - adjusted for mobile padding */}
+                <div className="absolute inset-0 bg-luxury-gold translate-x-2 translate-y-2 md:translate-x-4 md:translate-y-4"></div>
                 <img 
                   src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=800&q=80" 
                   alt="About Hogar Homes" 
-                  className="relative z-10 w-full h-[400px] md:h-[600px] object-cover"
+                  className="relative z-10 w-full h-[400px] md:h-[600px] object-cover shadow-2xl"
                   referrerPolicy="no-referrer"
                 />
               </div>
@@ -206,6 +208,7 @@ export default function Home() {
           </div>
         </div>
       </section>
+
       {/* Contact Section */}
       <section id="contact" className="py-24 bg-gray-50 overflow-hidden">
         <div className="max-w-[1440px] mx-auto px-4 md:px-6 lg:px-8">
