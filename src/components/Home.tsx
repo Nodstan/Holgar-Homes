@@ -40,8 +40,8 @@ export default function Home() {
             referrerPolicy="no-referrer"
           />
           {/* Overlay layers */}
-          <div className="absolute inset-0 bg-brand-navy/60 mix-blend-multiply"></div>
-          <div className="absolute inset-0 bg-gradient-to-t from-brand-navy/80 via-transparent to-transparent"></div>
+          <div className="absolute inset-0 bg-brand-navy/50 mix-blend-multiply"></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-brand-navy/0 via-transparent to-transparent"></div>
         </div>
         
         <div className="relative z-10 text-center px-4 max-w-5xl mx-auto">
