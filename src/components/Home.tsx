@@ -27,8 +27,11 @@ export default function Home() {
 
   return (
     <>
-      {/* Hero Section */}
-      <section id="home" className="relative h-screen w-full flex items-center justify-center overflow-hidden">
+      {/* Hero Section - Fixed with Dynamic Viewport Height (dvh) */}
+      <section 
+        id="home" 
+        className="relative h-dvh min-h-[100dvh] w-full flex items-center justify-center overflow-hidden"
+      >
         <div className="absolute inset-0 z-0">
           <img 
             src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1920&q=80" 
@@ -36,11 +39,12 @@ export default function Home() {
             className="w-full h-full object-cover"
             referrerPolicy="no-referrer"
           />
+          {/* Overlay layers */}
           <div className="absolute inset-0 bg-brand-navy/60 mix-blend-multiply"></div>
           <div className="absolute inset-0 bg-gradient-to-t from-brand-navy/80 via-transparent to-transparent"></div>
         </div>
         
-        <div className="relative z-10 text-center px-4 max-w-5xl mx-auto mt-16">
+        <div className="relative z-10 text-center px-4 max-w-5xl mx-auto">
           <motion.p 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -164,14 +168,13 @@ export default function Home() {
         </div>
       </section>
 
-      {/* About Section - Fixed Mobile Edge Bleed */}
+      {/* About Section */}
       <section id="about" className="py-24 bg-white overflow-hidden">
         <div className="max-w-[1440px] mx-auto px-4 md:px-6 lg:px-8">
           <div className="flex flex-col lg:flex-row gap-16 items-center">
             
             <div className="lg:w-1/2 w-full px-2 md:px-0">
               <div className="relative mx-auto max-w-md lg:max-w-none">
-                {/* Gold offset box - adjusted for mobile padding */}
                 <div className="absolute inset-0 bg-luxury-gold translate-x-2 translate-y-2 md:translate-x-4 md:translate-y-4"></div>
                 <img 
                   src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=800&q=80" 
