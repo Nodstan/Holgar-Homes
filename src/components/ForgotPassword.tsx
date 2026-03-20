@@ -39,7 +39,7 @@ export default function ForgotPassword() {
                 <div className="w-2 h-2 bg-white rounded-sm"></div>
               </div>
             </div>
-            <h1 className="text-2xl font-bold tracking-tight font-serif text-white">
+            <h1 className="text-2xl font-bold tracking-tight font-luxury text-white">
               Hogar<span className="text-brand-gold"> Homes</span>
             </h1>
           </Link>
@@ -50,7 +50,7 @@ export default function ForgotPassword() {
           {!isSent ? (
             <>
               <div className="mb-8">
-                <h2 className="text-2xl font-serif text-white mb-2">Reset Password</h2>
+                <h2 className="text-2xl font-luxury text-brand-gold tracking-widest mb-2">Reset Password</h2>
                 <p className="text-gray-400 text-sm">Enter your email and we'll send you a link to reset your password.</p>
               </div>
 
@@ -70,7 +70,7 @@ export default function ForgotPassword() {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       className="w-full bg-brand-navy/50 border border-white/10 text-white pl-11 pr-4 py-3 focus:outline-none focus:border-brand-gold focus:ring-1 focus:ring-brand-gold/20 transition-all rounded-sm placeholder:text-gray-600"
-                      placeholder="admin@hogarhomes.com"
+                      placeholder="hogarhomesng@gmail.com"
                     />
                   </div>
                 </div>
@@ -90,7 +90,7 @@ export default function ForgotPassword() {
               <div className="w-16 h-16 bg-brand-gold/10 rounded-full flex items-center justify-center mx-auto mb-6 text-brand-gold">
                 <Mail size={32} />
               </div>
-              <h2 className="text-2xl font-serif text-white mb-3">Check your email</h2>
+              <h2 className="text-2xl font-luxury text-brand-gold tracking-widest mb-3">Check your email</h2>
               <p className="text-gray-400 text-sm mb-8 leading-relaxed">
                 We have sent a password recovery link to <span className="text-white font-medium">{email}</span>.
               </p>

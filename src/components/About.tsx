@@ -44,7 +44,7 @@ const AboutPage: React.FC = () => {
               transition={{ duration: 0.6 }}
             >
               <span className="text-brand-gold font-black uppercase tracking-[0.4em] text-xs">The Expert</span>
-              <h1 className="text-5xl md:text-7xl font-serif text-slate-900 leading-tight mt-4">
+              <h1 className="text-5xl md:text-7xl font-luxury text-brand-navy tracking-widest leading-tight mt-4">
                 Meet Voke <br />
                 <span className="italic text-brand-gold">Irekpita</span>
               </h1>
@@ -115,7 +115,7 @@ const AboutPage: React.FC = () => {
                 <div className="w-16 h-16 bg-brand-navy rounded-2xl flex items-center justify-center mb-8 group-hover:bg-brand-gold transition-colors duration-300">
                   <feature.icon className="text-brand-gold group-hover:text-white" size={32} />
                 </div>
-                <h3 className="text-2xl font-bold text-slate-900 mb-4">{feature.title}</h3>
+                <h3 className="text-2xl font-bold font-luxury text-brand-navy mb-4">{feature.title}</h3>
                 <p className="text-slate-500 leading-relaxed font-light">{feature.desc}</p>
               </motion.div>
             ))}

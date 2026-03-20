@@ -278,7 +278,7 @@ export default function Admin() {
     <div className="p-4 md:p-8">
       <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-8 gap-4">
         <div>
-          <h1 className="text-2xl font-serif text-slate-900 mb-1">Dashboard Overview</h1>
+          <h1 className="text-2xl font-luxury text-brand-navy mb-1">Dashboard Overview</h1>
           <p className="text-sm text-gray-500">Welcome back, here's what's happening today.</p>
         </div>
         <button 
@@ -293,7 +293,7 @@ export default function Admin() {
         <div className="bg-white p-6 rounded-sm border border-gray-200 shadow-sm flex items-center justify-between">
           <div>
             <p className="text-sm text-gray-500 mb-1 font-medium">Total Properties</p>
-            <p className="text-3xl font-serif text-slate-900">{adminProperties.length}</p>
+            <p className="text-3xl font-luxury text-brand-navy">{adminProperties.length}</p>
           </div>
           <div className="w-12 h-12 bg-brand-gold/10 rounded-full flex items-center justify-center text-brand-gold">
             <Building size={24} />
@@ -302,7 +302,7 @@ export default function Admin() {
         <div className="bg-white p-6 rounded-sm border border-gray-200 shadow-sm flex items-center justify-between">
           <div>
             <p className="text-sm text-gray-500 mb-1 font-medium">Active Leads</p>
-            <p className="text-3xl font-serif text-slate-900">{leads.length}</p>
+            <p className="text-3xl font-luxury text-brand-navy">{leads.length}</p>
           </div>
           <div className="w-12 h-12 bg-green-50 rounded-full flex items-center justify-center text-green-600">
             <Users size={24} />
@@ -311,9 +311,9 @@ export default function Admin() {
         <div className="bg-white p-6 rounded-sm border border-gray-200 shadow-sm flex items-center justify-between">
           <div>
             <p className="text-sm text-gray-500 mb-1 font-medium">Portfolio Value</p>
-            <p className="text-3xl font-serif text-slate-900">₦3.2B</p>
+            <p className="text-3xl font-luxury text-brand-navy">₦3.2B</p>
           </div>
-          <div className="w-12 h-12 bg-purple-50 rounded-full flex items-center justify-center text-purple-600 font-serif text-2xl">
+          <div className="w-12 h-12 bg-purple-50 rounded-full flex items-center justify-center text-purple-600 font-luxury text-2xl">
             ₦
           </div>
         </div>
@@ -321,7 +321,7 @@ export default function Admin() {
 
       <div className="bg-white rounded-sm border border-gray-200 shadow-sm">
         <div className="px-6 py-5 border-b border-gray-200 flex justify-between items-center">
-          <h2 className="text-lg font-medium text-slate-900">Recent Leads</h2>
+          <h2 className="text-lg font-luxury text-brand-navy">Recent Leads</h2>
         <button onClick={() => setActiveTab('leads')} className="text-sm text-brand-gold hover:text-brand-gold-hover font-medium">View All</button>
         </div>
         <div className="p-0">
@@ -348,7 +348,7 @@ export default function Admin() {
     <div className="p-4 md:p-8">
       <div className="flex flex-col xl:flex-row justify-between items-start xl:items-center mb-8 gap-4">
         <div>
-          <h1 className="text-2xl font-serif text-slate-900 mb-1">Properties Management</h1>
+          <h1 className="text-2xl font-luxury text-brand-navy mb-1">Properties Management</h1>
           <p className="text-sm text-gray-500">Update statuses and track listing performance.</p>
         </div>
         <div className="flex flex-col sm:flex-row items-center gap-4 w-full xl:w-auto">
@@ -397,7 +397,7 @@ export default function Admin() {
             <div className="p-5 flex-1 flex flex-col">
               <div className="flex justify-between items-start mb-2">
                 <div>
-                  <h3 className="font-serif text-lg text-slate-900 mb-1">{prop.title}</h3>
+                  <h3 className="font-luxury text-lg text-brand-navy mb-1">{prop.title}</h3>
                   <p className="text-sm text-gray-500">{prop.location}</p>
                 </div>
                 <p className="font-medium text-brand-gold">{prop.price}</p>
@@ -460,7 +460,7 @@ export default function Admin() {
       />
       <div className="relative bg-white w-full max-w-2xl rounded-sm shadow-2xl overflow-hidden flex flex-col max-h-[90vh]">
         <div className="p-6 border-b border-gray-100 flex justify-between items-center bg-brand-navy text-white">
-          <h2 className="text-xl font-serif">{modalMode === 'add' ? 'Add New Property' : 'Edit Property'}</h2>
+          <h2 className="text-xl font-luxury">{modalMode === 'add' ? 'Add New Property' : 'Edit Property'}</h2>
           <button onClick={handleCloseModal} className="text-gray-400 hover:text-white transition-colors">
             <X size={24} />
           </button>
@@ -666,7 +666,7 @@ export default function Admin() {
     <div className="p-4 md:p-8">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end mb-8 gap-4">
         <div>
-          <h1 className="text-2xl font-serif text-slate-900 mb-1">Lead Clients</h1>
+          <h1 className="text-2xl font-luxury text-brand-navy mb-1">Lead Clients</h1>
           <p className="text-sm text-gray-500">Manage inquiries and client relationships.</p>
         </div>
         <button
@@ -735,7 +735,7 @@ export default function Admin() {
       />
       <div className="relative bg-white w-full max-w-lg rounded-sm shadow-2xl overflow-hidden flex flex-col">
         <div className="p-6 border-b border-gray-100 flex justify-between items-center bg-brand-navy text-white">
-          <h2 className="text-xl font-serif">{leadModalMode === 'add' ? 'Add New Lead' : 'Edit Lead Details'}</h2>
+          <h2 className="text-xl font-luxury">{leadModalMode === 'add' ? 'Add New Lead' : 'Edit Lead Details'}</h2>
           <button onClick={handleCloseLeadModal} className="text-gray-400 hover:text-white transition-colors">
             <X size={24} />
           </button>
@@ -874,7 +874,7 @@ export default function Admin() {
 
         <div className="relative bg-white w-full max-w-2xl rounded-sm shadow-2xl overflow-hidden flex flex-col max-h-[90vh]">
           <div className="p-6 border-b border-gray-100 flex justify-between items-center bg-brand-navy text-white">
-            <h2 className="text-xl font-serif flex items-center gap-2">
+            <h2 className="text-xl font-luxury flex items-center gap-2">
               <Eye size={20} /> Lead Details
             </h2>
             <button
@@ -889,7 +889,7 @@ export default function Admin() {
           <div className="p-6 overflow-y-auto space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="space-y-3">
-                <h3 className="font-serif text-2xl text-slate-900">{lead.name}</h3>
+                <h3 className="font-luxury text-2xl text-brand-navy">{lead.name}</h3>
                 <div className="flex flex-col gap-1">
                   <div className="text-sm text-gray-600 flex items-center gap-2">
                     <Mail size={16} className="text-brand-gold" /> {lead.email}
@@ -981,7 +981,7 @@ export default function Admin() {
               </button>
             </div>
             <div>
-              <h3 className="font-serif text-lg text-slate-900">Profile</h3>
+              <h3 className="font-luxury text-lg text-brand-navy">Profile</h3>
               <p className="text-sm text-gray-500">Update your name and email.</p>
             </div>
           </div>
@@ -1018,7 +1018,7 @@ export default function Admin() {
       <div className="space-y-6">
         <div className="bg-white rounded-sm border border-gray-200 shadow-sm overflow-hidden">
           <div className="p-6 border-b border-gray-100">
-            <h3 className="font-serif text-lg text-slate-900">Site Config</h3>
+            <h3 className="font-luxury text-lg text-brand-navy">Site Config</h3>
             <p className="text-sm text-gray-500">Primary branding and WhatsApp contact.</p>
           </div>
           <div className="p-6 space-y-6">
@@ -1085,7 +1085,7 @@ export default function Admin() {
                 <Bell size={24} />
               </div>
               <div>
-                <h3 className="font-medium text-slate-900">New Lead Alerts</h3>
+                <h3 className="font-luxury text-brand-navy">New Lead Alerts</h3>
                 <p className="text-sm text-gray-500">Toggle alerts for newly captured leads.</p>
               </div>
             </div>
@@ -1153,7 +1153,7 @@ export default function Admin() {
       <div className="space-y-6">
         <div className="bg-white rounded-sm border border-gray-200 shadow-sm overflow-hidden">
           <div className="p-6 border-b border-gray-100">
-            <h3 className="font-serif text-lg text-slate-900">Password Management</h3>
+            <h3 className="font-luxury text-lg text-brand-navy">Password Management</h3>
             <p className="text-sm text-gray-500">Ensure your account is using a long, random password to stay secure.</p>
           </div>
           <form onSubmit={handleUpdatePassword}>
@@ -1216,7 +1216,7 @@ export default function Admin() {
                 <Shield size={24} />
               </div>
               <div>
-                <h3 className="font-medium text-brand-charcoal">Two-Factor Authentication</h3>
+                <h3 className="font-luxury text-brand-navy">Two-Factor Authentication</h3>
                 <p className="text-sm text-gray-500">Add an extra layer of security to your admin account.</p>
               </div>
             </div>
@@ -1235,7 +1235,7 @@ export default function Admin() {
       <div className="space-y-6">
         <div className="bg-white rounded-sm border border-gray-200 shadow-sm overflow-hidden">
           <div className="p-6 border-b border-gray-100">
-            <h3 className="font-serif text-lg text-slate-900">Platform Analytics</h3>
+            <h3 className="font-luxury text-lg text-brand-navy">Platform Analytics</h3>
             <p className="text-sm text-gray-500">Manage global data displayed across the platform.</p>
           </div>
           <div className="p-6 grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -1244,12 +1244,12 @@ export default function Admin() {
                 <CreditCard size={14} className="text-brand-gold" /> Portfolio Value (Billions)
               </label>
               <div className="relative">
-                <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 font-serif">₦</span>
+                <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 font-luxury">₦</span>
                 <input 
                   type="text" 
                   value={settingsData.branding.portfolioValue}
                   onChange={(e) => setSettingsData({...settingsData, branding: {...settingsData.branding, portfolioValue: e.target.value}})}
-                  className="w-full border border-gray-200 rounded-sm pl-8 pr-4 py-2.5 text-sm focus:border-brand-gold outline-none font-serif text-lg" 
+                  className="w-full border border-gray-200 rounded-sm pl-8 pr-4 py-2.5 text-sm focus:border-brand-gold outline-none font-luxury text-lg" 
                 />
                 <span className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 text-xs uppercase font-bold">Billion</span>
               </div>
@@ -1278,7 +1278,7 @@ export default function Admin() {
                 <Globe size={24} />
               </div>
               <div>
-                <h3 className="font-medium text-red-900">Maintenance Mode</h3>
+                <h3 className="font-luxury text-red-900">Maintenance Mode</h3>
                 <p className="text-sm text-red-700/70">Take the public website offline for maintenance.</p>
               </div>
             </div>
@@ -1296,7 +1296,7 @@ export default function Admin() {
     return (
       <div className="p-4 md:p-8 max-w-6xl mx-auto">
         <div className="mb-8">
-          <h1 className="text-3xl font-serif text-slate-900 mb-2">Platform Settings</h1>
+          <h1 className="text-3xl font-luxury text-brand-navy mb-2">Platform Settings</h1>
           <p className="text-sm text-gray-500">Manage your profile, security, and global platform preferences.</p>
         </div>
 

@@ -55,7 +55,7 @@ const ServicesPage: React.FC = () => {
               </span>
             </div>
             
-            <h1 className="text-4xl md:text-7xl font-serif leading-tight mb-8">
+            <h1 className="text-4xl md:text-7xl font-luxury text-brand-gold tracking-widest leading-tight mb-8">
               Bespoke <br />
               <span className="italic text-brand-gold block mt-2">Solutions</span>
             </h1>
@@ -109,7 +109,7 @@ const ServicesPage: React.FC = () => {
                   <service.icon size={32} />
                 </div>
                 
-                <h2 className="text-3xl md:text-5xl font-serif text-slate-900 leading-tight">
+                <h2 className="text-3xl md:text-5xl font-luxury text-brand-navy leading-tight">
                   {service.title}
                 </h2>
                 

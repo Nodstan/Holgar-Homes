@@ -19,7 +19,7 @@ const PropertyDetails: React.FC = () => {
     return (
       <div className="min-h-screen flex items-center justify-center p-6">
         <div className="text-center">
-          <h2 className="text-2xl font-bold">Property Not Found</h2>
+          <h2 className="text-2xl font-bold font-luxury text-brand-navy">Property Not Found</h2>
           <button onClick={() => navigate('/properties')} className="mt-4 text-brand-gold">
             Return to Listings
           </button>
@@ -96,7 +96,7 @@ const PropertyDetails: React.FC = () => {
                 </span>
               </div>
 
-              <h1 className="text-3xl md:text-5xl font-bold text-slate-900 mb-4 font-serif leading-tight">
+              <h1 className="text-3xl md:text-5xl font-bold text-brand-navy mb-4 font-luxury leading-tight">
                 {property.title}
               </h1>
               
@@ -112,7 +112,7 @@ const PropertyDetails: React.FC = () => {
                 <div className="flex justify-between items-end mb-6">
                   <div>
                     <p className="text-slate-400 text-xs mb-1">Asking Price</p>
-                    <h2 className="text-3xl font-bold text-brand-gold font-serif">{property.price}</h2>
+                    <h2 className="text-3xl font-bold text-brand-gold font-luxury tracking-widest">{property.price}</h2>
                   </div>
                   <div className="flex items-center gap-2 text-[10px] text-slate-400 uppercase tracking-widest font-bold mb-1">
                     <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span> Available
@@ -161,14 +161,14 @@ const PropertyDetails: React.FC = () => {
             </div>
 
             <div className="space-y-4">
-              <h3 className="text-2xl font-bold font-serif text-slate-900">About this property</h3>
+              <h3 className="text-2xl font-bold font-luxury text-brand-navy">About this property</h3>
               <p className="text-slate-600 leading-relaxed text-base md:text-lg max-w-none">
                 {property.desc}
               </p>
             </div>
 
             <div className="space-y-6">
-              <h3 className="text-2xl font-bold font-serif text-slate-900">Key Features</h3>
+              <h3 className="text-2xl font-bold font-luxury text-brand-navy">Key Features</h3>
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
                 {['Smart Home Automation', 'Infinity Pool', 'Private Cinema', '24/7 Elite Security', 'Home Gym', 'Serviced Quarters'].map((feat) => (
                   <div key={feat} className="flex items-center gap-3 bg-slate-50 p-4 rounded-xl border border-slate-100/50 group hover:border-brand-gold/30 transition-colors">
@@ -186,7 +186,7 @@ const PropertyDetails: React.FC = () => {
               <div className="bg-brand-navy p-8 rounded-[2.5rem] text-white shadow-2xl border border-white/5">
                 <div className="mb-8">
                   <p className="text-slate-400 text-xs uppercase tracking-widest font-bold mb-2">Exclusive Asking Price</p>
-                  <h2 className="text-4xl font-bold text-brand-gold font-serif">{property.price}</h2>
+                  <h2 className="text-4xl font-bold text-brand-gold font-luxury tracking-widest">{property.price}</h2>
                 </div>
                 
                 <div className="space-y-4">

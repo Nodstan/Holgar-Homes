@@ -107,35 +107,35 @@ export default function Layout() {
                 <nav className="space-y-8 mb-12">
                   <Link 
                     to="/" 
-                    className="block text-4xl font-serif text-white hover:text-brand-gold transition-colors"
+                    className="block text-4xl font-sans text-white hover:text-brand-gold transition-colors"
                   >
                     Home
                   </Link>
                   <Link
                     to="/properties"
                     onClick={() => setIsMenuOpen(false)}
-                    className="block text-4xl font-serif text-white hover:text-brand-gold transition-colors"
+                    className="block text-4xl font-sans text-white hover:text-brand-gold transition-colors"
                   >
                     Properties
                   </Link>
                   <Link
                     to="/services"
                     onClick={() => setIsMenuOpen(false)}
-                    className="block text-4xl font-serif text-white hover:text-brand-gold transition-colors"
+                    className="block text-4xl font-sans text-white hover:text-brand-gold transition-colors"
                   >
                     Services
                   </Link>
                   <Link
                     to="/about"
                     onClick={() => setIsMenuOpen(false)}
-                    className="block text-4xl font-serif text-white hover:text-brand-gold transition-colors"
+                    className="block text-4xl font-sans text-white hover:text-brand-gold transition-colors"
                   >
                     About
                   </Link>
                   <a
                     href="#contact"
                     onClick={() => setIsMenuOpen(false)}
-                    className="block text-4xl font-serif text-white hover:text-brand-gold transition-colors"
+                    className="block text-4xl font-sans text-white hover:text-brand-gold transition-colors"
                   >
                     Contact
                   </a>
@@ -144,8 +144,8 @@ export default function Layout() {
                 <div className="mt-auto space-y-8">
                   <div className="space-y-4">
                     <p className="text-brand-gold uppercase tracking-widest text-xs font-bold">Inquiries</p>
-                    <a href="tel:+234800HOGAR" className="block text-xl text-white">+234 (0) 800 HOGAR</a>
-                    <a href="mailto:concierge@hogarhomes.com" className="block text-xl text-white">concierge@hogarhomes.com</a>
+                    <a href="tel:+2348062353099" className="block text-xl text-white">+234-806-235-3099</a>
+                    <a href="mailto:hogarhomesng@gmail.com" className="block text-xl text-white">hogarhomesng@gmail.com</a>
                   </div>
                  
                     <button className="w-full bg-brand-gold text-white py-5 px-6 rounded-sm text-sm uppercase tracking-widest font-bold flex justify-between items-center group hover:bg-brand-gold-hover">
@@ -203,7 +203,7 @@ export default function Layout() {
                 </li>
                 <li className="flex items-center gap-3">
                   <Phone size={18} className="text-brand-gold flex-shrink-0" />
-                  <span>+234 (0) 800 HOGAR</span>
+                  <span>+234-806-235-3099</span>
                 </li>
               </ul>
             </div>

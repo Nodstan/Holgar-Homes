@@ -53,10 +53,10 @@ export default function Home() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-5xl md:text-7xl lg:text-8xl text-white font-serif font-light leading-tight mb-8"
+            className="text-5xl md:text-7xl lg:text-8xl font-luxury text-brand-gold tracking-widest font-light leading-tight mb-8"
           >
             Luxury Living in <br className="hidden md:block" />
-            <span className="italic text-white/90">Eko Atlantic</span>
+            <span className="italic text-brand-gold/90">Eko Atlantic</span>
           </motion.h1>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -77,7 +77,7 @@ export default function Home() {
       <section className="py-24 bg-gray-50">
         <div className="max-w-[1440px] mx-auto px-4 md:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-serif text-slate-900 mb-4">Featured Listings</h2>
+            <h2 className="text-4xl md:text-5xl font-luxury text-brand-navy mb-4">Featured Listings</h2>
             <div className="w-16 h-0.5 bg-luxury-gold mx-auto"></div>
           </div>
 
@@ -103,7 +103,7 @@ export default function Home() {
                   <div className="flex items-center gap-1 text-luxury-gold text-[9px] md:text-[10px] font-bold mb-2 md:mb-3 uppercase tracking-widest">
                     <MapPin size={12} className="md:w-3.5 md:h-3.5" /> {item.location}
                   </div>
-                  <h3 className="text-xl md:text-2xl font-bold mb-2 md:mb-3 text-slate-900 group-hover:text-luxury-gold transition-colors font-serif line-clamp-1">{item.title}</h3>
+                  <h3 className="text-xl md:text-2xl font-bold mb-2 md:mb-3 text-brand-navy group-hover:text-luxury-gold transition-colors font-luxury line-clamp-1">{item.title}</h3>
                   <p className="text-gray-500 text-xs md:text-sm leading-relaxed line-clamp-2 mb-6 md:mb-8">{item.desc}</p>
                   
                   <div className="flex items-center justify-between pt-4 md:pt-6 border-t border-gray-100">
@@ -137,7 +137,7 @@ export default function Home() {
       <section id="services" className="py-24 bg-brand-navy text-white">
         <div className="max-w-[1440px] mx-auto px-4 md:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-serif mb-4">Our Expertise</h2>
+            <h2 className="text-4xl md:text-5xl font-luxury text-brand-gold tracking-widest mb-4">Our Expertise</h2>
             <div className="w-16 h-0.5 bg-luxury-gold mx-auto"></div>
           </div>
           
@@ -154,7 +154,7 @@ export default function Home() {
                 <div className="w-20 h-20 mx-auto border border-white/10 rounded-full flex items-center justify-center mb-6 group-hover:border-luxury-gold transition-colors duration-300">
                   {service.icon}
                 </div>
-                <h3 className="text-xl font-serif mb-4">{service.title}</h3>
+                <h3 className="text-xl font-luxury text-brand-gold tracking-widest mb-4">{service.title}</h3>
                 <p className="text-gray-400 leading-relaxed text-sm">
                   {service.description}
                 </p>
@@ -182,7 +182,7 @@ export default function Home() {
             
             <div className="lg:w-1/2">
               <span className="text-luxury-gold uppercase tracking-widest text-sm font-bold mb-4 block">Our Story</span>
-              <h2 className="text-4xl md:text-5xl font-serif text-slate-900 mb-8">Redefining Nigerian Luxury</h2>
+              <h2 className="text-4xl md:text-5xl font-luxury text-brand-navy mb-8">Redefining Nigerian Luxury</h2>
               <p className="text-gray-600 mb-6 leading-relaxed">
                 Founded on the principles of discretion, excellence, and unparalleled local expertise, Hogar Homes has emerged as the premier partner for high-net-worth individuals seeking the extraordinary.
               </p>
@@ -191,11 +191,11 @@ export default function Home() {
               </p>
               <div className="grid grid-cols-2 gap-8 mb-10">
                 <div>
-                  <p className="text-3xl font-serif text-slate-900 mb-1">₦4.5B+</p>
+                  <p className="text-3xl font-luxury text-brand-navy mb-1">₦4.5B+</p>
                   <p className="text-sm text-gray-500 uppercase tracking-wider">Portfolio Value</p>
                 </div>
                 <div>
-                  <p className="text-3xl font-serif text-slate-900 mb-1">150+</p>
+                  <p className="text-3xl font-luxury text-brand-navy mb-1">150+</p>
                   <p className="text-sm text-gray-500 uppercase tracking-wider">Elite Clients</p>
                 </div>
               </div>
@@ -211,7 +211,7 @@ export default function Home() {
         <div className="max-w-[1440px] mx-auto px-4 md:px-6 lg:px-8">
           <div className="bg-white rounded-2xl md:rounded-sm shadow-xl overflow-hidden flex flex-col lg:flex-row border border-gray-100">
             <div className="lg:w-1/2 p-8 md:p-12 lg:p-16 bg-brand-navy text-white">
-              <h2 className="text-3xl md:text-4xl font-serif mb-6">Connect with an Expert</h2>
+              <h2 className="text-3xl md:text-4xl font-luxury text-brand-gold tracking-widest mb-6">Connect with an Expert</h2>
               <p className="text-gray-400 mb-10 leading-relaxed text-sm md:text-base">
                 Whether you are seeking a primary residence, a seasonal retreat, or a strategic investment, our advisors are at your service.
               </p>
@@ -223,7 +223,7 @@ export default function Home() {
                   </div>
                   <div>
                     <p className="text-[10px] md:text-xs uppercase tracking-widest text-gray-500 font-bold">Inquiries</p>
-                    <p className="text-base md:text-lg">+234 (0) 800 HOGAR</p>
+                    <p className="text-base md:text-lg">+234-806-235-3099</p>
                   </div>
                 </div>
                 
@@ -233,7 +233,7 @@ export default function Home() {
                   </div>
                   <div>
                     <p className="text-[10px] md:text-xs uppercase tracking-widest text-gray-500 font-bold">Email</p>
-                    <p className="text-base md:text-lg">concierge@hogarhomes.com</p>
+                    <p className="text-base md:text-lg">hogarhomesng@gmail.com</p>
                   </div>
                 </div>
               </div>
